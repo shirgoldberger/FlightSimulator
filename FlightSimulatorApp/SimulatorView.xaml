@@ -36,7 +36,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Trottle:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Value="{Binding MV_Trottle}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Value="{Binding MV_Throttle}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
@@ -63,49 +63,49 @@
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBox Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedVerticalSpeed: " />
-                    <TextBox Text="{Binding VM_GpsIndicatedVerticalSpeed}" Width="50" />
+                    <TextBlock Text="{Binding VM_GpsIndicatedVerticalSpeed}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedGroundSpeedKt: " />
-                    <TextBox Text="{Binding VM_gpsIndicatedGroundSpeedKt}" Width="50" />
+                    <TextBlock Text="{Binding VM_GpsIndicatedGroundSpeedKt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="airspeedIndicatorIndicatedSpeedKt: " />
-                    <TextBox Text="{Binding VM_AirspeedIndicatorIndicatedSpeedKt}" Width="50" />
+                    <TextBlock Text="{Binding VM_AirspeedIndicatorIndicatedSpeedKt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedAltitudeFt: " />
-                    <TextBox Text="{Binding VM_GpsIndicatedAltitudeFt}" Width="50" />
+                    <TextBlock Text="{Binding VM_GpsIndicatedAltitudeFt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBox Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBox Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBox Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>

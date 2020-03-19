@@ -41,11 +41,11 @@ namespace FlightSimulatorApp
             int p;
             if (ip.Equals(""))
             {
-                ip = "172.0.0.1";
+                ip = "127.0.0.1";
             }
             if (port.Equals(""))
             {
-                p = 12345;
+                p = 5402;
             }
             else
             {
@@ -53,6 +53,7 @@ namespace FlightSimulatorApp
             }
             SimulatorView simulatorView = new SimulatorView(this.ip, p);
             this.NavigationService.Navigate(simulatorView);
+       
         }
 
         public string IP
@@ -78,5 +79,16 @@ namespace FlightSimulatorApp
             //Port = "";
             //NotifyPropertyChanged("Port");
         }
+        bool hasBeenClicked = false;
+        private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = "ip";
+                hasBeenClicked = true;
+            }
+        }
+
     }
 }

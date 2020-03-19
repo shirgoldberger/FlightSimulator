@@ -10,8 +10,8 @@ namespace FlightSimulatorApp
 {
     class Telnet : ITelnetClient
     {
-        TcpClient tcpclnt = null;
-        Stream stm;
+        TcpClient tcpclnt;
+        NetworkStream stm;
         private string ip;
         private int port;
 
@@ -28,10 +28,10 @@ namespace FlightSimulatorApp
                 Console.WriteLine("Connecting.....");
 
                 tcpclnt.Connect(ip, port);
+                stm = tcpclnt.GetStream();
                 // use the ipaddress as in the server program
-
                 Console.WriteLine("Connected");
-            }
+                }
 
             catch (Exception e)
             {

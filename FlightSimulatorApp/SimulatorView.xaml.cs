@@ -26,7 +26,6 @@ namespace FlightSimulatorApp
             InitializeComponent();
             this.VM = new SimulatorViewModel(new MySimulatorModel(new Telnet(ip, port)));
             joystick1 = new controls.Joystick();
-
             DataContext = VM;
         }
     }

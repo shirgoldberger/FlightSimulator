@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
+using System.Net.Sockets;
+using System.Windows;
 namespace FlightSimulatorApp
 {
     class MySimulatorModel : ISimulatorModel
@@ -23,11 +25,13 @@ namespace FlightSimulatorApp
         {
             this.telnetClient = telnetClient;
             stop = false;
+            this.connect();
         }
 
-        public void connect(string ip, int port)
+        public void connect()
         {
             telnetClient.connect();
+            this.start();
         }
         public void disconnect()
         {
@@ -38,15 +42,71 @@ namespace FlightSimulatorApp
         public void start()
         {
             new Thread(delegate () {
+                String msg;
                 while (!stop)
                 {
-                    telnetClient.write("get indicatedHeadingDeg");
-                    indicatedHeadingDeg = Double.Parse(telnetClient.read());
-                    while (this.update.Count != 0)
-                    {
-                        string s = "set" + update.Dequeue();
-                        telnetClient.write(s);
-                    }
+                        // 1
+                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            IndicatedHeadingDeg = Double.Parse(msg);
+                        }
+                        // 2
+                        telnetClient.write("get /instrumentation/gps/indicated-vertical-speed");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            GpsIndicatedVerticalSpeed = Double.Parse(msg);
+                        }
+                        // 3
+                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            GpsIndicatedGroundSpeedKt = Double.Parse(msg);
+                        }
+                        // 4
+                        telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AirspeedIndicatorIndicatedSpeedKt = Double.Parse(msg);
+                        }
+                        // 5
+                        telnetClient.write("get /instrumentation/gps/indicated-altitude-ft");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            GpsIndicatedAltitudeFt = Double.Parse(msg);
+                        }
+                        // 6
+                        telnetClient.write("get /instrumentation/attitude-indicator/indicated-roll-deg");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AttitudeIndicatorInternalRollDeg = Double.Parse(msg);
+                        }
+                        // 7
+                        telnetClient.write("get /instrumentation/attitude-indicator/indicated-pitch-deg");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AttitudeIndicatorInternalPitchDeg = Double.Parse(msg);
+                        }
+                        // 8
+                        telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AltimeterIndicatedAltitudeFt = Double.Parse(msg);
+                        }
+                        while (this.update.Count != 0)
+                        {
+                            string s = "set " + update.Dequeue();
+                            telnetClient.write(s);
+                        }
+                   
 
                     // the same for the other sensors properties
                     Thread.Sleep(250);// read the data in 4Hz
@@ -71,7 +131,7 @@ namespace FlightSimulatorApp
                 if (this.indicatedHeadingDeg != value)
                 {
                     this.indicatedHeadingDeg = value;
-                    this.NotifyPropertyChanged("indicatedHeadingDeg");
+                    this.NotifyPropertyChanged("IndicatedHeadingDeg");
                 }
             }
         }
@@ -83,7 +143,7 @@ namespace FlightSimulatorApp
                 if (this.gpsIndicatedVerticalSpeed != value)
                 {
                     this.gpsIndicatedVerticalSpeed = value;
-                    this.NotifyPropertyChanged("indicatedHeadingDeg");
+                    this.NotifyPropertyChanged("GpsIndicatedVerticalSpeed");
                 }
             }
         }
@@ -95,7 +155,7 @@ namespace FlightSimulatorApp
                 if (this.gpsIndicatedGroundSpeedKt != value)
                 {
                     this.gpsIndicatedGroundSpeedKt = value;
-                    this.NotifyPropertyChanged("indicatedHeadingDeg");
+                    this.NotifyPropertyChanged("GpsIndicatedGroundSpeedKt");
                 }
             }
         }
@@ -107,11 +167,10 @@ namespace FlightSimulatorApp
                 if (this.airspeedIndicatorIndicatedSpeedKt != value)
                 {
                     this.airspeedIndicatorIndicatedSpeedKt = value;
-                    this.NotifyPropertyChanged("indicatedHeadingDeg");
+                    this.NotifyPropertyChanged("AirspeedIndicatorIndicatedSpeedKt");
                 }
             }
         }
-
         public double GpsIndicatedAltitudeFt
         {
             get { return this.gpsIndicatedAltitudeFt; }
@@ -120,7 +179,7 @@ namespace FlightSimulatorApp
                 if (this.gpsIndicatedAltitudeFt != value)
                 {
                     this.gpsIndicatedAltitudeFt = value;
-                    this.NotifyPropertyChanged("gpsIndicatedAltitudeFt");
+                    this.NotifyPropertyChanged("GpsIndicatedAltitudeFt");
                 }
             }
         }
@@ -132,7 +191,7 @@ namespace FlightSimulatorApp
                 if (this.attitudeIndicatorInternalRollDeg != value)
                 {
                     this.attitudeIndicatorInternalRollDeg = value;
-                    this.NotifyPropertyChanged("attitudeIndicatorInternalRollDeg");
+                    this.NotifyPropertyChanged("AttitudeIndicatorInternalRollDeg");
                 }
             }
         }
@@ -144,7 +203,7 @@ namespace FlightSimulatorApp
                 if (this.attitudeIndicatorInternalPitchDeg != value)
                 {
                     this.attitudeIndicatorInternalPitchDeg = value;
-                    this.NotifyPropertyChanged("attitudeIndicatorInternalPitchDeg");
+                    this.NotifyPropertyChanged("AttitudeIndicatorInternalPitchDeg");
                 }
             }
         }
@@ -156,7 +215,7 @@ namespace FlightSimulatorApp
                 if (this.altimeterIndicatedAltitudeFt != value)
                 {
                     this.altimeterIndicatedAltitudeFt = value;
-                    this.NotifyPropertyChanged("altimeterIndicatedAltitudeFt");
+                    this.NotifyPropertyChanged("AltimeterIndicatedAltitudeFt");
                 }
             }
         }
@@ -167,7 +226,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.rudder = value;
-                this.update.Enqueue("rudder");
+                this.update.Enqueue("/controls/flight/rudder");
             }
         }
         public double Elevator
@@ -176,7 +235,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.elevator = value;
-                this.update.Enqueue("elevator");
+                this.update.Enqueue("/controls/flight/elevator");
             }
         }
         public double Aileron
@@ -185,7 +244,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.aileron = value;
-                this.update.Enqueue("aileron");
+                this.update.Enqueue("/controls/flight/aileron");
             }
         }
         public double Throttle
@@ -194,7 +253,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.throttle = value;
-                this.update.Enqueue("throttle");
+                this.update.Enqueue("/controls/engines/engine/throttle");
             }
         }
     }

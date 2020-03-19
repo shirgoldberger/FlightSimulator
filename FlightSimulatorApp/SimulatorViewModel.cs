@@ -27,33 +27,27 @@ namespace FlightSimulatorApp
         }
 
 
-        public double MV_IndicatedHeadingDeg
+        public double VM_IndicatedHeadingDeg
         {
             get { return model.IndicatedHeadingDeg; }
         }
-        public double MV_GpsIndicatedVerticalSpeed
+        public double VM_GpsIndicatedVerticalSpeed
         {
             get { return model.GpsIndicatedVerticalSpeed; }
         }
-        public double MV_GpsIndicatedGroundSpeedKt
+        public double VM_GpsIndicatedGroundSpeedKt
         {
             get
-            {
-                return model.GpsIndicatedGroundSpeedKt;
-            }
+            { return model.GpsIndicatedGroundSpeedKt; }
         }
-        public double MV_AirspeedIndicatorIndicatedSpeedKt
+        public double VM_AirspeedIndicatorIndicatedSpeedKt
         {
             get { return model.AirspeedIndicatorIndicatedSpeedKt; }
         }
-
-        public double MV_GpsIndicatedAltitudeFt { get { return model.GpsIndicatedAltitudeFt; } }
-        public double MV_AttitudeIndicatorInternalRollDeg { get { return model.AttitudeIndicatorInternalRollDeg; } }
-        public double MV_AttitudeIndicatorInternalPitchDeg { get { return model.AttitudeIndicatorInternalPitchDeg; } }
-        public double MV_AltimeterIndicatedAltitudeFt { get { return model.AltimeterIndicatedAltitudeFt; } }
-
-
-
+        public double VM_GpsIndicatedAltitudeFt { get { return model.GpsIndicatedAltitudeFt; } }
+        public double VM_AttitudeIndicatorInternalRollDeg { get { return model.AttitudeIndicatorInternalRollDeg; } }
+        public double VM_AttitudeIndicatorInternalPitchDeg { get { return model.AttitudeIndicatorInternalPitchDeg; } }
+        public double VM_AltimeterIndicatedAltitudeFt { get { return model.AltimeterIndicatedAltitudeFt; } }
         public double MV_Rudder
         {
             get
