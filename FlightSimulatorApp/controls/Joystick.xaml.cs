@@ -46,9 +46,6 @@ namespace FlightSimulatorApp.controls
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
-
-
-
                 }
             }
         }

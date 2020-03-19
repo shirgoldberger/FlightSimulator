@@ -46,68 +46,66 @@ namespace FlightSimulatorApp
                 while (!stop)
                 {
                         // 1
-                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt");
+                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            IndicatedHeadingDeg = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        IndicatedHeadingDeg = Double.Parse(msg);
+                    }
                         // 2
-                        telnetClient.write("get /instrumentation/gps/indicated-vertical-speed");
+                        telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            GpsIndicatedVerticalSpeed = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        GpsIndicatedVerticalSpeed = Double.Parse(msg);
+                    }
                         // 3
-                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt");
+                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            GpsIndicatedGroundSpeedKt = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        GpsIndicatedGroundSpeedKt = Double.Parse(msg);
+                    }
                         // 4
-                        telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt");
+                        telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            AirspeedIndicatorIndicatedSpeedKt = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        AirspeedIndicatorIndicatedSpeedKt = Double.Parse(msg);
+                    }
                         // 5
-                        telnetClient.write("get /instrumentation/gps/indicated-altitude-ft");
+                        telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            GpsIndicatedAltitudeFt = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        GpsIndicatedAltitudeFt = Double.Parse(msg);
+                    }
                         // 6
-                        telnetClient.write("get /instrumentation/attitude-indicator/indicated-roll-deg");
+                        telnetClient.write("get /instrumentation/attitude-indicator/indicated-roll-deg\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            AttitudeIndicatorInternalRollDeg = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        AttitudeIndicatorInternalRollDeg = Double.Parse(msg);
+                    }
                         // 7
-                        telnetClient.write("get /instrumentation/attitude-indicator/indicated-pitch-deg");
+                        telnetClient.write("get /instrumentation/attitude-indicator/indicated-pitch-deg\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            AttitudeIndicatorInternalPitchDeg = Double.Parse(msg);
-                        }
+                    if (!msg.Contains("ERR"))
+                    {
+                        AttitudeIndicatorInternalPitchDeg = Double.Parse(msg);
+                    }
                         // 8
-                        telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft");
+                        telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                         msg = telnetClient.read();
-                        if (!msg.Contains("ERR"))
-                        {
-                            AltimeterIndicatedAltitudeFt = Double.Parse(msg);
-                        }
-                        while (this.update.Count != 0)
-                        {
-                            string s = "set " + update.Dequeue();
-                            telnetClient.write(s);
-                        }
-                   
-
+                    if (!msg.Contains("ERR"))
+                    {
+                        AltimeterIndicatedAltitudeFt = Double.Parse(msg);
+                    }
+                    while (this.update.Count != 0)
+                    {
+                        string s = "set " + update.Dequeue();
+                        telnetClient.write(s);
+                    }
                     // the same for the other sensors properties
                     Thread.Sleep(250);// read the data in 4Hz
                 }
