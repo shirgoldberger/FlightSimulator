@@ -6,4 +6,5 @@
         xmlns:local="clr-namespace:FlightSimulatorApp"
         mc:Ignorable="d"
         Title="FlightSimulatorApp" Height="645" Width="1000" Background="AliceBlue" Source="HomePage.xaml">
+
 </NavigationWindow>

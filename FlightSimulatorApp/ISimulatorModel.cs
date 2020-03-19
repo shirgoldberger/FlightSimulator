@@ -14,7 +14,7 @@ namespace FlightSimulatorApp
         void disconnect();
         void start();
 
-        //Dashboard
+        // Dashboard
         double IndicatedHeadingDeg { get; set; }
         double GpsIndicatedVerticalSpeed { get; set; }
         double GpsIndicatedGroundSpeedKt { get; set; }
