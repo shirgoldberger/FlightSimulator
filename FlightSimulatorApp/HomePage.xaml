@@ -1,0 +1,48 @@
+﻿<Page x:Class="FlightSimulatorApp.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FlightSimulatorApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="645" d:DesignWidth="1000"
+      Title="openPage">
+
+    <Grid TextBlock.FontSize="14">
+        <Grid.Background>
+            <ImageBrush ImageSource="flight.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Source ="simbol.png" VerticalAlignment="Center" Height="212" Margin="47.667,9.667,47.667,66.333"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="4" Grid.RowSpan="4" Orientation="Vertical">
+            <TextBlock Padding="3" Margin="3,3,3,2.6" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="White">Enter IP:</TextBlock>
+            <TextBox x:Name="ServerIP" Grid.Row="4" Grid.Column="1" Height="40" Width="270" Text="{Binding IP, Mode =TwoWay}"   Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" FontSize="18" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="White">Enter Port:</TextBlock>
+            <TextBox x:Name="ServerPort" Grid.Row="5" Grid.Column="1" Height="40" Width="270" Text="{Binding Port, Mode=TwoWay}"  MouseDown="ServerPort_MouseDown" Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" HorizontalContentAlignment="Center" FontSize="18" MouseEnter="ServerPort_MouseEnter"  />
+
+            <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"
+            Grid.ColumnSpan="1" Margin="0,30,0,0" Padding="5" Width="70" Click="Button_Click_Fly" FontSize="25">Fly!</Button>
+
+        </StackPanel>
+    </Grid>
+</Page>
