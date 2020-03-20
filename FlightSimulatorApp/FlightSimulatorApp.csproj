@@ -64,6 +64,8 @@
     <Compile Include="ISimulatorModel.cs" />
     <Compile Include="ITelnetClient.cs" />
     <Compile Include="MySimulatorModel.cs" />
+    <Compile Include="Notify.cs" />
+    <Compile Include="PropertyChangedExtendedEventArgs.cs" />
     <Compile Include="SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>

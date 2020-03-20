@@ -12,18 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp.controls
 {
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
-    public partial class Joystick : UserControl
+    public partial class Joystick : UserControl, Notify
     {
- 
+        private double rudder, elevator;
+
+        public int i;
         private Point currentPlace = new Point();
 
-   
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Joystick()
         {
             InitializeComponent();
@@ -36,7 +40,7 @@ namespace FlightSimulatorApp.controls
             }
         }
         private void Knob_MouseMove(object sender, MouseEventArgs e)
-        {
+                        {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 double x = e.GetPosition(this).X - currentPlace.X;
@@ -55,5 +59,26 @@ namespace FlightSimulatorApp.controls
             knobPosition.X = 0;
             knobPosition.Y = 0;
         }
-    }
+
+
+        public void NotifyPropertyChanged(string propertyName, object newValue)
+        {
+            if (this.PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedExtendedEventArgs(propertyName, newValue));
+        }
+
+        public double Elevetor{
+            get{return this.elevator; }
+            set{               
+                this.elevator = value;
+                NotifyPropertyChanged("Elevator", value);}
+        }
+
+        public double Rudder{
+            get{return this.rudder;}
+            set{               
+                this.elevator = value;
+                NotifyPropertyChanged("Rudder", value);}
+        }
+  }
 }
