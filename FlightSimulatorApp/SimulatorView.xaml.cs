@@ -54,6 +54,7 @@ namespace FlightSimulatorApp
         }
             set{
                 this.elevator = value;
+                Elevator_Slider.Value = value;
                 this.VM.MV_Elevator = this.elevator;
          }
         }
@@ -64,6 +65,7 @@ namespace FlightSimulatorApp
              }
           set{
                 this.rudder = value;
+                Rudder_Slider.Value = value;
                 this.VM.MV_Rudder = this.rudder;
              }
         }
