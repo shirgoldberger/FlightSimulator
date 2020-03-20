@@ -40,7 +40,6 @@ namespace FlightSimulatorApp
                         if (property.Equals("Rudder"))
                         {
                             V_Rudder = (double)args.NewValue;
-                            VM.MV_Rudder = (double)args.NewValue;
                         }
                     }
                 }
