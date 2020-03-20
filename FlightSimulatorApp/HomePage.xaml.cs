@@ -79,16 +79,6 @@ namespace FlightSimulatorApp
             //Port = "";
             //NotifyPropertyChanged("Port");
         }
-        bool hasBeenClicked = false;
-        private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (!hasBeenClicked)
-            {
-                TextBox box = sender as TextBox;
-                box.Text = "ip";
-                hasBeenClicked = true;
-            }
-        }
 
     }
 }

@@ -34,11 +34,13 @@ namespace FlightSimulatorApp
                     if (property.Equals("Elevator"))
                     {
                         V_Elevator = (double)args.NewValue;
+                        
                     }
                     else {
                         if (property.Equals("Rudder"))
                         {
                             V_Rudder = (double)args.NewValue;
+                            VM.MV_Rudder = (double)args.NewValue;
                         }
                     }
                 }
@@ -55,7 +57,8 @@ namespace FlightSimulatorApp
                 this.elevator = value;
                 this.VM.MV_Elevator = this.elevator;
          }
-            }
+        }
+
         public double V_Rudder{
           get{
                 return this.rudder;

@@ -27,7 +27,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Rudder:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Value="{Binding MV_Rudder}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Value="{Binding MV_Rudder, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150" />
@@ -36,7 +36,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Trottle:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Value="{Binding MV_Throttle}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Value="{Binding MV_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
@@ -44,7 +44,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Elevator:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Value="{Binding MV_Elevator}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Value="{Binding MV_Elevator, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
@@ -52,7 +52,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Aileron:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Value="{Binding MV_Aileron}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Value="{Binding MV_Aileron, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>

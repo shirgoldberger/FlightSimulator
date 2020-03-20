@@ -14,10 +14,10 @@ namespace FlightSimulatorApp
     class MySimulatorModel : ISimulatorModel
     {
 
-        double indicatedHeadingDeg = 0, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
+        double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
 
-        double rudder, elevator, throttle, aileron;
+        double rudder = 0, elevator = 0, throttle, aileron;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -104,6 +104,7 @@ namespace FlightSimulatorApp
                     while (this.update.Count != 0)
                     {
                         string s = "set " + update.Dequeue();
+                        Console.WriteLine(s);
                         telnetClient.write(s);
                     }
                     // the same for the other sensors properties

@@ -22,20 +22,22 @@ namespace FlightSimulatorApp
         }
         public void connect()
         {
-            try
+            this.tcpclnt = new TcpClient();
+            while (!tcpclnt.Connected)
             {
-                this.tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
+                try
+                {
+                    // Console.WriteLine("Connecting.....");
 
-                tcpclnt.Connect(ip, port);
-                stm = tcpclnt.GetStream();
-                // use the ipaddress as in the server program
-                Console.WriteLine("Connected");
+                    tcpclnt.Connect(ip, port);
+                    stm = tcpclnt.GetStream();
+                    // use the ipaddress as in the server program
+                    // Console.WriteLine("Connected");
                 }
-
-            catch (Exception e)
-            {
-                Console.WriteLine("Error..... " + e.StackTrace);
+                catch (Exception e)
+                {
+                    Console.WriteLine("not connected");
+                }
             }
         }
 
@@ -49,7 +51,7 @@ namespace FlightSimulatorApp
             byte[] bb = new byte[100];
 
             int k = this.stm.Read(bb, 0, 100);
-            Console.WriteLine("read");
+            // Console.WriteLine("read");
             string massage = "";
             for (int i = 0; i < k; i++)
                 massage += (Convert.ToChar(bb[i]));
@@ -62,7 +64,7 @@ namespace FlightSimulatorApp
 
             ASCIIEncoding asen = new ASCIIEncoding();
             byte[] ba = asen.GetBytes(command);
-            Console.WriteLine("Transmitting.....");
+            // Console.WriteLine("Transmitting.....");
 
             stm.Write(ba, 0, ba.Length);
         }

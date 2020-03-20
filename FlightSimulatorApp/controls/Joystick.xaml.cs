@@ -22,6 +22,7 @@ namespace FlightSimulatorApp.controls
     public partial class Joystick : UserControl, Notify
     {
         private double rudder, elevator;
+        bool mousePressed;
 
         public int i;
         private Point currentPlace = new Point();
@@ -31,36 +32,40 @@ namespace FlightSimulatorApp.controls
         public Joystick()
         {
             InitializeComponent();
+            mousePressed = false;
         }
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            if (!mousePressed)
             {
                 currentPlace = e.GetPosition(this);
+                mousePressed = true;
             }
         }
         private void Knob_MouseMove(object sender, MouseEventArgs e)
-                        {
-            if (e.LeftButton == MouseButtonState.Pressed)
+        {
+            if (mousePressed)
             {
                 double x = e.GetPosition(this).X - currentPlace.X;
                 double y = e.GetPosition(this).Y - currentPlace.Y;
                 double disance = Math.Sqrt(x * x + y * y);
-                if (disance < black_Circle.Width / 2)
+                if (disance < (Base.Width - KnobBase.Width) / 2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 }
+                Rudder = x / (Base.Width - KnobBase.Width) * 2;
+                Elevetor = y / (Base.Width - KnobBase.Width) * 2;
+                Console.WriteLine(Rudder);
+                Console.WriteLine(Elevetor);
             }
         }
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-       
+            mousePressed = false;
             knobPosition.X = 0;
             knobPosition.Y = 0;
         }
-
-
         public void NotifyPropertyChanged(string propertyName, object newValue)
         {
             if (this.PropertyChanged != null)
@@ -74,10 +79,25 @@ namespace FlightSimulatorApp.controls
                 NotifyPropertyChanged("Elevator", value);}
         }
 
+        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            mousePressed = false;
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
+        }
+
+        private void Ellipse_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mousePressed)
+            {
+                Knob_MouseMove(sender, e);
+            }
+        }
+
         public double Rudder{
             get{return this.rudder;}
             set{               
-                this.elevator = value;
+                this.rudder = value;
                 NotifyPropertyChanged("Rudder", value);}
         }
   }
