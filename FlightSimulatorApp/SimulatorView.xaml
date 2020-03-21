@@ -27,7 +27,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Rudder:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Name="Rudder_Slider" Value="{Binding MV_Rudder, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Name="Rudder_Slider" Value="{Binding VM_Rudder, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150" />
@@ -36,7 +36,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Trottle:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Name="Trottle_Slider" Value="{Binding MV_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Name="Trottle_Slider" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
@@ -48,12 +48,12 @@
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"
-                Value="{Binding MV_Elevator , Mode=TwoWay}"/> 
+                Value="{Binding VM_Elevator , Mode=TwoWay}"/> 
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Label Margin="50,20,0,0"  FontWeight="Bold">Aileron:</Label>
                 <Label Margin="0,0,0,0" FontWeight="Bold"></Label>
-                <Slider Name="Aileron_Slider" Value="{Binding MV_Aileron, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                <Slider Name="Aileron_Slider" Value="{Binding VM_Aileron, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
@@ -115,7 +115,7 @@
             <Controls:Joystick x:Name="joystick1" Height="380" Width="340" Margin="10,10,10,10"/>
         </Viewbox>
         <m:Map x:Name="myMap" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
-            <Image Source ="plane.png" Width="60" VerticalAlignment="Bottom" Height="60"/>
+            <Image x:Name="plane" Source ="plane.png"  Width="60" VerticalAlignment="Bottom" Height="60" Margin="328,0,336.667,-0.333"/>
 
         </m:Map>
     </Grid>

@@ -102,7 +102,8 @@ namespace FlightSimulatorApp
                 ServerPort.Text = "5402";
                 Port = "5402";
                 IP = "127.0.0.1";
-            } else
+            }
+            else
             {
                 ServerIP.Text = "";
                 ServerPort.Text = "";

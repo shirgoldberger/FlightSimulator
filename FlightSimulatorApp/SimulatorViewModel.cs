@@ -49,7 +49,7 @@ namespace FlightSimulatorApp
         public double VM_AttitudeIndicatorInternalRollDeg { get { return model.AttitudeIndicatorInternalRollDeg; } }
         public double VM_AttitudeIndicatorInternalPitchDeg { get { return model.AttitudeIndicatorInternalPitchDeg; } }
         public double VM_AltimeterIndicatedAltitudeFt { get { return model.AltimeterIndicatedAltitudeFt; } }
-        public double MV_Rudder
+        public double VM_Rudder
         {
             get
             {
@@ -60,7 +60,7 @@ namespace FlightSimulatorApp
                 this.model.Rudder = value;
             }
         }
-        public double MV_Elevator
+        public double VM_Elevator
         {
             get
             {
@@ -71,7 +71,7 @@ namespace FlightSimulatorApp
                 this.model.Elevator = value;
             }
         }
-        public double MV_Aileron
+        public double VM_Aileron
         {
             get
             {
@@ -82,7 +82,7 @@ namespace FlightSimulatorApp
                 this.model.Aileron = value;
             }
         }
-        public double MV_Throttle
+        public double VM_Throttle
         {
             get
             {
@@ -93,6 +93,13 @@ namespace FlightSimulatorApp
                 this.model.Throttle = value;
             }
         }
-
+        public double VM_Longitude
+        {
+            get { return model.Longitude; }
+        }
+        public double VM_Latitude
+        {
+            get { return model.Latitude; }
+        }
     }
 }

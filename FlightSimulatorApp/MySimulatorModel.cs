@@ -18,6 +18,7 @@ namespace FlightSimulatorApp
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
 
         double rudder = 0, elevator = 0, throttle, aileron;
+        double latitude, longitude;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -107,6 +108,7 @@ namespace FlightSimulatorApp
                         string s = "set " + update.Dequeue();
                         telnetClient.write(s);
                     }
+
                     // the same for the other sensors properties
                     Thread.Sleep(250);// read the data in 4Hz
                 }
@@ -236,7 +238,7 @@ namespace FlightSimulatorApp
                 {
                     this.rudder = value;
                 }
-                this.update.Enqueue("/controls/flight/rudder");
+                this.update.Enqueue("/controls/flight/rudder " + value);
             }
         }
         public double Elevator
@@ -257,7 +259,7 @@ namespace FlightSimulatorApp
                     this.elevator = value;
                 }
                 this.elevator = value;
-                this.update.Enqueue("/controls/flight/elevator");
+                this.update.Enqueue("/controls/flight/elevator " + value);
             }
         }
         public double Aileron
@@ -265,8 +267,20 @@ namespace FlightSimulatorApp
             get { return this.aileron; }
             set
             {
+                if (value > 1)
+                {
+                    this.aileron = 1;
+                }
+                else if (value < -1)
+                {
+                    this.aileron = -1;
+                }
+                else
+                {
+                    this.aileron = value;
+                }
                 this.aileron = value;
-                this.update.Enqueue("/controls/flight/aileron");
+                this.update.Enqueue("/controls/flight/aileron " + value);
             }
         }
         public double Throttle
@@ -274,8 +288,44 @@ namespace FlightSimulatorApp
             get { return this.throttle; }
             set
             {
+                if (value > 1)
+                {
+                    this.throttle = 1;
+                }
+                else if (value < 0)
+                {
+                    this.throttle = 0;
+                }
+                else
+                {
+                    this.throttle = value;
+                }
                 this.throttle = value;
-                this.update.Enqueue("/controls/engines/engine/throttle");
+                this.update.Enqueue("/controls/engines/engine/throttle " + value);
+            }
+        }
+        public double Longitude
+        {
+            get { return this.longitude; }
+            set
+            {
+                if (this.longitude != value)
+                {
+                    this.longitude = value;
+                    this.NotifyPropertyChanged("Longitude");
+                }
+            }
+        }
+        public double Latitude
+        {
+            get { return this.latitude; }
+            set
+            {
+                if (this.latitude != value)
+                {
+                    this.latitude = value;
+                    this.NotifyPropertyChanged("Latitude");
+                }
             }
         }
     }

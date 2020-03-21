@@ -48,6 +48,7 @@ namespace FlightSimulatorApp
 
             };
             DataContext = VM;
+       
         }
 
         public double V_Elevator
@@ -60,7 +61,7 @@ namespace FlightSimulatorApp
             {
                 this.elevator = value;
                 Elevator_Slider.Value = value;
-                this.VM.MV_Elevator = this.elevator;
+                this.VM.VM_Elevator = this.elevator;
             }
         }
 
@@ -74,7 +75,7 @@ namespace FlightSimulatorApp
             {
                 this.rudder = value;
                 Rudder_Slider.Value = value;
-                this.VM.MV_Rudder = this.rudder;
+                this.VM.VM_Rudder = this.rudder;
             }
         }
     }
