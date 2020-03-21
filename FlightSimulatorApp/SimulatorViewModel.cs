@@ -13,7 +13,8 @@ namespace FlightSimulatorApp
         public SimulatorViewModel(MySimulatorModel m)
         {
             this.model = m;
-            m.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+            m.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }

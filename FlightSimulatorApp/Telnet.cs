@@ -23,21 +23,19 @@ namespace FlightSimulatorApp
         public void connect()
         {
             this.tcpclnt = new TcpClient();
-            while (!tcpclnt.Connected)
+            try
             {
-                try
-                {
-                    // Console.WriteLine("Connecting.....");
-
-                    tcpclnt.Connect(ip, port);
-                    stm = tcpclnt.GetStream();
-                    // use the ipaddress as in the server program
-                    // Console.WriteLine("Connected");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("not connected");
-                }
+                // Console.WriteLine("Connecting.....");
+                tcpclnt.Connect(ip, port);
+                stm = tcpclnt.GetStream();
+                // use the ipaddress as in the server program
+                // Console.WriteLine("Connected");
+            }
+            catch (Exception e)
+            {
+                Exception e1 = new Exception("not connected");
+                throw e1;
+                //Console.WriteLine("not connected");
             }
         }
 

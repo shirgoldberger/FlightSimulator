@@ -27,15 +27,18 @@ namespace FlightSimulatorApp
         {
             InitializeComponent();
             this.VM = new SimulatorViewModel(new MySimulatorModel(new Telnet(ip, port)));
-            joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+            joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
                 var args = e as PropertyChangedExtendedEventArgs;
-                if (args != null) {
+                if (args != null)
+                {
                     string property = args.PropertyName as string;
                     if (property.Equals("Elevator"))
                     {
                         V_Elevator = (double)args.NewValue;
                     }
-                    else {
+                    else
+                    {
                         if (property.Equals("Rudder"))
                         {
                             V_Rudder = (double)args.NewValue;
@@ -43,29 +46,34 @@ namespace FlightSimulatorApp
                     }
                 }
 
-          };
+            };
             DataContext = VM;
         }
 
-        public double V_Elevator{
-        get{
+        public double V_Elevator
+        {
+            get
+            {
                 return this.elevator;
-        }
-            set{
+            }
+            set
+            {
                 this.elevator = value;
                 this.VM.MV_Elevator = this.elevator;
-         }
+            }
         }
 
-        public double V_Rudder{
-          get{
+        public double V_Rudder
+        {
+            get
+            {
                 return this.rudder;
-             }
-          set{
+            }
+            set
+            {
                 this.rudder = value;
                 this.VM.MV_Rudder = this.rudder;
-             }
+            }
         }
-   }
+    }
 }
-

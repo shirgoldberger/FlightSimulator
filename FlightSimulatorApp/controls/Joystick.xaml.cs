@@ -56,8 +56,6 @@ namespace FlightSimulatorApp.controls
                 }
                 Rudder = x / (Base.Width - KnobBase.Width) * 2;
                 Elevetor = y / (Base.Width - KnobBase.Width) * 2;
-                Console.WriteLine(Rudder);
-                Console.WriteLine(Elevetor);
             }
         }
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
@@ -72,11 +70,14 @@ namespace FlightSimulatorApp.controls
                 PropertyChanged(this, new PropertyChangedExtendedEventArgs(propertyName, newValue));
         }
 
-        public double Elevetor{
-            get{return this.elevator; }
-            set{               
+        public double Elevetor
+        {
+            get { return this.elevator; }
+            set
+            {
                 this.elevator = value;
-                NotifyPropertyChanged("Elevator", value);}
+                NotifyPropertyChanged("Elevator", value);
+            }
         }
 
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
@@ -94,11 +95,14 @@ namespace FlightSimulatorApp.controls
             }
         }
 
-        public double Rudder{
-            get{return this.rudder;}
-            set{               
+        public double Rudder
+        {
+            get { return this.rudder; }
+            set
+            {
                 this.rudder = value;
-                NotifyPropertyChanged("Rudder", value);}
+                NotifyPropertyChanged("Rudder", value);
+            }
         }
-  }
+    }
 }

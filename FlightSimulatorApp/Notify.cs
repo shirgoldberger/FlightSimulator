@@ -8,7 +8,7 @@ namespace FlightSimulatorApp
 {
     interface Notify
     {
-         event PropertyChangedEventHandler PropertyChanged;
-         void NotifyPropertyChanged(string propertyName, object newValue);
+        event PropertyChangedEventHandler PropertyChanged;
+        void NotifyPropertyChanged(string propertyName, object newValue);
     }
 }

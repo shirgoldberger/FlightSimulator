@@ -23,6 +23,7 @@ namespace FlightSimulatorApp
     {
         private string ip = "";
         private string port = "";
+        private bool check = false;
         public HomePage()
         {
             InitializeComponent();
@@ -51,9 +52,22 @@ namespace FlightSimulatorApp
             {
                 p = int.Parse(this.port);
             }
-            SimulatorView simulatorView = new SimulatorView(this.ip, p);
-            this.NavigationService.Navigate(simulatorView);
-       
+            SimulatorView simulatorView;
+            try
+            {
+                simulatorView = new SimulatorView(this.ip, p);
+                this.NavigationService.Navigate(simulatorView);
+            }
+            catch (Exception e1)
+            {
+                if (e1.Message == "not connected")
+                {
+                    string message = string.Format("not connected to the simulator, try again");
+                    MessageBox.Show(message);
+                }
+            }
+
+
         }
 
         public string IP
@@ -80,5 +94,22 @@ namespace FlightSimulatorApp
             //NotifyPropertyChanged("Port");
         }
 
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (!check)
+            {
+                ServerIP.Text = "127.0.0.1";
+                ServerPort.Text = "5402";
+                Port = "5402";
+                IP = "127.0.0.1";
+            } else
+            {
+                ServerIP.Text = "";
+                ServerPort.Text = "";
+                Port = "";
+                IP = "";
+            }
+            check = !check;
+        }
     }
 }
