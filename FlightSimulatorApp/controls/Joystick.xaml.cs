@@ -99,6 +99,11 @@ namespace FlightSimulatorApp.controls
             }
         }
 
+        private void centerKnob_Completed(object sender, EventArgs e)
+        {
+
+        }
+
         public double Rudder
         {
             get { return this.rudder; }

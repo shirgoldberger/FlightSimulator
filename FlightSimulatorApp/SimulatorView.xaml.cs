@@ -46,6 +46,7 @@ namespace FlightSimulatorApp
                     }
                 }
 
+
             };
             DataContext = VM;
        

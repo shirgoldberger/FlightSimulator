@@ -89,20 +89,20 @@
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="altimeterIndicatedAltitudeFt: " />
+                    <TextBlock Text="{Binding VM_AltimeterIndicatedAltitudeFt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="attitudeIndicatorInternalRollDeg: " />
+                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalRollDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="attitudeIndicatorInternalPitchDeg: " />
+                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalPitchDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>
@@ -110,16 +110,16 @@
         <Viewbox Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="197,107.667,0,29" Grid.RowSpan="2">
             <Controls:Joystick x:Name="joystick1" Height="380" Width="340" Margin="10,10,10,10"/>
         </Viewbox>
-        <Canvas  Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
-            <m:Map x:Name="myMap" ZoomLevel="5" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="411" Width="725">
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
+            <m:Map x:Name="myMap" ZoomLevel="15" Center="{Binding VM_Location}" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="430" Width="725">
                 <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image x:Name="plane" Source ="plane.png"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
                 </m:Pushpin>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,414">
+                    <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
+                    <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
+                </StackPanel>
             </m:Map>
-            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,77,0"  VerticalAlignment="Top">
-                <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeT}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
-                <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" />
-            </StackPanel>
         </Canvas>
     </Grid>
 </Page>
