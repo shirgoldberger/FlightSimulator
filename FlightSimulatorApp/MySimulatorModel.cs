@@ -113,6 +113,9 @@ namespace FlightSimulatorApp
                     // longitude
                     telnetClient.write("get /position/longitude-deg\n");
                     msg = telnetClient.read();
+                    Console.WriteLine("longitude");
+                    Console.WriteLine(msg);
+   
                     if (!msg.Contains("ERR"))
                     {
                         Longitude = Double.Parse(msg);
@@ -120,12 +123,13 @@ namespace FlightSimulatorApp
                     // latitude
                     telnetClient.write("get /position/latitude-deg\n");
                     msg = telnetClient.read();
+                    Console.WriteLine("latitude");
+                    Console.WriteLine(msg);
                     if (!msg.Contains("ERR"))
                     {
                         Latitude = Double.Parse(msg);
                     }
-                    Console.WriteLine("size");
-                    Console.WriteLine(this.update.Count());
+                    
                     while (this.update.Count != 0)
                     {
                         string s = "set " + update.Dequeue();
