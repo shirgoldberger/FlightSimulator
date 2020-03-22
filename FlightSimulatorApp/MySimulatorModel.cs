@@ -19,7 +19,7 @@ namespace FlightSimulatorApp
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
 
         double rudder = 0, elevator = 0, throttle, aileron;
-        double latitude = 5, longitude = 10;
+        double latitude = 50, longitude = 10;
 
         Location location;
 
