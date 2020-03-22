@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
-
 using System.Net.Sockets;
 using System.Windows;
 using Microsoft.Maps.MapControl.WPF;
@@ -56,9 +55,9 @@ namespace FlightSimulatorApp
                     // 1
                     telnetClient.write("get /indicated-heading-deg\n");
                     msg = telnetClient.read();
-                   
                     if (!msg.Contains("ERR"))
                     {
+                        Console.WriteLine(msg);
                         IndicatedHeadingDeg = Double.Parse(msg);
                     }
                     // 2
@@ -66,6 +65,7 @@ namespace FlightSimulatorApp
                     msg = telnetClient.read();
                     if (!msg.Contains("ERR"))
                     {
+                        Console.WriteLine(msg);
                         GpsIndicatedVerticalSpeed = Double.Parse(msg);
                     }
                     // 3
@@ -73,6 +73,7 @@ namespace FlightSimulatorApp
                     msg = telnetClient.read();
                     if (!msg.Contains("ERR"))
                     {
+                        Console.WriteLine(msg);
                         GpsIndicatedGroundSpeedKt = Double.Parse(msg);
                     }
                     // 4
@@ -108,12 +109,26 @@ namespace FlightSimulatorApp
                     msg = telnetClient.read();
                     if (!msg.Contains("ERR"))
                     {
-                        Console.WriteLine(msg);
                         AltimeterIndicatedAltitudeFt = Double.Parse(msg);
+                    }
+                    // longitude
+                    telnetClient.write("get /position/longitude-deg\n");
+                    msg = telnetClient.read();
+                    if (!msg.Contains("ERR"))
+                    {
+                        Longitude = Double.Parse(msg);
+                    }
+                    // latitude
+                    telnetClient.write("get /position/latitude-deg\n");
+                    msg = telnetClient.read();
+                    if (!msg.Contains("ERR"))
+                    {
+                        Latitude = Double.Parse(msg);
                     }
                     while (this.update.Count != 0)
                     {
                         string s = "set " + update.Dequeue();
+                        Console.WriteLine(s);
                         telnetClient.write(s);
                     }
 
