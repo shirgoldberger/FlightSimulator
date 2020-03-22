@@ -63,6 +63,8 @@ namespace FlightSimulatorApp.controls
             mousePressed = false;
             knobPosition.X = 0;
             knobPosition.Y = 0;
+            Rudder = 0;
+            Elevetor = 0;
         }
         public void NotifyPropertyChanged(string propertyName, object newValue)
         {
@@ -85,6 +87,8 @@ namespace FlightSimulatorApp.controls
             mousePressed = false;
             knobPosition.X = 0;
             knobPosition.Y = 0;
+            Rudder = 0;
+            Elevetor = 0;
         }
 
         private void Ellipse_MouseMove(object sender, MouseEventArgs e)
