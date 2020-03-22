@@ -120,11 +120,10 @@
                     <Image x:Name="plane" Source ="plane.png"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
                 </m:Pushpin>
             </m:Map>
-
+            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,77,0"  VerticalAlignment="Top">
+                <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeT}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
+                <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" />
+            </StackPanel>
         </Canvas>
-        <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,77,0"  VerticalAlignment="Top">
-            <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" />
-            <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeT}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
-        </StackPanel>
     </Grid>
 </Page>
