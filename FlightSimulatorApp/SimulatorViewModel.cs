@@ -103,11 +103,11 @@ namespace FlightSimulatorApp
 
         public string VM_LongitudeT
         {
-            get { return "Longitude: " + model.Longitude; }
+            get { return "Longitude: " + String.Format("{0:0.000}", model.Longitude); }
         }
         public string VM_LatitudeT
         {
-            get { return "Latitude: " + model.Latitude; }
+            get { return "Latitude: " + String.Format("{0:0.000}", model.Latitude); }
         }
 
 
