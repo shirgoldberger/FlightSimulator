@@ -49,7 +49,6 @@ namespace FlightSimulatorApp
             byte[] bb = new byte[100];
 
             int k = this.stm.Read(bb, 0, 100);
-            // Console.WriteLine("read");
             string massage = "";
             for (int i = 0; i < k; i++)
                 massage += (Convert.ToChar(bb[i]));
@@ -62,8 +61,6 @@ namespace FlightSimulatorApp
 
             ASCIIEncoding asen = new ASCIIEncoding();
             byte[] ba = asen.GetBytes(command);
-            // Console.WriteLine("Transmitting.....");
-
             stm.Write(ba, 0, ba.Length);
         }
     }

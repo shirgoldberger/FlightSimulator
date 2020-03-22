@@ -63,7 +63,7 @@ namespace FlightSimulatorApp
                 if (e1.Message == "not connected")
                 {
                     string message = string.Format("not connected to the simulator, try again");
-                    MessageBox.Show(message);
+                    MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
