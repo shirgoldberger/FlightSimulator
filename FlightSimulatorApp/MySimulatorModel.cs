@@ -65,15 +65,14 @@ namespace FlightSimulatorApp
                     msg = telnetClient.read();
                     if (!msg.Contains("ERR"))
                     {
-                        Console.WriteLine(msg);
                         GpsIndicatedVerticalSpeed = Double.Parse(msg);
                     }
                     // 3
                     telnetClient.write("get /gps_indicated-ground-speed-kt\n");
                     msg = telnetClient.read();
+ 
                     if (!msg.Contains("ERR"))
                     {
-                        Console.WriteLine(msg);
                         GpsIndicatedGroundSpeedKt = Double.Parse(msg);
                     }
                     // 4
@@ -125,6 +124,8 @@ namespace FlightSimulatorApp
                     {
                         Latitude = Double.Parse(msg);
                     }
+                    Console.WriteLine("size");
+                    Console.WriteLine(this.update.Count());
                     while (this.update.Count != 0)
                     {
                         string s = "set " + update.Dequeue();
