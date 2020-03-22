@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp
 {
@@ -93,15 +94,10 @@ namespace FlightSimulatorApp
                 this.model.Throttle = value;
             }
         }
-        public double VM_Longitude
+        public Location VM_Location
         {
-            get { return model.Longitude; }
-        }
-        public double VM_Latitude
-        {
-            get { 
-                return model.Latitude;
-            
+            get {
+                return model.Location;
             }
         }
 
@@ -113,5 +109,7 @@ namespace FlightSimulatorApp
         {
             get { return "Latitude: " + model.Latitude; }
         }
+
+
     }
 }
