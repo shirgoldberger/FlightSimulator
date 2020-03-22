@@ -18,7 +18,7 @@ namespace FlightSimulatorApp
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
 
         double rudder = 0, elevator = 0, throttle, aileron;
-        double latitude, longitude;
+        double latitude = 5, longitude = 10;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -313,6 +313,8 @@ namespace FlightSimulatorApp
                 {
                     this.longitude = value;
                     this.NotifyPropertyChanged("Longitude");
+                    this.NotifyPropertyChanged("LongitudeT");
+
                 }
             }
         }
@@ -325,6 +327,7 @@ namespace FlightSimulatorApp
                 {
                     this.latitude = value;
                     this.NotifyPropertyChanged("Latitude");
+                    this.NotifyPropertyChanged("LatitudeT");
                 }
             }
         }

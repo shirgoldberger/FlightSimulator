@@ -99,7 +99,19 @@ namespace FlightSimulatorApp
         }
         public double VM_Latitude
         {
-            get { return model.Latitude; }
+            get { 
+                return model.Latitude;
+            
+            }
+        }
+
+        public string VM_LongitudeT
+        {
+            get { return "Longitude: " + model.Longitude; }
+        }
+        public string VM_LatitudeT
+        {
+            get { return "Latitude: " + model.Latitude; }
         }
     }
 }
