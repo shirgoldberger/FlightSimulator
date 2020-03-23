@@ -39,7 +39,6 @@ namespace FlightSimulatorApp
             switch (exit)
             {
                 case MessageBoxResult.Yes:
-                    MessageBox.Show("Good Bye!", "Exit", MessageBoxButton.OK, MessageBoxImage.None);
                     System.Environment.Exit(0);
                     break;
                 case MessageBoxResult.No:
