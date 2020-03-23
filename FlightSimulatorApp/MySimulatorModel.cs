@@ -340,6 +340,7 @@ namespace FlightSimulatorApp
                 if (this.longitude != value)
                 {
                     this.longitude = value;
+                    location.Longitude = value;
                     this.NotifyPropertyChanged("LongitudeT");
                     this.NotifyPropertyChanged("Location");
 
@@ -354,13 +355,15 @@ namespace FlightSimulatorApp
                 if (this.latitude != value)
                 {
                     this.latitude = value;
+                    location.Latitude = value;
                     this.NotifyPropertyChanged("LatitudeT");
                     this.NotifyPropertyChanged("Location");
                 }
             }
         }
 
-        public Location Location { get { return new Location(latitude, longitude); } }
+        public Location Location { get { return new Location(latitude ,longitude); }
+        }
 
     }
 }

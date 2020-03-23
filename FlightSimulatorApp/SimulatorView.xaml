@@ -1,4 +1,4 @@
-﻿<Page x:Class="FlightSimulatorApp.SimulatorView"
+<Page x:Class="FlightSimulatorApp.SimulatorView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -89,20 +89,20 @@
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="altimeterIndicatedAltitudeFt: " />
-                    <TextBlock Text="{Binding VM_AltimeterIndicatedAltitudeFt}" Width="50" />
+                    <TextBlock Text="indicatedHeadingDeg: " />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="attitudeIndicatorInternalRollDeg: " />
-                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalRollDeg}" Width="50" />
+                    <TextBlock Text="indicatedHeadingDeg: " />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="attitudeIndicatorInternalPitchDeg: " />
-                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalPitchDeg}" Width="50" />
+                    <TextBlock Text="indicatedHeadingDeg: " />
+                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>
@@ -111,8 +111,14 @@
             <Controls:Joystick x:Name="joystick1" Height="380" Width="340" Margin="10,10,10,10"/>
         </Viewbox>
         <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
-            <m:Map x:Name="myMap" ZoomLevel="15" Center="{Binding VM_Location}" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="430" Width="725">
-                <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="430" Width="725" RenderTransformOrigin="0.5,0.5">
+
+                <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
+                    <m:Pushpin.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform x:Name="PlainPosition"/>
+                        </TransformGroup>
+                    </m:Pushpin.RenderTransform>
                     <Image x:Name="plane" Source ="plane.png"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
                 </m:Pushpin>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,414">
