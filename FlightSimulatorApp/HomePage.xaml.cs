@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Resources;
 
 namespace FlightSimulatorApp
 {
@@ -28,6 +29,7 @@ namespace FlightSimulatorApp
         {
             InitializeComponent();
             DataContext = this;
+            FontFamily font;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

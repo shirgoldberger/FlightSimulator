@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="openPage">
+    
     <Grid TextBlock.FontSize="14">
         <Grid.Background>
             <ImageBrush ImageSource="flight.jpg"/>
