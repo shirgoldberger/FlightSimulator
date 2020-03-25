@@ -7,9 +7,9 @@
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:Controls ="clr-namespace:FlightSimulatorApp.controls"
       mc:Ignorable="d" 
-        Title="FlightSimulatorApp" Height="550" Width="1000" Background="AliceBlue">
+        Title="FlightSimulatorApp" Height="600"  Width="1000" Background="AliceBlue">
 
-    <Grid>
+    <Grid MouseUp="Grid_MouseUp">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -22,41 +22,35 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Orientation="Horizontal">
 
-            <StackPanel Orientation="Vertical" Margin="0,47,0,0.333">
-                <Label Margin="50,20,0,0"  FontWeight="Bold">← Rudder →</Label>
-                <Slider Name="Rudder_Slider" Value="{Binding VM_Rudder, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
-                Margin="10,10,15,10"
-                VerticalAlignment="Center"
-                Width="150" />
-            </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="0,47,0,0.333">
-                <Label Margin="50,20,0,0"  FontWeight="Bold">← Trottle →</Label>
-                <Slider Name="Trottle_Slider" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
-                Margin="10,10,15,10"
+
+
+        <StackPanel Orientation="Vertical" Margin="10,109.333,43,0" Grid.Row="2" Grid.Column="3">
+            <Label Margin="50,20,0,0"  FontWeight="Bold">← Trottle →</Label>
+            <Slider Name="Trottle_Slider" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                Margin="10,0,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="0,47,0,0.333">
-                <Label Margin="50,20,0,0"  FontWeight="Bold">← Elevator →</Label>
-                <Slider  Name="Elevator_Slider" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
-                Margin="10,10,15,10"
-                VerticalAlignment="Center"
-                Width="150"
-                Value="{Binding VM_Elevator , Mode=TwoWay}"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="0,47,0,10.333">
-                <Label Margin="50,20,0,0"  FontWeight="Bold" Content="← Aileron →"/>
-                <Slider x:Name="Aileron_Slider" Value="{Binding VM_Aileron, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
-                Margin="10,10,15,10"
-                VerticalAlignment="Center"
-                Width="150"/>
-            </StackPanel>
         </StackPanel>
-
-        <StackPanel Grid.Column="2"  Grid.RowSpan="2" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="373" Margin="227.667,0,0.333,0">
+        <StackPanel Orientation="Vertical" Margin="194,170,10,54" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+            <Slider x:Name="Aileron_Slider" Value="{Binding VM_Aileron, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+                Margin="10,0,0,10"
+                VerticalAlignment="Center"
+                Width="150">
+                <Slider.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Slider.LayoutTransform>
+            </Slider>
+            <Label Margin="50,20,0,0"  FontWeight="Bold" Content="← Aileron →">
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Label.LayoutTransform>
+            </Label>
+        </StackPanel>
+        <StackPanel Grid.Column="2"  Grid.RowSpan="2" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="293" Margin="228,0,0,0">
+            <Frame x:Name="frmMainTop" NavigationUIVisibility="Hidden">
+            </Frame>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
@@ -89,29 +83,35 @@
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="attitudeIndicatorInternalRollDeg: " />
+                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalRollDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="attitudeIndicatorInternalPitchDeg: " />
+                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalPitchDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
-                    <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="altimeterIndicatedAltitudeFt: " />
+                    <TextBlock Text="{Binding M_AltimeterIndicatedAltitudeFt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>
 
-        <Viewbox Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="197,107.667,0,29" Grid.RowSpan="2">
-            <Controls:Joystick x:Name="joystick1" Height="380" Width="340" Margin="10,10,10,10"/>
+        <Viewbox Grid.Column="2" Grid.Row="1" Margin="180,115.667,0,39" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Controls:Joystick x:Name="joystick1" Height="418" Width="348" Margin="10,10,10,10"/>
         </Viewbox>
+        <Label Margin="52,0,92,47.667" FontWeight="Bold" Grid.Column="3" Grid.Row="1" Height="37"  VerticalAlignment="Bottom">← Rudder →</Label>
+        <Label Margin="153,0,-18,98" FontWeight="Bold" Grid.Column="3" Grid.Row="2" Height="38"  VerticalAlignment="Bottom" RenderTransformOrigin="0.359,1.134">← Elevator →
+            <Label.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
-            <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="430" Width="725" RenderTransformOrigin="0.5,0.5">
+            <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="557" Width="662" RenderTransformOrigin="0.5,0.5">
 
                 <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
                     <m:Pushpin.RenderTransform>

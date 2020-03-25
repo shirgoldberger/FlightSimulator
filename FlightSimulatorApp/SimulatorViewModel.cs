@@ -28,7 +28,7 @@ namespace FlightSimulatorApp
             }
         }
 
-
+        // 8 properties that get from the simulator
         public double VM_IndicatedHeadingDeg
         {
             get { return model.IndicatedHeadingDeg; }
@@ -39,17 +39,30 @@ namespace FlightSimulatorApp
         }
         public double VM_GpsIndicatedGroundSpeedKt
         {
-            get
-            { return model.GpsIndicatedGroundSpeedKt; }
+            get { return model.GpsIndicatedGroundSpeedKt; }
         }
         public double VM_AirspeedIndicatorIndicatedSpeedKt
         {
             get { return model.AirspeedIndicatorIndicatedSpeedKt; }
         }
-        public double VM_GpsIndicatedAltitudeFt { get { return model.GpsIndicatedAltitudeFt; } }
-        public double VM_AttitudeIndicatorInternalRollDeg { get { return model.AttitudeIndicatorInternalRollDeg; } }
-        public double VM_AttitudeIndicatorInternalPitchDeg { get { return model.AttitudeIndicatorInternalPitchDeg; } }
-        public double VM_AltimeterIndicatedAltitudeFt { get { return model.AltimeterIndicatedAltitudeFt; } }
+        public double VM_GpsIndicatedAltitudeFt 
+        { 
+            get { return model.GpsIndicatedAltitudeFt; } 
+        }
+        public double VM_AttitudeIndicatorInternalRollDeg 
+        {
+            get { return model.AttitudeIndicatorInternalRollDeg; } 
+        }
+        public double VM_AttitudeIndicatorInternalPitchDeg 
+        {
+            get { return model.AttitudeIndicatorInternalPitchDeg; } 
+        }
+        public double VM_AltimeterIndicatedAltitudeFt 
+        {
+            get { return model.AltimeterIndicatedAltitudeFt; } 
+        }
+
+        // 4 properties that set to the simulator
         public double VM_Rudder
         {
             get
@@ -94,12 +107,15 @@ namespace FlightSimulatorApp
                 this.model.Throttle = value;
             }
         }
+
+        // the location of the plane on the map
         public Location VM_Location
         {
             get {
                 return model.Location;
             }
         }
+
 
         public string VM_LongitudeT
         {
@@ -109,7 +125,12 @@ namespace FlightSimulatorApp
         {
             get { return "Latitude: " + String.Format("{0:0.000}", model.Latitude); }
         }
-
-
+        public string VM_ServerError
+        {
+            get
+            {
+                return this.model.ServerError;
+            }
+        }
     }
 }

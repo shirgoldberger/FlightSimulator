@@ -32,7 +32,13 @@ namespace FlightSimulatorApp
         {
             InitializeComponent();
             this.VM = new SimulatorViewModel(new MySimulatorModel(new Telnet(ip, port)));
+            VM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName == "VM_ServerError")
+                {
 
+                }
+            };
             joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 var args = e as PropertyChangedExtendedEventArgs;
@@ -57,7 +63,6 @@ namespace FlightSimulatorApp
             DataContext = VM;
 
         }
-
         public double V_Elevator
         {
             get
@@ -67,13 +72,14 @@ namespace FlightSimulatorApp
             set
             {
                 this.elevator = value;
-                Elevator_Slider.Value = value;
                 this.VM.VM_Elevator = this.elevator;
             }
         }
 
-
-
+        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            joystick1.MousePressed = false;
+        }
         private void pin_LayoutUpdated(object sender, EventArgs e)
         {
             if (pin.Location != null)
@@ -96,8 +102,6 @@ namespace FlightSimulatorApp
                     preY = longtitude;
                     return;
                 }
-
-                //
                 if ((longtitude - preY) == 0)
                 {
 
@@ -106,15 +110,15 @@ namespace FlightSimulatorApp
                 {
                     double m = (latitude - preX) / (longtitude - preY);
 
-                    if (m>0 && latitude + 0.5 >= bounds.North)
+                    if (m > 0 && latitude + 0.5 >= bounds.North)
                     {
                         if (longtitude >= centerLon)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, 2*longtitude - centerLon), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, 2 * longtitude - centerLon), 4);
                         }
                         else
                         {
-                            myMap.SetView(new Location(2*latitude - centerLat - 2.5, centerLon), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, centerLon), 4);
                         }
                     }
 
@@ -130,14 +134,15 @@ namespace FlightSimulatorApp
                         }
                     }
 
-                    else if (m > 0 && longtitude + 0.5 >= bounds.East ) {
+                    else if (m > 0 && longtitude + 0.5 >= bounds.East)
+                    {
                         if (latitude >= centerLat)
                         {
-                            myMap.SetView(new Location(2*latitude-centerLat +(bounds.North - centerLat), 2 * longtitude - centerLon - 2.5), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 2.5), 4);
                         }
                         else
                         {
-                            myMap.SetView(new Location(centerLat, 2* longtitude - centerLon - 2.5), 4);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 2.5), 4);
                         }
                     }
 
@@ -153,7 +158,7 @@ namespace FlightSimulatorApp
                         }
                     }
 
-                    else if  (m < 0 && longtitude - 2.5 <= bounds.West)
+                    else if (m < 0 && longtitude - 2.5 <= bounds.West)
                     {
                         if (latitude >= centerLat)
                         {
@@ -165,11 +170,11 @@ namespace FlightSimulatorApp
                         }
                     }
 
-                    else if  (m > 0 && longtitude - 2.5 <= bounds.West)
+                    else if (m > 0 && longtitude - 2.5 <= bounds.West)
                     {
                         if (latitude <= centerLat)
                         {
-                            myMap.SetView(new Location(2*latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon+ 2.5), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 2.5), 4);
                         }
                         else
                         {
@@ -181,7 +186,6 @@ namespace FlightSimulatorApp
                 preY = longtitude;
             }
         }
-
         public double V_Rudder
         {
             get
@@ -191,7 +195,6 @@ namespace FlightSimulatorApp
             set
             {
                 this.rudder = value;
-                Rudder_Slider.Value = value;
                 this.VM.VM_Rudder = this.rudder;
             }
         }

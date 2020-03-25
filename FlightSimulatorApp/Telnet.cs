@@ -25,40 +25,32 @@ namespace FlightSimulatorApp
             this.tcpclnt = new TcpClient();
             try
             {
-                // Console.WriteLine("Connecting.....");
+                // try connect the server
                 tcpclnt.Connect(ip, port);
                 stm = tcpclnt.GetStream();
-                // use the ipaddress as in the server program
-                // Console.WriteLine("Connected");
             }
             catch (Exception e)
             {
                 Exception e1 = new Exception("not connected");
                 throw e1;
-                //Console.WriteLine("not connected");
             }
         }
-
         public void disconnect()
         {
             tcpclnt.Close();
         }
-
         public string read()
         {
             byte[] bb = new byte[100];
-
             int k = this.stm.Read(bb, 0, 100);
             string massage = "";
             for (int i = 0; i < k; i++)
                 massage += (Convert.ToChar(bb[i]));
             return massage;
         }
-
         public void write(string command)
         {
             this.stm = this.tcpclnt.GetStream();
-
             ASCIIEncoding asen = new ASCIIEncoding();
             byte[] ba = asen.GetBytes(command);
             stm.Write(ba, 0, ba.Length);

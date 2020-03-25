@@ -23,7 +23,6 @@ namespace FlightSimulatorApp.controls
     {
         private double rudder, elevator;
         bool mousePressed;
-
         public int i;
         private Point currentPlace = new Point();
 
@@ -49,17 +48,20 @@ namespace FlightSimulatorApp.controls
                 double x = e.GetPosition(this).X - currentPlace.X;
                 double y = e.GetPosition(this).Y - currentPlace.Y;
                 double disance = Math.Sqrt(x * x + y * y);
+                // when the new position is proper
                 if (disance < (Base.Width - KnobBase.Width) / 2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 }
+                // set rudder and elevator
                 Rudder = x / (Base.Width - KnobBase.Width) * 2;
                 Elevetor = y / (Base.Width - KnobBase.Width) * 2;
             }
         }
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // return the joystick to the center
             mousePressed = false;
             knobPosition.X = 0;
             knobPosition.Y = 0;
@@ -84,6 +86,7 @@ namespace FlightSimulatorApp.controls
 
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // return the joystick to the center
             mousePressed = false;
             knobPosition.X = 0;
             knobPosition.Y = 0;
@@ -98,12 +101,6 @@ namespace FlightSimulatorApp.controls
                 Knob_MouseMove(sender, e);
             }
         }
-
-        private void centerKnob_Completed(object sender, EventArgs e)
-        {
-
-        }
-
         public double Rudder
         {
             get { return this.rudder; }
@@ -112,6 +109,10 @@ namespace FlightSimulatorApp.controls
                 this.rudder = value;
                 NotifyPropertyChanged("Rudder", value);
             }
+        }
+        public bool MousePressed
+        {
+            set { this.mousePressed = value; }
         }
     }
 }

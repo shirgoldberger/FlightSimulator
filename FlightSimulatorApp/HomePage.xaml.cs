@@ -29,7 +29,6 @@ namespace FlightSimulatorApp
         {
             InitializeComponent();
             DataContext = this;
-            FontFamily font;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -42,6 +41,7 @@ namespace FlightSimulatorApp
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
             int p;
+            // if the user didn't insert port and ip
             if (ip.Equals(""))
             {
                 ip = "127.0.0.1";
@@ -57,11 +57,13 @@ namespace FlightSimulatorApp
             SimulatorView simulatorView;
             try
             {
+                // show the view
                 simulatorView = new SimulatorView(this.ip, p);
                 this.NavigationService.Navigate(simulatorView);
             }
             catch (Exception e1)
             {
+                // if the server is not connect
                 if (e1.Message == "not connected")
                 {
                     string message = string.Format("not connected to the simulator, try again");
@@ -71,33 +73,36 @@ namespace FlightSimulatorApp
 
 
         }
-
         public string IP
         {
-            get { return this.ip; }
-            set { this.ip = value; }
+            get 
+            {
+                return this.ip; 
+            }
+            set 
+            { 
+                this.ip = value;
+            }
         }
-
         public string Port
         {
-            get { return this.port; }
-            set { this.port = value; }
+            get
+            {
+                return this.port;
+            }
+            set 
+            {
+                this.port = value;
+            }
         }
-
         private void ServerPort_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Port = "";
             NotifyPropertyChanged("Port");
         }
-
-        private void ServerPort_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //Port = "";
-            //NotifyPropertyChanged("Port");
-        }
-
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
+            // the user choose to use default port and ip
             if (!check)
             {
                 ServerIP.Text = "127.0.0.1";

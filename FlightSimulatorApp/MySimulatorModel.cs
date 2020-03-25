@@ -14,15 +14,13 @@ namespace FlightSimulatorApp
 {
     class MySimulatorModel : ISimulatorModel
     {
-
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
-
-        double rudder = 0, elevator = 0, throttle, aileron;
+        Thread thread;
+        double rudder = 0, elevator = 0, throttle = 0, aileron = 0;
         double latitude = 50, longitude = 10;
-
-        Location location;
-
+        string serverError = "false";
+        bool stopWithError = false;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -31,9 +29,7 @@ namespace FlightSimulatorApp
             this.telnetClient = telnetClient;
             stop = false;
             this.connect();
-            this.location = new Location(latitude, longitude);
         }
-
         public void connect()
         {
             telnetClient.connect();
@@ -44,7 +40,6 @@ namespace FlightSimulatorApp
             stop = true;
             telnetClient.disconnect();
         }
-
         public void start()
         {
             new Thread(delegate ()
@@ -52,94 +47,92 @@ namespace FlightSimulatorApp
                 String msg;
                 while (!stop)
                 {
-                    // 1
-                    telnetClient.write("get /instrumentation/indicated-heading-deg\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
+                    try
                     {
-                        Console.WriteLine(msg);
-                        IndicatedHeadingDeg = Double.Parse(msg);
+                        // 1
+                        telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            IndicatedHeadingDeg = Double.Parse(msg);
+                        }
+                        // 2
+                        telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            GpsIndicatedVerticalSpeed = Double.Parse(msg);
+                        }
+                        // 3
+                        telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            GpsIndicatedGroundSpeedKt = Double.Parse(msg);
+                        }
+                        // 4
+                        telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AirspeedIndicatorIndicatedSpeedKt = Double.Parse(msg);
+                        }
+                        // 5
+                        telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            GpsIndicatedAltitudeFt = Double.Parse(msg);
+                        }
+                        // 6
+                        telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AttitudeIndicatorInternalRollDeg = Double.Parse(msg);
+                        }
+                        // 7
+                        telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AttitudeIndicatorInternalPitchDeg = Double.Parse(msg);
+                        }
+                        // 8
+                        telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            AltimeterIndicatedAltitudeFt = Double.Parse(msg);
+                        }
+                        // longitude
+                        telnetClient.write("get /position/longitude-deg\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            Longitude = Double.Parse(msg);
+                        }
+                        // latitude
+                        telnetClient.write("get /position/latitude-deg\n");
+                        msg = telnetClient.read();
+                        if (!msg.Contains("ERR"))
+                        {
+                            Latitude = Double.Parse(msg);
+                        }
+                        // set the variables in the queue
+                        while (this.update.Count != 0)
+                        {
+                            string s = "set " + update.Dequeue();
+                            telnetClient.write(s);
+                        }
+                        // the same for the other sensors properties
+                        Thread.Sleep(250);// read the data in 4Hz
                     }
-                    // 2
-                    telnetClient.write("get /instrumentation/gps_indicated-vertical-speed\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
+                    catch (Exception e)
                     {
-                        GpsIndicatedVerticalSpeed = Double.Parse(msg);
+                        // problem with connecting to the server
+                        stop = true;
                     }
-                    // 3
-                    telnetClient.write("get /instrumentation/gps_indicated-ground-speed-kt\n");
-                    msg = telnetClient.read();
- 
-                    if (!msg.Contains("ERR"))
-                    {
-                        GpsIndicatedGroundSpeedKt = Double.Parse(msg);
-                    }
-                    // 4
-                    telnetClient.write("get /instrumentation/airspeed-indicator_indicated-speed-kt\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
-                    {
-                        AirspeedIndicatorIndicatedSpeedKt = Double.Parse(msg);
-                    }
-                    // 5
-                    telnetClient.write("get /instrumentation/gps_indicated-altitude-ft\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
-                    {
-                        GpsIndicatedAltitudeFt = Double.Parse(msg);
-                    }
-                    // 6
-                    telnetClient.write("get /instrumentation/attitude-indicator_internal-roll-deg\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
-                    {
-                        AttitudeIndicatorInternalRollDeg = Double.Parse(msg);
-                    }
-                    // 7
-                    telnetClient.write("get /instrumentation/attitude-indicator_internal-pitch-deg\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
-                    {
-                        AttitudeIndicatorInternalPitchDeg = Double.Parse(msg);
-                    }
-                    // 8
-                    telnetClient.write("get /instrumentation/altimeter_indicated-altitude-ft\n");
-                    msg = telnetClient.read();
-                    if (!msg.Contains("ERR"))
-                    {
-                        AltimeterIndicatedAltitudeFt = Double.Parse(msg);
-                    }
-                    // longitude
-                    telnetClient.write("get /position/longitude-deg\n");
-                    msg = telnetClient.read();
-                    Console.WriteLine("longitude");
-                    Console.WriteLine(msg);
-   
-                    if (!msg.Contains("ERR"))
-                    {
-                        Longitude = Double.Parse(msg);
-                    }
-                    // latitude
-                    telnetClient.write("get /position/latitude-deg\n");
-                    msg = telnetClient.read();
-                    Console.WriteLine("latitude");
-                    Console.WriteLine(msg);
-                    if (!msg.Contains("ERR"))
-                    {
-                        Latitude = Double.Parse(msg);
-                    }
-                    
-                    while (this.update.Count != 0)
-                    {
-                        string s = "set " + update.Dequeue();
-                        Console.WriteLine(s);
-                        telnetClient.write(s);
-                        s = telnetClient.read();
-                    }
-
-                    // the same for the other sensors properties
-                    Thread.Sleep(250);// read the data in 4Hz
                 }
             }).Start();
         }
@@ -152,7 +145,7 @@ namespace FlightSimulatorApp
             }
         }
 
-
+        // 8 properties that get from the simulator
         public double IndicatedHeadingDeg
         {
             get { return this.indicatedHeadingDeg; }
@@ -250,11 +243,13 @@ namespace FlightSimulatorApp
             }
         }
 
+        // 4 properties that set to the simulator
         public double Rudder
         {
             get { return this.rudder; }
             set
             {
+                // check if in the range
                 if (value > 1)
                 {
                     this.rudder = 1;
@@ -275,6 +270,7 @@ namespace FlightSimulatorApp
             get { return this.elevator; }
             set
             {
+                // check if in the range
                 if (value > 1)
                 {
                     this.elevator = 1;
@@ -296,6 +292,7 @@ namespace FlightSimulatorApp
             get { return this.aileron; }
             set
             {
+                // check if in the range
                 if (value > 1)
                 {
                     this.aileron = 1;
@@ -317,6 +314,7 @@ namespace FlightSimulatorApp
             get { return this.throttle; }
             set
             {
+                // check if in the range
                 if (value > 1)
                 {
                     this.throttle = 1;
@@ -333,6 +331,8 @@ namespace FlightSimulatorApp
                 this.update.Enqueue("/controls/engines/current-engine/throttle " + value);
             }
         }
+
+        // the location of the plane on the map
         public double Longitude
         {
             get { return this.longitude; }
@@ -341,10 +341,9 @@ namespace FlightSimulatorApp
                 if (this.longitude != value)
                 {
                     this.longitude = value;
-                    location.Longitude = value;
-                    this.NotifyPropertyChanged("LongitudeT");
                     this.NotifyPropertyChanged("Location");
-
+                    // for the text
+                    this.NotifyPropertyChanged("LongitudeT");
                 }
             }
         }
@@ -356,16 +355,33 @@ namespace FlightSimulatorApp
                 if (this.latitude != value)
                 {
                     this.latitude = value;
-                    location.Latitude = value;
-                    this.NotifyPropertyChanged("LatitudeT");
                     this.NotifyPropertyChanged("Location");
+                    // for the text
+                    this.NotifyPropertyChanged("LatitudeT");
                 }
             }
         }
-
-        public Location Location { get { return new Location(latitude ,longitude); }
+        public Location Location
+        {
+            get
+            {
+                return new Location(latitude, longitude);
+            }
         }
 
+        // when the simulator is not connected
+        public string ServerError
+        {
+            get
+            {
+                return this.serverError;
+            }
+            set
+            {
+                this.serverError = value;
+                this.NotifyPropertyChanged("ServerError");
+            }
+        }
     }
 }
 
