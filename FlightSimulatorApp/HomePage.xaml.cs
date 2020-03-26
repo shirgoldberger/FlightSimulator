@@ -40,17 +40,15 @@ namespace FlightSimulatorApp
         }
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
-            int p;
+            int p = 0;
             // if the user didn't insert port and ip
-            if (ip.Equals(""))
+            if (ip.Equals("") || port.Equals(""))
             {
-                ip = "127.0.0.1";
+                string message = string.Format("You need to insert IP and Port");
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            if (port.Equals(""))
-            {
-                p = 5402;
-            }
-            else
+            if (!port.Equals(""))
             {
                 p = int.Parse(this.port);
             }

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlightSimulatorApp"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="1000"
+      d:DesignHeight="592.666" d:DesignWidth="1100"
       Title="openPage">
     
     <Grid TextBlock.FontSize="14">
@@ -35,13 +35,20 @@
         <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Source ="simbol.png" VerticalAlignment="Center" Height="212" Margin="47.667,9.667,47.667,66.333"/>
 
         <StackPanel Grid.Row="4" Grid.RowSpan="5" Orientation="Vertical" Grid.ColumnSpan="3" Margin="333,0.514,333,10.486">
-            <TextBlock Padding="3"  Margin="3,3,3,2.6" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="White">Enter IP:</TextBlock>
+            <TextBlock Padding="3"  Margin="3,3,3,2.6" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="AliceBlue">Enter IP:</TextBlock>
             <TextBox x:Name="ServerIP"    HorizontalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Height="40" Width="270" Text="{Binding IP, Mode =TwoWay}"   Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" FontSize="18" HorizontalAlignment="Center" />
-            <TextBlock Grid.Row="1" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="White">Enter Port:</TextBlock>
+            <TextBlock Grid.Row="1" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="AliceBlue">Enter Port:</TextBlock>
             <TextBox x:Name="ServerPort" Grid.Row="5" Grid.Column="1" Height="40" Width="270" Text="{Binding Port, Mode=TwoWay}"  MouseDown="ServerPort_MouseDown" Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" HorizontalContentAlignment="Center" FontSize="18"/>
-            <CheckBox HorizontalAlignment="Center" Foreground="Orange" FontWeight="Bold" Click="CheckBox_Click" Content="default port and ip" Margin="0,0,0.333,0"/>
+            <CheckBox HorizontalAlignment="Center" Foreground="Yellow" FontWeight="Bold" Click="CheckBox_Click" Content="default port and ip" Margin="0,0,0.333,0"/>
             <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"
-            Grid.ColumnSpan="1" Margin="0,30,0,0" Padding="5" Width="70" Click="Button_Click_Fly" FontSize="25">Fly!</Button>
+            Grid.ColumnSpan="1" Margin="0,30,0,0" Padding="5" Width="70" Click="Button_Click_Fly" FontSize="25">Fly!
+                <Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="DeepSkyBlue" Offset="0" />
+                        <GradientStop Color="LightBlue" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

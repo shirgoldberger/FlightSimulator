@@ -36,13 +36,9 @@ namespace FlightSimulatorApp
             {
                 if (e.PropertyName.Equals("VM_ServerError") && vm.VM_ServerError)
                 {
-                    //MessageBox.Show("not connected to the simulator, try again", "", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    //MessageBoxResult exit = MessageBox.Show("We lost contact with the simulator," +
-                    //    " you are redirected to the log in page", "Server Problem", MessageBoxButton.OK, MessageBoxImage.Question);
-                    // show the view
-                    //this.vm.disconnect();
-                    NavigationService.GoBack();
+                    MessageBox.Show("We lost contact with the simulator," +
+                        " you are redirected to the log in page", "Server Problem", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             };
             joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -81,7 +77,11 @@ namespace FlightSimulatorApp
                 this.vm.VM_Elevator = this.elevator;
             }
         }
-
+        private void Button_Click_Back(object sender, RoutedEventArgs e)
+        {
+            
+            NavigationService.GoBack();
+        }
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
             joystick1.MousePressed = false;
