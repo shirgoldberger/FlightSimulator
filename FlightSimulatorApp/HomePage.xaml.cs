@@ -58,7 +58,7 @@ namespace FlightSimulatorApp
             try
             {
                 // show the view
-                simulatorView = new SimulatorView(this.ip, p);
+                simulatorView = new SimulatorView(this, this.ip, p);
                 this.NavigationService.Navigate(simulatorView);
             }
             catch (Exception e1)

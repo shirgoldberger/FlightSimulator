@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Net.Sockets;
 using System.Windows;
 using Microsoft.Maps.MapControl.WPF;
+using System.IO;
 
 namespace FlightSimulatorApp
 {
@@ -19,8 +19,8 @@ namespace FlightSimulatorApp
         Thread thread;
         double rudder = 0, elevator = 0, throttle = 0, aileron = 0;
         double latitude = 50, longitude = 10;
-        string serverError = "false";
-        bool stopWithError = false;
+        bool serverError = false;
+        //bool stopWithError = false;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -42,7 +42,7 @@ namespace FlightSimulatorApp
         }
         public void start()
         {
-            new Thread(delegate ()
+            this.thread = new Thread(delegate ()
             {
                 String msg;
                 while (!stop)
@@ -128,13 +128,24 @@ namespace FlightSimulatorApp
                         // the same for the other sensors properties
                         Thread.Sleep(250);// read the data in 4Hz
                     }
-                    catch (Exception e)
+                    catch (IOException)
+                    {
+                        stop = true;
+                        ServerError = true;
+                        Console.WriteLine("problem with IO");
+                 
+
+                    }
+                    catch
                     {
                         // problem with connecting to the server
+                        Console.WriteLine("problem with connecting to the server");
                         stop = true;
+                        ServerError = true;
                     }
                 }
-            }).Start();
+            });
+            thread.Start();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -370,7 +381,7 @@ namespace FlightSimulatorApp
         }
 
         // when the simulator is not connected
-        public string ServerError
+        public bool ServerError
         {
             get
             {
@@ -379,6 +390,10 @@ namespace FlightSimulatorApp
             set
             {
                 this.serverError = value;
+                //if (value)
+                //{
+                //    thread.Join();
+                //}
                 this.NotifyPropertyChanged("ServerError");
             }
         }

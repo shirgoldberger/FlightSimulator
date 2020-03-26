@@ -22,21 +22,27 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class SimulatorView : Page
     {
-        SimulatorViewModel VM;
+        SimulatorViewModel vm;
         double elevator, rudder;
         LocationRect bounds;
         double preX, preY;
         private bool firstTime = true;
 
-        public SimulatorView(string ip, int port)
+        public SimulatorView(HomePage homePage,string ip, int port)
         {
             InitializeComponent();
-            this.VM = new SimulatorViewModel(new MySimulatorModel(new Telnet(ip, port)));
-            VM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            this.vm = new SimulatorViewModel(new MySimulatorModel(new Telnet(ip, port)));
+            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName == "VM_ServerError")
+                if (e.PropertyName.Equals("VM_ServerError") && vm.VM_ServerError)
                 {
+                    //MessageBox.Show("not connected to the simulator, try again", "", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                    //MessageBoxResult exit = MessageBox.Show("We lost contact with the simulator," +
+                    //    " you are redirected to the log in page", "Server Problem", MessageBoxButton.OK, MessageBoxImage.Question);
+                    // show the view
+                    //this.vm.disconnect();
+                    NavigationService.GoBack();
                 }
             };
             joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -60,7 +66,7 @@ namespace FlightSimulatorApp
 
 
             };
-            DataContext = VM;
+            DataContext = vm;
 
         }
         public double V_Elevator
@@ -72,7 +78,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.elevator = value;
-                this.VM.VM_Elevator = this.elevator;
+                this.vm.VM_Elevator = this.elevator;
             }
         }
 
@@ -195,7 +201,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.rudder = value;
-                this.VM.VM_Rudder = this.rudder;
+                this.vm.VM_Rudder = this.rudder;
             }
         }
     }

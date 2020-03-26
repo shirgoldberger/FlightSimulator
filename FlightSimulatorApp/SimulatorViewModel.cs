@@ -125,7 +125,7 @@ namespace FlightSimulatorApp
         {
             get { return "Latitude: " + String.Format("{0:0.000}", model.Latitude); }
         }
-        public string VM_ServerError
+        public bool VM_ServerError
         {
             get
             {
