@@ -79,8 +79,8 @@ namespace FlightSimulatorApp
         }
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            
-            NavigationService.GoBack();
+            HomePage hp = new HomePage();
+            this.NavigationService.Navigate(hp);
         }
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
