@@ -108,6 +108,11 @@ namespace FlightSimulatorApp
             }
         }
 
+        public void disconnect()
+        {
+            this.model.disconnect();
+        }
+
         // the location of the plane on the map
         public Location VM_Location
         {

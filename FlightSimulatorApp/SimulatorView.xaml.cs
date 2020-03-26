@@ -88,6 +88,7 @@ namespace FlightSimulatorApp
         }
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
+            this.vm.disconnect();
             HomePage hp = new HomePage();
             this.NavigationService.Navigate(hp);
         }
