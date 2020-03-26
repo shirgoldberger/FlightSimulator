@@ -22,8 +22,8 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class HomePage : INotifyPropertyChanged
     {
-        private string ip = "";
-        private string port = "";
+        private string ip = "Enter IP";
+        private string port = "Enter Port";
         private bool check = false;
         public HomePage()
         {
@@ -42,7 +42,7 @@ namespace FlightSimulatorApp
         {
             int p = 0;
             // if the user didn't insert port and ip
-            if (ip.Equals("") || port.Equals(""))
+            if (ip.Equals("") || port.Equals("")|| ip.Equals("Enter IP") || port.Equals("Enter Port"))
             {
                 string message = string.Format("You need to insert IP and Port");
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -80,6 +80,8 @@ namespace FlightSimulatorApp
             set 
             { 
                 this.ip = value;
+                NotifyPropertyChanged("Port");
+
             }
         }
         public string Port
@@ -91,6 +93,8 @@ namespace FlightSimulatorApp
             set 
             {
                 this.port = value;
+                NotifyPropertyChanged("Port");
+
             }
         }
         private void ServerPort_MouseDown(object sender, MouseButtonEventArgs e)
@@ -115,7 +119,38 @@ namespace FlightSimulatorApp
                 Port = "";
                 IP = "";
             }
-            check = !check;
+            check = false;
+        }
+
+        private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (ServerIP.Text.Equals("Enter IP")) {
+                ServerIP.Text = "";
+            }
+        }
+
+        private void ServerIP_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (ServerIP.Text.Equals(""))
+            {
+                ServerIP.Text = "Enter IP";
+            }
+        }
+
+        private void ServerPort_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (ServerPort.Text.Equals("Enter Port"))
+            {
+                ServerPort.Text = "";
+            }
+        }
+
+        private void ServerPort_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (ServerPort.Text.Equals(""))
+            {
+                ServerPort.Text = "Enter Port";
+            }
         }
     }
 }

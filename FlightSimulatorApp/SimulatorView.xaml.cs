@@ -39,6 +39,15 @@ namespace FlightSimulatorApp
 
                     MessageBox.Show("We lost contact with the simulator," +
                         " you are redirected to the log in page", "Server Problem", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+
+                        if (NavigationService.CanGoBack)
+                        {
+                            this.NavigationService.GoBack();
+                        }
+                    }));
                 }
             };
             joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
