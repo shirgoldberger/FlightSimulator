@@ -12,5 +12,6 @@ namespace FlightSimulatorApp
         void write(string command);
         string read(); // blocking call 
         void disconnect();
+
+        void setTimeOutRead(int time);
     }
-}

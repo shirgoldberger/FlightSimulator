@@ -55,5 +55,9 @@ namespace FlightSimulatorApp
             byte[] ba = asen.GetBytes(command);
             stm.Write(ba, 0, ba.Length);
         }
+
+        public void setTimeOutRead(int time) {
+            this.tcpclnt.ReceiveTimeout=time;
+        }
     }
 }

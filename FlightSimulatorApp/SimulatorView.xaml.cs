@@ -49,6 +49,31 @@ namespace FlightSimulatorApp
                         }
                     }));
                 }
+
+                if (e.PropertyName.Equals("VM_ReadError") && vm.VM_ReadError)
+                {
+
+                    MessageBoxResult result =  MessageBox.Show("we didnt get response from the simulator server, therefor the program has stoped.\n" +
+                        "press OK to be redirected to the log in page or Cancel to stay", "Server Problem", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
+                            Dispatcher.Invoke(new Action(() =>
+                            {
+
+                                if (NavigationService.CanGoBack)
+                                {
+                                    this.NavigationService.GoBack();
+                                }
+                            }));
+
+                            break;
+                        case MessageBoxResult.Cancel:
+                            break;
+                    }
+
+                }
+
             };
             joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {

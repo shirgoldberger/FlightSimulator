@@ -19,16 +19,22 @@ namespace FlightSimulatorApp
         Thread thread;
         double rudder = 0, elevator = 0, throttle = 0, aileron = 0;
         double latitude = 50, longitude = 10;
-        bool serverError = false;
+        private bool serverError;
+
         //bool stopWithError = false;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
+        private bool readError;
+
         public MySimulatorModel(ITelnetClient telnetClient)
         {
             this.telnetClient = telnetClient;
             stop = false;
             this.connect();
+            this.telnetClient.setTimeOutRead(10000);
+            serverError = false;
+            readEror = false;
         }
         public void connect()
         {
@@ -128,12 +134,17 @@ namespace FlightSimulatorApp
                         // the same for the other sensors properties
                         Thread.Sleep(250);// read the data in 4Hz
                     }
+                    catch (SocketException) {
+                        stop = true;
+                        readError = true;
+                        Console.WriteLine("read timeout");
+                    }
                     catch (IOException)
                     {
                         stop = true;
                         ServerError = true;
                         Console.WriteLine("problem with IO");
-                 
+
 
                     }
                     catch
@@ -390,11 +401,20 @@ namespace FlightSimulatorApp
             set
             {
                 this.serverError = value;
-                //if (value)
-                //{
-                //    thread.Join();
-                //}
+
                 this.NotifyPropertyChanged("ServerError");
+            }
+        }
+        public bool ReadError
+        {
+            get
+            {
+                return this.readError;
+            }
+            set
+            {
+                this.readError = value;
+                this.NotifyPropertyChanged("ReadError");
             }
         }
     }

@@ -137,5 +137,13 @@ namespace FlightSimulatorApp
                 return this.model.ServerError;
             }
         }
+
+        public bool VM_ReadError
+        {
+            get
+            {
+                return this.model.ReadError;
+            }
+        }
     }
 }
