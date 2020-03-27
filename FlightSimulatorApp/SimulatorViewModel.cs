@@ -29,37 +29,37 @@ namespace FlightSimulatorApp
         }
 
         // 8 properties that get from the simulator
-        public double VM_IndicatedHeadingDeg
+        public string VM_IndicatedHeadingDeg
         {
-            get { return model.IndicatedHeadingDeg; }
+            get { return String.Format("{0:0.000}", model.IndicatedHeadingDeg); }
         }
-        public double VM_GpsIndicatedVerticalSpeed
+        public string VM_GpsIndicatedVerticalSpeed
         {
-            get { return model.GpsIndicatedVerticalSpeed; }
+            get { return String.Format("{0:0.000}", model.GpsIndicatedVerticalSpeed); }
         }
-        public double VM_GpsIndicatedGroundSpeedKt
+        public string VM_GpsIndicatedGroundSpeedKt
         {
-            get { return model.GpsIndicatedGroundSpeedKt; }
+            get { return String.Format("{0:0.000}", model.GpsIndicatedGroundSpeedKt); }
         }
-        public double VM_AirspeedIndicatorIndicatedSpeedKt
+        public string VM_AirspeedIndicatorIndicatedSpeedKt
         {
-            get { return model.AirspeedIndicatorIndicatedSpeedKt; }
+            get { return String.Format("{0:0.000}", model.AirspeedIndicatorIndicatedSpeedKt); }
         }
-        public double VM_GpsIndicatedAltitudeFt 
+        public string VM_GpsIndicatedAltitudeFt 
         { 
-            get { return model.GpsIndicatedAltitudeFt; } 
+            get { return String.Format("{0:0.000}", model.GpsIndicatedAltitudeFt); } 
         }
-        public double VM_AttitudeIndicatorInternalRollDeg 
+        public string VM_AttitudeIndicatorInternalRollDeg 
         {
-            get { return model.AttitudeIndicatorInternalRollDeg; } 
+            get { return String.Format("{0:0.000}", model.AttitudeIndicatorInternalRollDeg); } 
         }
-        public double VM_AttitudeIndicatorInternalPitchDeg 
+        public string VM_AttitudeIndicatorInternalPitchDeg 
         {
-            get { return model.AttitudeIndicatorInternalPitchDeg; } 
+            get { return String.Format("{0:0.000}", model.AttitudeIndicatorInternalPitchDeg); } 
         }
-        public double VM_AltimeterIndicatedAltitudeFt 
+        public string VM_AltimeterIndicatedAltitudeFt 
         {
-            get { return model.AltimeterIndicatedAltitudeFt; } 
+            get { return String.Format("{0:0.000}", model.AltimeterIndicatedAltitudeFt); } 
         }
 
         // 4 properties that set to the simulator
@@ -136,6 +136,10 @@ namespace FlightSimulatorApp
             {
                 return this.model.ServerError;
             }
+            set
+            {
+                this.model.LongError = value;
+            }
         }
 
         public bool VM_ReadError
@@ -143,6 +147,33 @@ namespace FlightSimulatorApp
             get
             {
                 return this.model.ReadError;
+            }
+            set
+            {
+                this.model.ReadError = value;
+            }
+        }
+
+        public bool VM_LatError
+        {
+            get
+            {
+                return this.model.LatError;
+            }
+            set
+            {
+                this.model.LatError = value;
+            }
+        }
+
+        public bool VM_LongError
+        {
+            get
+            {
+                return this.model.LongError;
+            }
+            set {
+                this.model.LongError = value;
             }
         }
     }

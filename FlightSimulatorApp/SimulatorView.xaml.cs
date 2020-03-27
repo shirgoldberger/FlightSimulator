@@ -45,6 +45,7 @@ namespace FlightSimulatorApp
 
                         if (NavigationService.CanGoBack)
                         {
+                            vm.VM_ServerError = false;
                             this.NavigationService.GoBack();
                         }
                     }));
@@ -54,15 +55,70 @@ namespace FlightSimulatorApp
                 {
 
                     MessageBoxResult result =  MessageBox.Show("we didnt get response from the simulator server, therefor the program has stoped.\n" +
-                        "press OK to be redirected to the log in page or Cancel to stay", "Server Problem", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                        "press OK to be redirected to the log in page or Cancel to stay", "Read data Problem", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                     switch (result)
                     {
-                        case MessageBoxResult.Yes:
+                        case MessageBoxResult.OK:
                             Dispatcher.Invoke(new Action(() =>
                             {
 
                                 if (NavigationService.CanGoBack)
                                 {
+                                    this.vm.disconnect();
+                                    vm.VM_ReadError = false;
+                                    this.NavigationService.GoBack();
+
+                                }
+                            }));
+
+                            break;
+                        case MessageBoxResult.Cancel:
+                            break;
+                    }
+
+                }
+
+                if (e.PropertyName.Equals("VM_LongError") && vm.VM_LongError)
+                {
+
+                    MessageBoxResult result = MessageBox.Show("we recieve an invalid Longtitude value, therefor we didnt change the current value\n" +
+                        "press OK to be redirected to the log in page or Cancel to stay", "Invalid value detected", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                    switch (result)
+                    {
+                        case MessageBoxResult.OK:
+                            Dispatcher.Invoke(new Action(() =>
+                            {
+
+                                if (NavigationService.CanGoBack)
+                                {
+                                    this.vm.disconnect();
+                                    vm.VM_LongError = false;
+                                    this.NavigationService.GoBack();
+                                }
+                            }));
+
+                            break;
+                        case MessageBoxResult.Cancel:
+                            break;
+                    }
+
+                }
+
+                if (e.PropertyName.Equals("VM_LatError") && vm.VM_LatError)
+                {
+
+                    MessageBoxResult result = MessageBox.Show("we recieve an invalid latitude value, therefor we didnt change the current value\n" +
+                        "press OK to be redirected to the log in page or Cancel to stay", "Invalid value detected", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                    switch (result)
+                    {
+                        case MessageBoxResult.OK:
+                            Dispatcher.Invoke(new Action(() =>
+                            {
+
+                                if (NavigationService.CanGoBack)
+                                {
+                                    this.vm.disconnect();
+                                    vm.VM_LatError = false;
                                     this.NavigationService.GoBack();
                                 }
                             }));

@@ -58,6 +58,7 @@ namespace FlightSimulatorApp
                 // show the view
                 simulatorView = new SimulatorView(this, this.ip, p);
                 this.NavigationService.Navigate(simulatorView);
+                check_box.IsChecked = false;
             }
             catch (Exception e1)
             {
@@ -119,7 +120,7 @@ namespace FlightSimulatorApp
                 Port = "";
                 IP = "";
             }
-            check = false;
+            check = !check;
         }
 
         private void ServerIP_GotFocus(object sender, RoutedEventArgs e)

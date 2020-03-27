@@ -26,6 +26,8 @@ namespace FlightSimulatorApp
         ITelnetClient telnetClient;
         volatile Boolean stop;
         private bool readError;
+        private bool latError;
+        private bool longError;
 
         public MySimulatorModel(ITelnetClient telnetClient)
         {
@@ -35,6 +37,8 @@ namespace FlightSimulatorApp
             this.telnetClient.setTimeOutRead(10000);
             serverError = false;
             readError = false;
+            latError = false;
+            longError = false;
         }
         public void connect()
         {
@@ -362,10 +366,18 @@ namespace FlightSimulatorApp
             {
                 if (this.longitude != value)
                 {
-                    this.longitude = value;
-                    this.NotifyPropertyChanged("Location");
-                    // for the text
-                    this.NotifyPropertyChanged("LongitudeT");
+                    if (value >= -180 && value <= 180)
+                    {
+
+                        this.longitude = value;
+                        this.NotifyPropertyChanged("Location");
+                        // for the text
+                        this.NotifyPropertyChanged("LongitudeT");
+                    }
+                    else {
+                        LongError = true;
+                    }
+
                 }
             }
         }
@@ -376,10 +388,17 @@ namespace FlightSimulatorApp
             {
                 if (this.latitude != value)
                 {
-                    this.latitude = value;
-                    this.NotifyPropertyChanged("Location");
-                    // for the text
-                    this.NotifyPropertyChanged("LatitudeT");
+                    if (value >= -90 && value <= 90)
+                    {
+                        this.latitude = value;
+                        this.NotifyPropertyChanged("Location");
+                        // for the text
+                        this.NotifyPropertyChanged("LatitudeT");
+                    }
+                    else {
+                        LatError = true;
+                    }
+
                 }
             }
         }
@@ -400,9 +419,11 @@ namespace FlightSimulatorApp
             }
             set
             {
-                this.serverError = value;
-
-                this.NotifyPropertyChanged("ServerError");
+                if (!serverError)
+                {
+                    this.serverError = value;
+                    this.NotifyPropertyChanged("ServerError");
+                }
             }
         }
         public bool ReadError
@@ -413,8 +434,62 @@ namespace FlightSimulatorApp
             }
             set
             {
-                this.readError = value;
-                this.NotifyPropertyChanged("ReadError");
+                if (!readError && value)
+                {
+                    this.readError = value;
+                    this.NotifyPropertyChanged("ReadError");
+                }
+                else
+                {
+                    if (readError && !value)
+                    {
+                        this.readError = value;
+                    }
+                }
+            }
+        }
+
+        public bool LatError
+        {
+            get
+            {
+                return this.latError;
+            }
+            set
+            {
+                if (!latError && value)
+                {
+                    this.latError = value;
+                    this.NotifyPropertyChanged("LatError");
+                }
+                else {
+                    if (latError && !value) {
+                        this.latError = value;
+                    }
+                }
+            }
+        }
+
+        public bool LongError
+        {
+            get
+            {
+                return this.longError;
+            }
+            set
+            {
+                if (!longError && value)
+                {
+                    this.longError = value;
+                    this.NotifyPropertyChanged("LongError");
+                }
+                else
+                {
+                    if (longError && !value)
+                    {
+                        this.longError = value;
+                    }
+                }
             }
         }
     }
