@@ -34,7 +34,7 @@ namespace FlightSimulatorApp
             this.connect();
             this.telnetClient.setTimeOutRead(10000);
             serverError = false;
-            readEror = false;
+            readError = false;
         }
         public void connect()
         {

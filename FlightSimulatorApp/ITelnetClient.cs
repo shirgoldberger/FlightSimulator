@@ -15,3 +15,4 @@ namespace FlightSimulatorApp
 
         void setTimeOutRead(int time);
     }
+}
