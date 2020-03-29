@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
         Title="FlightSimulatorApp" Height="600"  Width="1100" Background="AliceBlue">
 
-    <Grid MouseUp="Grid_MouseUp">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />

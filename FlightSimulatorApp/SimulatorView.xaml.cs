@@ -40,6 +40,7 @@ namespace FlightSimulatorApp
                     MessageBox.Show("We lost contact with the simulator," +
                         " you are redirected to the log in page", "Server Problem", MessageBoxButton.OK, MessageBoxImage.Error);
 
+
                     Dispatcher.Invoke(new Action(() =>
                     {
 
@@ -172,10 +173,6 @@ namespace FlightSimulatorApp
             this.vm.disconnect();
             HomePage hp = new HomePage();
             this.NavigationService.Navigate(hp);
-        }
-        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            joystick1.MousePressed = false;
         }
         private void pin_LayoutUpdated(object sender, EventArgs e)
         {
