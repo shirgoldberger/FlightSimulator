@@ -40,8 +40,8 @@ namespace FlightSimulatorApp.controls
             mousePressed = false;
             firstTime = true;
             this.rec = new Rect();
-            KnobRec.X = 0 - black_Circle.Width / 2;
-            KnobRec.Y = 0 - black_Circle.Height / 2;
+            KnobRec.X = 0-black_Circle.Width/2;
+            KnobRec.Y = 0-black_Circle.Height/2;
             KnobRec.Width = black_Circle.Width;
             KnobRec.Height = black_Circle.Height;
             firstTime = true;
@@ -89,7 +89,7 @@ namespace FlightSimulatorApp.controls
                 {
                     if (x < rec.Right && x > rec.Left)
                     {
-                        knobPosition.X = e.GetPosition(black_Circle).X - black_Circle.Width / 2;
+                        knobPosition.X = e.GetPosition(black_Circle).X- black_Circle.Width / 2;
                         knobPosition.Y = KnobRec.Top;
                     }
 
@@ -104,8 +104,8 @@ namespace FlightSimulatorApp.controls
                 }
                 else
                 {
-                    knobPosition.X = e.GetPosition(black_Circle).X - black_Circle.Width / 2;
-                    knobPosition.Y = e.GetPosition(black_Circle).Y - black_Circle.Height / 2;
+                    knobPosition.X = e.GetPosition(black_Circle).X - black_Circle.Width/2;
+                    knobPosition.Y = e.GetPosition(black_Circle).Y- black_Circle.Height/2;
                 }
 
                 updateParams(knobPosition.X, knobPosition.Y);
@@ -145,8 +145,7 @@ namespace FlightSimulatorApp.controls
             }
         }
 
-        public void updateParams(double x, double y)
-        {
+        public void updateParams(double x,double y) {
             //    // set rudder and elevator
             //Rudder = x / (black_Circle.Width - KnobBase.Width) * 2;
             //Elevetor = y / (black_Circle.Width - KnobBase.Width) * 2;
