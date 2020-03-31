@@ -90,6 +90,7 @@ namespace FlightSimulatorApp
                 Console.WriteLine("hello im ttrotle");
                 this.NotifyPropertyChanged("Throttle", value);
                 this.NotifyPropertyChanged("Throttle_Text");
+                this.NotifyPropertyChanged("Throttle");
 
 
             }
