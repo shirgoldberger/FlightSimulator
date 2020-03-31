@@ -25,14 +25,25 @@ namespace FlightSimulatorApp
         public Sliders()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void NotifyPropertyChanged(string propertyName, object newValue)
+        public event PropertyChangedEventHandler PropertyChangedNotify;
+
+
+        public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedExtendedEventArgs(propertyName, newValue));
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+        public void NotifyPropertyChanged(string propertyName, object newValue)
+        {
+            if (this.PropertyChangedNotify != null)
+                PropertyChangedNotify(this, new PropertyChangedExtendedEventArgs(propertyName, newValue));
         }
         public double Rudder
         {
@@ -41,9 +52,11 @@ namespace FlightSimulatorApp
             {
                  this.rudder = value;
                 this.NotifyPropertyChanged("Rudder", value);
+                this.NotifyPropertyChanged("Rudder_Text");
 
             }
         }
+
 
         public double Elevator
         {
@@ -52,6 +65,7 @@ namespace FlightSimulatorApp
             {
                     this.elevator = value;
                 this.NotifyPropertyChanged("Elevator", value);
+                this.NotifyPropertyChanged("Elevator_Text");
 
             }
         }
@@ -63,6 +77,7 @@ namespace FlightSimulatorApp
 
                     this.aileron = value;
                 this.NotifyPropertyChanged("Aileron", value);
+                this.NotifyPropertyChanged("Aileron_Text");
 
             }
         }
@@ -71,10 +86,34 @@ namespace FlightSimulatorApp
             get { return this.throttle; }
             set
             {
-                    this.throttle = value;
+                 this.throttle = value;
+                Console.WriteLine("hello im ttrotle");
                 this.NotifyPropertyChanged("Throttle", value);
+                this.NotifyPropertyChanged("Throttle_Text");
+
 
             }
+        }
+
+        public string Rudder_Text {
+            get { return String.Format("{0:0.000}", Rudder); }
+        }
+
+        public string Throttle_Text
+        {
+            get {
+                Console.WriteLine("propertycsdfdsf");
+                return String.Format("{0:0.000}", Throttle); }
+        }
+
+        public string Aileron_Text
+        {
+            get { return String.Format("{0:0.000}", Aileron); }
+        }
+
+        public string Elevator_Text
+        {
+            get { return String.Format("{0:0.000}", Rudder); }
         }
     }
 }

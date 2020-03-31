@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FlightSimulatorApp"
              xmlns:Controls ="clr-namespace:FlightSimulatorApp.controls"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="550">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -36,39 +36,39 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Canvas Width="800" Height="800" Grid.ColumnSpan="12" Grid.RowSpan="12">
-            <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="8" Margin="0,10,0,0">
-                <Controls:Joystick x:Name="joystick" Height="760" Width="782" Margin="10,10,10,10"/>
+        <Canvas Width="550" Height="550" Grid.ColumnSpan="12" Grid.RowSpan="12">
+            <Viewbox Grid.Row="1" Grid.Column="3" Height="550" Width="350" Grid.ColumnSpan="6" Grid.RowSpan="8" Canvas.Left="118" Canvas.Top="29">
+                <Controls:Joystick x:Name="joystick" Margin="10,10,10,10"  Height="429" Width="435"/>
             </Viewbox>
-            <Label Grid.Row="8" FontSize="20" Grid.Column="5" Grid.ColumnSpan="2" FontWeight="Bold" Canvas.Left="343" Canvas.Top="576">← Trottle →</Label>
-            <Slider x:Name="Trottle_Slider" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="6" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1"
+            <Label Grid.Row="8" FontSize="20" Grid.Column="5" Grid.ColumnSpan="2" FontWeight="Bold" Canvas.Left="231" Canvas.Top="444">← Trottle →</Label>
+            <Slider x:Name="Trottle_Slider" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="6" Value="{Binding Throttle, Mode=OneWayToSource}" Maximum="1" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1"
                 VerticalAlignment="Center"
-                Width="320" Height="55" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Canvas.Left="249" Canvas.Top="618"/>
+                Width="320" Height="55" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Canvas.Left="130" Canvas.Top="480"/>
 
-            <Label FontWeight="Bold" Grid.Row="4" Grid.Column="2" Grid.RowSpan="2" FontSize="20" Content="← Aileron →" Height="62" Width="113" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="157" Canvas.Top="349">
+            <Label FontWeight="Bold" Grid.Row="4" Grid.Column="2" Grid.RowSpan="2" FontSize="20" Content="← Aileron →" Height="62" Width="113" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="263">
                 <Label.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </Label.LayoutTransform>
             </Label>
 
-            <Slider x:Name="Aileron_Slider" Grid.Row="3" Grid.RowSpan="4" Grid.Column="1" Value="{Binding VM_Aileron, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Center" TickPlacement="BottomRight" TickFrequency="0.1"
+            <Slider x:Name="Aileron_Slider" Grid.Row="3" Grid.RowSpan="4" Grid.Column="1" Value="{Binding Aileron, Mode=OneWayToSource}" Maximum="1" Minimum="-1" HorizontalAlignment="Center" TickPlacement="BottomRight" TickFrequency="0.1"
                 VerticalAlignment="Center"
-                Width="340" Height="55" RenderTransformOrigin="0.5,0.5" Canvas.Left="116" Canvas.Top="233">
+                Width="340" Height="55" RenderTransformOrigin="0.5,0.5" Canvas.Left="55" Canvas.Top="157">
                 <Slider.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </Slider.LayoutTransform>
             </Slider>
-            <Label Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" Grid.Column="5" Grid.Row="1" Height="56" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.Left="337" Canvas.Top="171">← Rudder →</Label>
-            <Label Grid.Row="4" Grid.Column="9" Grid.RowSpan="3" FontSize="20" FontWeight="Bold" Content="← Elevator →" RenderTransformOrigin="0.551,0.475" Width="208" VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Left="585" Canvas.Top="332">
+            <Label Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" Grid.Column="5" Grid.Row="1" Height="56" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.Left="233" Canvas.Top="115">← Rudder →</Label>
+            <Label Grid.Row="4" Grid.Column="9" Grid.RowSpan="3" FontSize="20" FontWeight="Bold" Content="← Elevator →" RenderTransformOrigin="0.551,0.475" Width="208" VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Left="431" Canvas.Top="253">
                 <Label.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </Label.LayoutTransform>
             </Label>
 
-            <TextBlock TextWrapping="Wrap" Text="{Binding Rudder}" Canvas.Left="343" Canvas.Top="121" Width="100" Height="50"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Elevator}" Canvas.Left="644" Canvas.Top="400" Width="100" Height="50"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Throttle}" Canvas.Left="361" Canvas.Top="673" Width="100" Height="50"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Aileron}" Canvas.Left="44" Canvas.Top="400" Width="100" Height="50"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Rudder_Text}" FontSize="20" Canvas.Left="249" Canvas.Top="66" Width="98" Height="44" RenderTransformOrigin="0.093,-0.707"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Elevator_Text}" FontSize="20" Canvas.Left="462" Canvas.Top="298" Width="84" Height="40"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Throttle_Text}" FontSize="20" Canvas.Left="245" Canvas.Top="500" Width="92" Height="35"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Aileron_Text}" FontSize="20" Canvas.Left="6" Canvas.Top="308" Width="84" Height="30"/>
         </Canvas>
     </Grid>
 </UserControl>

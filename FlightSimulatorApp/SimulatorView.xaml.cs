@@ -75,7 +75,7 @@ namespace FlightSimulatorApp
                 }
 
             };
-            sliders.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            sliders.PropertyChangedNotify += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 var args = e as PropertyChangedExtendedEventArgs;
                 if (args != null)
@@ -93,18 +93,18 @@ namespace FlightSimulatorApp
                     }
                     else if (property.Equals("Throttle"))
                     {
+                        Console.WriteLine("sdfdsfsdfdsfsdfsd");
                         {
-                            V_Rudder = (double)args.NewValue;
+                            V_Throttle = (double)args.NewValue;
                         }
                     }
-                    else if (property.Equals("Rudder"))
+                    else if (property.Equals("Aileron"))
                     {
                         {
-                            V_Rudder = (double)args.NewValue;
+                            V_Aileron = (double)args.NewValue;
                         }
                     }
                 }
-
             };
             DataContext = vm;
 
