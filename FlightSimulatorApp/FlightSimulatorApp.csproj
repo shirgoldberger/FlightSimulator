@@ -61,7 +61,6 @@
     <Compile Include="controls\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GetSetSim.cs" />
     <Compile Include="ISimulatorModel.cs" />
     <Compile Include="ITelnetClient.cs" />
     <Compile Include="MySimulatorModel.cs" />
@@ -71,6 +70,9 @@
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SimulatorViewModel.cs" />
+    <Compile Include="Sliders.xaml.cs">
+      <DependentUpon>Sliders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telnet.cs" />
     <Page Include="controls\Joystick.xaml">
       <SubType>Designer</SubType>
@@ -99,6 +101,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Sliders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -118,7 +124,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="font.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

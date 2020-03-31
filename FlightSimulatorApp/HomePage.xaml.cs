@@ -102,55 +102,59 @@ namespace FlightSimulatorApp
             Port = "";
             NotifyPropertyChanged("Port");
         }
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            // the user choose to use default port and ip
-            if (!check)
-            {
-                ServerIP.Text = "127.0.0.1";
-                ServerPort.Text = "5402";
-                Port = "5402";
-                IP = "127.0.0.1";
-            }
-            else
-            {
-                ServerIP.Text = "";
-                ServerPort.Text = "";
-                Port = "";
-                IP = "";
-            }
-            check = false;
-        }
-
         private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (ServerIP.Text.Equals("Enter IP")) {
-                ServerIP.Text = "";
-            }
+            //if (ServerIP.Text.Equals("Enter IP")) {
+            //    ServerIP.Text = "";
+            //}
         }
 
         private void ServerIP_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (ServerIP.Text.Equals(""))
-            {
-                ServerIP.Text = "Enter IP";
-            }
+            //if (ServerIP.Text.Equals(""))
+            //{
+            //    ServerIP.Text = "Enter IP";
+            //}
         }
 
         private void ServerPort_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (ServerPort.Text.Equals("Enter Port"))
-            {
-                ServerPort.Text = "";
-            }
+            //if (ServerPort.Text.Equals("Enter Port"))
+            //{
+            //    ServerPort.Text = "";
+            //}
         }
 
         private void ServerPort_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (ServerPort.Text.Equals(""))
-            {
-                ServerPort.Text = "Enter Port";
-            }
+            //if (ServerPort.Text.Equals(""))
+            //{
+            //    ServerPort.Text = "Enter Port";
+            //}
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            // the user choose to use default port and ip
+            ServerIP.Text = "127.0.0.1";
+            ServerPort.Text = "5402";
+            Port = "5402";
+            IP = "127.0.0.1";
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ServerIP.Text = "";
+            ServerPort.Text = "";
+            Port = "";
+            IP = "";
+        }
+
+        private void ServerIP_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            TextBox txtBox = sender as TextBox;
+            if (txtBox.Text == "Enter IP")
+                txtBox.Text = string.Empty;
         }
     }
 }

@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Resources;
-
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace FlightSimulatorApp
 {
@@ -22,6 +23,12 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : NavigationWindow
     {
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x80000;
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
         public MainWindow()
         {
             InitializeComponent();
@@ -33,18 +40,10 @@ namespace FlightSimulatorApp
 
         }
 
-        private void NavigationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void NavigationWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            switch (exit)
-            {
-                case MessageBoxResult.Yes:
-                    System.Environment.Exit(0);
-                    break;
-                case MessageBoxResult.No:
-                    e.Cancel = true;
-                    break;
-            }
+            var hwnd = new WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
     }
 }

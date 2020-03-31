@@ -1,5 +1,4 @@
-﻿ 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +19,18 @@ namespace FlightSimulatorApp.controls
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
+
     public partial class Joystick : UserControl, Notify
     {
+        Rect rec;
+        Point ofset;
         private double rudder, elevator;
         bool mousePressed;
         public int i;
         private Point currentPlace = new Point();
+        private bool firstTime;
+        Rect KnobRec;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -33,37 +38,83 @@ namespace FlightSimulatorApp.controls
         {
             InitializeComponent();
             mousePressed = false;
+            firstTime = true;
+            this.rec = new Rect();
+            KnobRec.X = 0 - black_Circle.Width / 2;
+            KnobRec.Y = 0 - black_Circle.Height / 2;
+            KnobRec.Width = black_Circle.Width;
+            KnobRec.Height = black_Circle.Height;
+            firstTime = true;
         }
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!mousePressed)
+            if (firstTime)
             {
-                currentPlace = e.GetPosition(this);
-                mousePressed = true;
+                ofset = black_Circle.PointToScreen(new Point(0, 0));
+                this.rec = new Rect();
+                rec.X = ofset.X;
+                rec.Y = ofset.Y;
+                rec.Width = black_Circle.Width;
+                rec.Height = black_Circle.Height;
+                firstTime = false;
             }
+            (Knob).CaptureMouse();
         }
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mousePressed)
+            if (Knob.IsMouseCaptured)
             {
-                double x = e.GetPosition(this).X - currentPlace.X;
-                double y = e.GetPosition(this).Y - currentPlace.Y;
-                double disance = Math.Sqrt(x * x + y * y);
-                // when the new position is proper
-                if (disance < (Base.Width - KnobBase.Width) / 2)
+
+                double x = e.GetPosition(black_Circle).X + rec.Left;
+                double y = e.GetPosition(black_Circle).Y + rec.Top;
+
+                if (x < rec.Left)
                 {
-                    knobPosition.X = x;
-                    knobPosition.Y = y;
+                    if (y > rec.Top && y < rec.Bottom)
+                    {
+                        knobPosition.X = KnobRec.Left;
+                        knobPosition.Y = e.GetPosition(black_Circle).Y - black_Circle.Height / 2;
+                    }
                 }
-                // set rudder and elevator
-                Rudder = x / (Base.Width - KnobBase.Width) * 2;
-                Elevetor = y / (Base.Width - KnobBase.Width) * 2;
+                else if (x > rec.Right)
+                {
+                    if (y > rec.Top && y < rec.Bottom)
+                    {
+                        knobPosition.X = KnobRec.Right;
+                        knobPosition.Y = e.GetPosition(black_Circle).Y - black_Circle.Height / 2;
+
+                    }
+                }
+                else if (y < rec.Top)
+                {
+                    if (x < rec.Right && x > rec.Left)
+                    {
+                        knobPosition.X = e.GetPosition(black_Circle).X - black_Circle.Width / 2;
+                        knobPosition.Y = KnobRec.Top;
+                    }
+
+                }
+                else if (y > rec.Bottom)
+                {
+                    if (x < rec.Right && x > rec.Left)
+                    {
+                        knobPosition.X = e.GetPosition(black_Circle).X - black_Circle.Width / 2;
+                        knobPosition.Y = KnobRec.Bottom;
+                    }
+                }
+                else
+                {
+                    knobPosition.X = e.GetPosition(black_Circle).X - black_Circle.Width / 2;
+                    knobPosition.Y = e.GetPosition(black_Circle).Y - black_Circle.Height / 2;
+                }
+
+                updateParams(knobPosition.X, knobPosition.Y);
             }
         }
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
             // return the joystick to the center
-            mousePressed = false;
+            (Knob).ReleaseMouseCapture();
             knobPosition.X = 0;
             knobPosition.Y = 0;
             Rudder = 0;
@@ -84,24 +135,6 @@ namespace FlightSimulatorApp.controls
                 NotifyPropertyChanged("Elevator", value);
             }
         }
-
-        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            // return the joystick to the center
-            mousePressed = false;
-            knobPosition.X = 0;
-            knobPosition.Y = 0;
-            Rudder = 0;
-            Elevetor = 0;
-        }
-
-        private void Ellipse_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mousePressed)
-            {
-                Knob_MouseMove(sender, e);
-            }
-        }
         public double Rudder
         {
             get { return this.rudder; }
@@ -111,10 +144,14 @@ namespace FlightSimulatorApp.controls
                 NotifyPropertyChanged("Rudder", value);
             }
         }
-        public bool MousePressed
+
+        public void updateParams(double x, double y)
         {
-            set { this.mousePressed = value; }
+            //    // set rudder and elevator
+            //Rudder = x / (black_Circle.Width - KnobBase.Width) * 2;
+            //Elevetor = y / (black_Circle.Width - KnobBase.Width) * 2;
+            Rudder = x / ((black_Circle.Width) / 2);
+            Elevetor = y / ((black_Circle.Width) / 2);
         }
     }
 }
-

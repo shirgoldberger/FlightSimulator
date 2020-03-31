@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
+using System.Runtime.InteropServices;
 
 namespace FlightSimulatorApp
 {
@@ -23,11 +24,10 @@ namespace FlightSimulatorApp
     public partial class SimulatorView : Page
     {
         SimulatorViewModel vm;
-        double elevator, rudder;
+        double elevator, rudder, throttle, aileron;
         LocationRect bounds;
         double preX, preY;
         private bool firstTime = true;
-
         public SimulatorView(HomePage homePage,string ip, int port)
         {
             InitializeComponent();
@@ -75,7 +75,7 @@ namespace FlightSimulatorApp
                 }
 
             };
-            joystick1.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            sliders.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 var args = e as PropertyChangedExtendedEventArgs;
                 if (args != null)
@@ -85,15 +85,25 @@ namespace FlightSimulatorApp
                     {
                         V_Elevator = (double)args.NewValue;
                     }
-                    else
+                    else if (property.Equals("Rudder"))
                     {
-                        if (property.Equals("Rudder"))
+                        {
+                            V_Rudder = (double)args.NewValue;
+                        }
+                    }
+                    else if (property.Equals("Throttle"))
+                    {
+                        {
+                            V_Rudder = (double)args.NewValue;
+                        }
+                    }
+                    else if (property.Equals("Rudder"))
+                    {
                         {
                             V_Rudder = (double)args.NewValue;
                         }
                     }
                 }
-
 
             };
             DataContext = vm;
@@ -117,10 +127,20 @@ namespace FlightSimulatorApp
             HomePage hp = new HomePage();
             this.NavigationService.Navigate(hp);
         }
-        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            joystick1.MousePressed = false;
+            MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (exit)
+            {
+                case MessageBoxResult.Yes:
+                    this.vm.disconnect();
+                    System.Environment.Exit(0);
+                    break;
+            }
+
         }
+
         private void pin_LayoutUpdated(object sender, EventArgs e)
         {
             if (pin.Location != null)
@@ -237,6 +257,30 @@ namespace FlightSimulatorApp
             {
                 this.rudder = value;
                 this.vm.VM_Rudder = this.rudder;
+            }
+        }
+        public double V_Throttle
+        {
+            get
+            {
+                return this.throttle;
+            }
+            set
+            {
+                this.throttle = value;
+                this.vm.VM_Throttle = this.throttle;
+            }
+        }
+        public double V_Aileron
+        {
+            get
+            {
+                return this.aileron;
+            }
+            set
+            {
+                this.aileron = value;
+                this.vm.VM_Aileron = this.aileron;
             }
         }
     }
