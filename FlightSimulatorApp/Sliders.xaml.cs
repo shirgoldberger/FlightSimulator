@@ -19,13 +19,34 @@ namespace FlightSimulatorApp
     /// <summary>
     /// Interaction logic for Sliders.xaml
     /// </summary>
-    public partial class Sliders : UserControl, Notify
+    public partial class Sliders : UserControl, Notify,INotifyPropertyChanged
     {
         private double throttle, elevator, rudder, aileron;
         public Sliders()
         {
             InitializeComponent();
             DataContext = this;
+            joystick.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                var args = e as PropertyChangedExtendedEventArgs;
+                if (args != null)
+                {
+                    string property = args.PropertyName as string;
+                    if (property.Equals("Elevator"))
+                    {
+                        Elevator = (double)args.NewValue;
+                    }
+                    else
+                    {
+                        if (property.Equals("Rudder"))
+                        {
+                            Rudder = (double)args.NewValue;
+                        }
+                    }
+                }
+
+
+            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -113,7 +134,7 @@ namespace FlightSimulatorApp
 
         public string Elevator_Text
         {
-            get { return String.Format("{0:0.000}", Rudder); }
+            get { return String.Format("{0:0.000}", elevator); }
         }
     }
 }
