@@ -58,6 +58,7 @@ namespace FlightSimulatorApp
                 // show the view
                 simulatorView = new SimulatorView(this, this.ip, p);
                 this.NavigationService.Navigate(simulatorView);
+                check_box.IsChecked = false;
             }
             catch (Exception e1)
             {
@@ -104,25 +105,22 @@ namespace FlightSimulatorApp
         }
         private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
         {
-            //if (ServerIP.Text.Equals("Enter IP")) {
-            //    ServerIP.Text = "";
-            //}
-        }
-
-        private void ServerIP_LostFocus(object sender, RoutedEventArgs e)
-        {
-            //if (ServerIP.Text.Equals(""))
-            //{
-            //    ServerIP.Text = "Enter IP";
-            //}
-        }
-
-        private void ServerPort_GotFocus(object sender, RoutedEventArgs e)
-        {
-            //if (ServerPort.Text.Equals("Enter Port"))
-            //{
-            //    ServerPort.Text = "";
-            //}
+            // the user choose to use default port and ip
+            if (!check)
+            {
+                ServerIP.Text = "127.0.0.1";
+                ServerPort.Text = "5402";
+                Port = "5402";
+                IP = "127.0.0.1";
+            }
+            else
+            {
+                ServerIP.Text = "";
+                ServerPort.Text = "";
+                Port = "";
+                IP = "";
+            }
+            check = false;
         }
 
         private void ServerPort_LostFocus(object sender, RoutedEventArgs e)
