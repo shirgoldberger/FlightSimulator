@@ -157,8 +157,6 @@ namespace FlightSimulatorApp.Views
                 this.bounds = myMap.BoundingRectangle;
                 double centerLat = bounds.Center.Latitude;
                 double centerLon = bounds.Center.Longitude;
-                Console.WriteLine("x: " + PlainPosition.X);
-                Console.WriteLine("y: " + PlainPosition.Y);
                 //Update the current latitude and longitude
                 double latitude = pin.Location.Latitude;
                 double longtitude = pin.Location.Longitude;
