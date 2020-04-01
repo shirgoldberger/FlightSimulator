@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.Model
 {
     interface ITelnetClient
     {
@@ -12,7 +12,6 @@ namespace FlightSimulatorApp
         void write(string command);
         string read(); // blocking call 
         void disconnect();
-
         void setTimeOutRead(int time);
     }
 }

@@ -6,7 +6,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp
+
+namespace FlightSimulatorApp.Model
 {
     class Telnet : ITelnetClient
     {
@@ -56,8 +57,9 @@ namespace FlightSimulatorApp
             stm.Write(ba, 0, ba.Length);
         }
 
-        public void setTimeOutRead(int time) {
-            this.tcpclnt.ReceiveTimeout=time;
+        public void setTimeOutRead(int time)
+        {
+            this.tcpclnt.ReceiveTimeout = time;
         }
     }
 }

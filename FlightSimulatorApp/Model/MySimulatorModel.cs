@@ -10,7 +10,7 @@ using System.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System.IO;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.Model
 {
     class MySimulatorModel : ISimulatorModel
     {
@@ -138,7 +138,8 @@ namespace FlightSimulatorApp
                         // the same for the other sensors properties
                         Thread.Sleep(250);// read the data in 4Hz
                     }
-                    catch (SocketException) {
+                    catch (SocketException)
+                    {
                         stop = true;
                         readError = true;
                         Console.WriteLine("read timeout");
@@ -162,6 +163,7 @@ namespace FlightSimulatorApp
             });
             thread.Start();
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -374,7 +376,8 @@ namespace FlightSimulatorApp
                         // for the text
                         this.NotifyPropertyChanged("LongitudeT");
                     }
-                    else {
+                    else
+                    {
                         LongError = true;
                     }
 
@@ -395,7 +398,8 @@ namespace FlightSimulatorApp
                         // for the text
                         this.NotifyPropertyChanged("LatitudeT");
                     }
-                    else {
+                    else
+                    {
                         LatError = true;
                     }
 
@@ -448,7 +452,6 @@ namespace FlightSimulatorApp
                 }
             }
         }
-
         public bool LatError
         {
             get
@@ -462,14 +465,15 @@ namespace FlightSimulatorApp
                     this.latError = value;
                     this.NotifyPropertyChanged("LatError");
                 }
-                else {
-                    if (latError && !value) {
+                else
+                {
+                    if (latError && !value)
+                    {
                         this.latError = value;
                     }
                 }
             }
         }
-
         public bool LongError
         {
             get
