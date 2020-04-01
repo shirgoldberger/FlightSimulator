@@ -39,10 +39,10 @@ namespace FlightSimulatorApp.controls
             InitializeComponent();
             firstTime = true;
             this.rec = new Rect();
-            KnobRec.X = 0 - black_Circle.Width / 2 + k;
-            KnobRec.Y = 0 - black_Circle.Height / 2 + k;
-            KnobRec.Width = black_Circle.Width - 2 * k;
-            KnobRec.Height = black_Circle.Height - 2 * k;
+            KnobRec.X = 0-black_Circle.Width/2;
+            KnobRec.Y = 0-black_Circle.Height/2;
+            KnobRec.Width = black_Circle.Width;
+            KnobRec.Height = black_Circle.Height;
             firstTime = true;
         }
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,10 +51,10 @@ namespace FlightSimulatorApp.controls
             {
                 ofset = black_Circle.PointToScreen(new Point(0, 0));
                 this.rec = new Rect();
-                rec.X = ofset.X + k;
-                rec.Y = ofset.Y + k;
-                rec.Width = black_Circle.Width - 2 * k;
-                rec.Height = black_Circle.Height - 2 * k;
+                rec.X = ofset.X;
+                rec.Y = ofset.Y;
+                rec.Width = black_Circle.Width;
+                rec.Height = black_Circle.Height;
                 firstTime = false;
             }
             (Knob).CaptureMouse();
@@ -73,7 +73,7 @@ namespace FlightSimulatorApp.controls
                     if (y > rec.Top && y < rec.Bottom)
                     {
                         knobPosition.X = KnobRec.Left;
-                        knobPosition.Y = y - rec.Top - rec.Height / 2;
+                        knobPosition.Y = e.GetPosition(black_Circle).Y - black_Circle.Height / 2;
                     }
                 }
                 else if (x > rec.Right)
