@@ -76,7 +76,7 @@
             </StackPanel>
         </StackPanel>
         <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
-            <local:Sliders x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="150,-50,0,50" HorizontalAlignment="Right"/>
+            <local:Sliders x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="575" Width="636"/>
         </Viewbox>
         <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" Height="39" FontWeight="Bold" Click="Button_Click" Margin="0,0,16,0">
             <Button.Template>

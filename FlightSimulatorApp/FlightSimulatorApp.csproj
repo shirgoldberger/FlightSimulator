@@ -70,6 +70,7 @@
     <Compile Include="Views\controls\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\myMap.cs" />
     <Compile Include="Views\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
