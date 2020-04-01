@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Resources;
 using FlightSimulatorApp.Views;
+using System.Configuration;
 
 namespace FlightSimulatorApp
 {
@@ -107,10 +108,10 @@ namespace FlightSimulatorApp
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             // the user choose to use default port and ip
-            ServerIP.Text = "127.0.0.1";
-            ServerPort.Text = "5402";
-            Port = "5402";
-            IP = "127.0.0.1";
+            ServerIP.Text = ConfigurationManager.AppSettings["ServerIP"];
+            ServerPort.Text = ConfigurationManager.AppSettings["ServerPort"];
+            Port = ConfigurationManager.AppSettings["ServerPort"];
+            IP = ConfigurationManager.AppSettings["ServerIP"];
             Message = "";
         }
 

@@ -80,6 +80,22 @@ namespace FlightSimulatorApp.Views
                     }));
                 }
 
+                if (e.PropertyName.Equals("VM_LatError") && vm3.VM_LatError)
+                {
+
+                    Message = "we have recieve an invalid latitude value therefor the latititude hasn't been update/n" +
+                    "you can click back to go back to the log in page and try again";
+                    Thread.Sleep(5000);
+                }
+
+                if (e.PropertyName.Equals("VM_LongError") && vm3.VM_LongError)
+                {
+
+                    Message = "we have recieve an invalid longtitude value therefor the latititude hasn't been update/n" +
+                    "you can click back to go back to the log in page and try again";
+                    Thread.Sleep(5000);
+                }
+
             };
             sliders.PropertyChangedNotify += delegate (Object sender, PropertyChangedEventArgs e)
             {
