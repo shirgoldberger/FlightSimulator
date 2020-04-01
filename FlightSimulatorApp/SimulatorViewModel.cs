@@ -138,7 +138,7 @@ namespace FlightSimulatorApp
             }
             set
             {
-                this.model.LongError = value;
+                this.model.ServerError = value;
             }
         }
 

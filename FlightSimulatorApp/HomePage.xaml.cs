@@ -22,8 +22,9 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class HomePage : INotifyPropertyChanged
     {
-        private string ip = "Enter IP";
-        private string port = "Enter Port";
+        private string ip = "";
+        private string port = "";
+        private string message = "";
         private bool check = false;
         public HomePage()
         {
@@ -42,10 +43,9 @@ namespace FlightSimulatorApp
         {
             int p = 0;
             // if the user didn't insert port and ip
-            if (ip.Equals("") || port.Equals("")|| ip.Equals("Enter IP") || port.Equals("Enter Port"))
+            if (ip.Equals("") || port.Equals(""))
             {
-                string message = string.Format("You need to insert IP and Port");
-                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Message = "You need to insert IP and Port";
                 return;
             }
             if (!port.Equals(""))
@@ -65,12 +65,9 @@ namespace FlightSimulatorApp
                 // if the server is not connect
                 if (e1.Message == "not connected")
                 {
-                    string message = string.Format("not connected to the simulator, try again");
-                    MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Message = "not connected to the simulator, try again";
                 }
             }
-
-
         }
         public string IP
         {
@@ -98,39 +95,15 @@ namespace FlightSimulatorApp
 
             }
         }
-        private void ServerPort_MouseDown(object sender, MouseButtonEventArgs e)
+        public string Message
         {
-            Port = "";
-            NotifyPropertyChanged("Port");
-        }
-        private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // the user choose to use default port and ip
-            if (!check)
-            {
-                ServerIP.Text = "127.0.0.1";
-                ServerPort.Text = "5402";
-                Port = "5402";
-                IP = "127.0.0.1";
+            get { return this.message; }
+            set 
+            { 
+                this.message = value;
+                NotifyPropertyChanged("Message");
             }
-            else
-            {
-                ServerIP.Text = "";
-                ServerPort.Text = "";
-                Port = "";
-                IP = "";
-            }
-            check = false;
         }
-
-        private void ServerPort_LostFocus(object sender, RoutedEventArgs e)
-        {
-            //if (ServerPort.Text.Equals(""))
-            //{
-            //    ServerPort.Text = "Enter Port";
-            //}
-        }
-
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             // the user choose to use default port and ip
@@ -138,6 +111,7 @@ namespace FlightSimulatorApp
             ServerPort.Text = "5402";
             Port = "5402";
             IP = "127.0.0.1";
+            Message = "";
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -148,11 +122,26 @@ namespace FlightSimulatorApp
             IP = "";
         }
 
-        private void ServerIP_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TextBox txtBox = sender as TextBox;
-            if (txtBox.Text == "Enter IP")
-                txtBox.Text = string.Empty;
+            //MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //switch (exit)
+            //{
+            //    case MessageBoxResult.Yes:
+            //        System.Environment.Exit(0);
+            //        break;
+            //}
+            System.Environment.Exit(0);
+        }
+
+        private void ServerIP_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Message = "";
+        }
+
+        private void ServerPort_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Message = "";
         }
     }
 }

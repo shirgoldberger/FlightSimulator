@@ -15,19 +15,21 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace FlightSimulatorApp
 {
     /// <summary>
     /// Interaction logic for SimulatorView.xaml
     /// </summary>
-    public partial class SimulatorView : Page
+    public partial class SimulatorView : Page, INotifyPropertyChanged
     {
         SimulatorViewModel vm;
         double elevator, rudder, throttle, aileron;
         LocationRect bounds;
         double preX, preY;
         private bool firstTime = true;
+        private string message;
         public SimulatorView(HomePage homePage,string ip, int port)
         {
             InitializeComponent();
@@ -37,9 +39,8 @@ namespace FlightSimulatorApp
                 if (e.PropertyName.Equals("VM_ServerError") && vm.VM_ServerError)
                 {
 
-                    MessageBox.Show("We lost contact with the simulator," +
-                        " you are redirected to the log in page", "Server Problem", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                    Message = "We lost contact with the simulator, you are redirected to the log in page";
+                    Thread.Sleep(5000);
                     Dispatcher.Invoke(new Action(() =>
                     {
 
@@ -93,7 +94,6 @@ namespace FlightSimulatorApp
                     }
                     else if (property.Equals("Throttle"))
                     {
-                        Console.WriteLine("sdfdsfsdfdsfsdfsd");
                         {
                             V_Throttle = (double)args.NewValue;
                         }
@@ -107,7 +107,15 @@ namespace FlightSimulatorApp
                 }
             };
             DataContext = vm;
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
         public double V_Elevator
         {
@@ -124,20 +132,23 @@ namespace FlightSimulatorApp
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             this.vm.disconnect();
-            HomePage hp = new HomePage();
-            this.NavigationService.Navigate(hp);
+            this.NavigationService.GoBack();
+            //HomePage hp = new HomePage();
+            //this.NavigationService.Navigate(hp);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            switch (exit)
-            {
-                case MessageBoxResult.Yes:
-                    this.vm.disconnect();
-                    System.Environment.Exit(0);
-                    break;
-            }
+            //MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //switch (exit)
+            //{
+            //    case MessageBoxResult.Yes:
+            //        this.vm.disconnect();
+            //        System.Environment.Exit(0);
+            //        break;
+            //}
+            this.vm.disconnect();
+            System.Environment.Exit(0);
 
         }
 
@@ -247,6 +258,17 @@ namespace FlightSimulatorApp
                 preY = longtitude;
             }
         }
+
+        private void myMessage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            //TextBlock t = sender as TextBlock;
+            //if (t.Text != "")
+            //{
+               
+            //    t.Background = new SolidColorBrush(Colors.AliceBlue);
+            //}
+        }
+
         public double V_Rudder
         {
             get
@@ -281,6 +303,15 @@ namespace FlightSimulatorApp
             {
                 this.aileron = value;
                 this.vm.VM_Aileron = this.aileron;
+            }
+        }
+        public string Message
+        {
+            get { return this.message; }
+            set
+            {
+                this.message = value;
+                NotifyPropertyChanged("Message");
             }
         }
     }

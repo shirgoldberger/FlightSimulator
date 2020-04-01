@@ -19,7 +19,7 @@ namespace FlightSimulatorApp
     /// <summary>
     /// Interaction logic for Sliders.xaml
     /// </summary>
-    public partial class Sliders : UserControl, Notify,INotifyPropertyChanged
+    public partial class Sliders : UserControl, Notify, INotifyPropertyChanged
     {
         private double throttle, elevator, rudder, aileron;
         public Sliders()
@@ -71,7 +71,7 @@ namespace FlightSimulatorApp
             get { return this.rudder; }
             set
             {
-                 this.rudder = value;
+                this.rudder = value;
                 this.NotifyPropertyChanged("Rudder", value);
                 this.NotifyPropertyChanged("Rudder_Text");
 
@@ -84,7 +84,7 @@ namespace FlightSimulatorApp
             get { return this.elevator; }
             set
             {
-                    this.elevator = value;
+                this.elevator = value;
                 this.NotifyPropertyChanged("Elevator", value);
                 this.NotifyPropertyChanged("Elevator_Text");
 
@@ -96,7 +96,7 @@ namespace FlightSimulatorApp
             set
             {
 
-                    this.aileron = value;
+                this.aileron = value;
                 this.NotifyPropertyChanged("Aileron", value);
                 this.NotifyPropertyChanged("Aileron_Text");
 
@@ -107,25 +107,27 @@ namespace FlightSimulatorApp
             get { return this.throttle; }
             set
             {
-                 this.throttle = value;
+                this.throttle = value;
                 Console.WriteLine("hello im ttrotle");
                 this.NotifyPropertyChanged("Throttle", value);
                 this.NotifyPropertyChanged("Throttle_Text");
-                this.NotifyPropertyChanged("Throttle");
 
 
             }
         }
 
-        public string Rudder_Text {
+        public string Rudder_Text
+        {
             get { return String.Format("{0:0.000}", Rudder); }
         }
 
         public string Throttle_Text
         {
-            get {
+            get
+            {
                 Console.WriteLine("propertycsdfdsf");
-                return String.Format("{0:0.000}", Throttle); }
+                return String.Format("{0:0.000}", Throttle);
+            }
         }
 
         public string Aileron_Text
