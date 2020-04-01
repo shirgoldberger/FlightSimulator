@@ -16,27 +16,40 @@ using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
 using System.Runtime.InteropServices;
 using System.Threading;
+using FlightSimulatorApp.ViewModels;
+using FlightSimulatorApp.Model;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.Views
 {
     /// <summary>
     /// Interaction logic for SimulatorView.xaml
     /// </summary>
     public partial class SimulatorView : Page, INotifyPropertyChanged
     {
-        SimulatorViewModel vm;
+        VM1 vm1;
+        VM2 vm2;
+        VM3 vm3;
         double elevator, rudder, throttle, aileron;
         LocationRect bounds;
         double preX, preY;
         private bool firstTime = true;
         private string message;
-        public SimulatorView(HomePage homePage,string ip, int port)
+        public SimulatorView(HomePage homePage, string ip, int port)
         {
             InitializeComponent();
-            this.vm = new SimulatorViewModel(new MySimulatorModel(new Telnet(ip, port)));
-            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+
+            MySimulatorModel m = new MySimulatorModel(new Telnet(ip, port));
+            this.vm1 = new VM1(m);
+            this.vm2 = new VM2(m);
+            this.vm3 = new VM3(m);
+
+            fromSim.DataContext = vm1;
+            myMap.DataContext = vm1;
+            myMessage.DataContext = this;
+
+            vm3.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName.Equals("VM_ServerError") && vm.VM_ServerError)
+                if (e.PropertyName.Equals("VM_ServerError") && vm3.VM_ServerError)
                 {
 
                     Message = "We lost contact with the simulator, you are redirected to the log in page";
@@ -51,28 +64,20 @@ namespace FlightSimulatorApp
                     }));
                 }
 
-                if (e.PropertyName.Equals("VM_ReadError") && vm.VM_ReadError)
+                if (e.PropertyName.Equals("VM_ReadError") && vm3.VM_ReadError)
                 {
 
-                    MessageBoxResult result =  MessageBox.Show("we didnt get response from the simulator server, therefor the program has stoped.\n" +
-                        "press OK to be redirected to the log in page or Cancel to stay", "Server Problem", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                    switch (result)
+                    Message = "we didnt get response from the simulator server, therefor the program has stoped.\n" +
+                        "you are redirected to the log in page";
+                    Thread.Sleep(5000);
+                    Dispatcher.Invoke(new Action(() =>
                     {
-                        case MessageBoxResult.Yes:
-                            Dispatcher.Invoke(new Action(() =>
-                            {
 
-                                if (NavigationService.CanGoBack)
-                                {
-                                    this.NavigationService.GoBack();
-                                }
-                            }));
-
-                            break;
-                        case MessageBoxResult.Cancel:
-                            break;
-                    }
-
+                        if (NavigationService.CanGoBack)
+                        {
+                            this.NavigationService.GoBack();
+                        }
+                    }));
                 }
 
             };
@@ -106,7 +111,6 @@ namespace FlightSimulatorApp
                     }
                 }
             };
-            DataContext = vm;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -117,39 +121,17 @@ namespace FlightSimulatorApp
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        public double V_Elevator
-        {
-            get
-            {
-                return this.elevator;
-            }
-            set
-            {
-                this.elevator = value;
-                this.vm.VM_Elevator = this.elevator;
-            }
-        }
+
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.vm.disconnect();
+            this.vm3.disconnect();
             this.NavigationService.GoBack();
-            //HomePage hp = new HomePage();
-            //this.NavigationService.Navigate(hp);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //switch (exit)
-            //{
-            //    case MessageBoxResult.Yes:
-            //        this.vm.disconnect();
-            //        System.Environment.Exit(0);
-            //        break;
-            //}
-            this.vm.disconnect();
+            this.vm3.disconnect();
             System.Environment.Exit(0);
-
         }
 
         private void pin_LayoutUpdated(object sender, EventArgs e)
@@ -259,16 +241,6 @@ namespace FlightSimulatorApp
             }
         }
 
-        private void myMessage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //TextBlock t = sender as TextBlock;
-            //if (t.Text != "")
-            //{
-               
-            //    t.Background = new SolidColorBrush(Colors.AliceBlue);
-            //}
-        }
-
         public double V_Rudder
         {
             get
@@ -278,7 +250,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.rudder = value;
-                this.vm.VM_Rudder = this.rudder;
+                this.vm2.VM_Rudder = this.rudder;
             }
         }
         public double V_Throttle
@@ -290,7 +262,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.throttle = value;
-                this.vm.VM_Throttle = this.throttle;
+                this.vm2.VM_Throttle = this.throttle;
             }
         }
         public double V_Aileron
@@ -302,7 +274,19 @@ namespace FlightSimulatorApp
             set
             {
                 this.aileron = value;
-                this.vm.VM_Aileron = this.aileron;
+                this.vm2.VM_Aileron = this.aileron;
+            }
+        }
+        public double V_Elevator
+        {
+            get
+            {
+                return this.elevator;
+            }
+            set
+            {
+                this.elevator = value;
+                this.vm2.VM_Elevator = this.elevator;
             }
         }
         public string Message

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Resources;
+using FlightSimulatorApp.Views;
 
 namespace FlightSimulatorApp
 {
@@ -25,7 +26,6 @@ namespace FlightSimulatorApp
         private string ip = "";
         private string port = "";
         private string message = "";
-        private bool check = false;
         public HomePage()
         {
             InitializeComponent();
@@ -124,13 +124,6 @@ namespace FlightSimulatorApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBoxResult exit = MessageBox.Show("Are you sure you want to leave?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //switch (exit)
-            //{
-            //    case MessageBoxResult.Yes:
-            //        System.Environment.Exit(0);
-            //        break;
-            //}
             System.Environment.Exit(0);
         }
 

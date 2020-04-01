@@ -35,11 +35,6 @@ namespace FlightSimulatorApp
             ShowsNavigationUI = false;
         }
 
-        private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
         private void NavigationWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var hwnd = new WindowInteropHelper(this).Handle;

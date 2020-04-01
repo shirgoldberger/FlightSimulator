@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.Model
 {
     interface ISimulatorModel : INotifyPropertyChanged
     {

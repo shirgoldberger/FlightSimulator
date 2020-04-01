@@ -58,27 +58,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="controls\Joystick.xaml.cs">
-      <DependentUpon>Joystick.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ISimulatorModel.cs" />
-    <Compile Include="ITelnetClient.cs" />
-    <Compile Include="MySimulatorModel.cs" />
+    <Compile Include="Model\ISimulatorModel.cs" />
+    <Compile Include="Model\ITelnetClient.cs" />
+    <Compile Include="Model\MySimulatorModel.cs" />
+    <Compile Include="Model\Telnet.cs" />
     <Compile Include="Notify.cs" />
     <Compile Include="PropertyChangedExtendedEventArgs.cs" />
-    <Compile Include="SimulatorView.xaml.cs">
+    <Compile Include="ViewModels\VM1.cs" />
+    <Compile Include="ViewModels\VM2.cs" />
+    <Compile Include="ViewModels\VM3.cs" />
+    <Compile Include="Views\controls\Joystick.xaml.cs">
+      <DependentUpon>Joystick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SimulatorViewModel.cs" />
-    <Compile Include="Sliders.xaml.cs">
+    <Compile Include="Views\Sliders.xaml.cs">
       <DependentUpon>Sliders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telnet.cs" />
-    <Page Include="controls\Joystick.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HomePage.xaml">
+    <Page Include="Views\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,18 +91,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HomePage.xaml.cs">
+    <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SimulatorView.xaml">
+    <Page Include="Views\controls\Joystick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sliders.xaml">
+    <Page Include="Views\Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sliders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,10 +142,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="flight.jpg" />
-    <Resource Include="plane.png" />
-    <Resource Include="sim.png" />
-    <Resource Include="simbol.png" />
+    <Resource Include="Views\Images\flight.jpg" />
+    <Resource Include="Views\Images\plane.png" />
+    <Resource Include="Views\Images\sim.png" />
+    <Resource Include="Views\Images\simbol.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

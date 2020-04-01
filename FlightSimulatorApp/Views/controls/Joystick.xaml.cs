@@ -14,13 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 
-
-namespace FlightSimulatorApp.controls
+namespace FlightSimulatorApp.Views.controls
 {
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
-
     public partial class Joystick : UserControl, Notify
     {
         double k = 25;
@@ -39,8 +37,8 @@ namespace FlightSimulatorApp.controls
             InitializeComponent();
             firstTime = true;
             this.rec = new Rect();
-            KnobRec.X = 0-black_Circle.Width/2;
-            KnobRec.Y = 0-black_Circle.Height/2;
+            KnobRec.X = 0 - black_Circle.Width / 2;
+            KnobRec.Y = 0 - black_Circle.Height / 2;
             KnobRec.Width = black_Circle.Width;
             KnobRec.Height = black_Circle.Height;
             firstTime = true;
@@ -147,7 +145,7 @@ namespace FlightSimulatorApp.controls
 
         public void updateParams(double x, double y)
         {
-            //    // set rudder and elevator
+            // set rudder and elevator
             Rudder = x / ((rec.Width) / 2);
             Elevetor = -(y / ((rec.Width) / 2));
         }

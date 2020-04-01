@@ -10,7 +10,7 @@
 
     <Grid TextBlock.FontSize="14">
         <Grid.Background>
-            <ImageBrush ImageSource="flight.jpg"/>
+            <ImageBrush ImageSource="Images/flight.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -32,7 +32,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Source ="simbol.png" VerticalAlignment="Center" Height="212" Margin="47.667,9.667,47.667,66.333"/>
+        <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Source ="Images/simbol.png" VerticalAlignment="Center" Height="212" Margin="47.667,9.667,47.667,66.333"/>
 
         <StackPanel Grid.Row="3" Grid.RowSpan="5" Orientation="Vertical" Grid.ColumnSpan="3" Margin="333,0.514,333,10.486">
             <TextBlock Padding="3"  Margin="3,3,3,2.6" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="AliceBlue">Enter IP:</TextBlock>
