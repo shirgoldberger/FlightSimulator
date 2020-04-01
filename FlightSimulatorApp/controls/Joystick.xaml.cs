@@ -151,7 +151,7 @@ namespace FlightSimulatorApp.controls
             //Rudder = x / (black_Circle.Width - KnobBase.Width) * 2;
             //Elevetor = y / (black_Circle.Width - KnobBase.Width) * 2;
             Rudder = x / ((black_Circle.Width) / 2);
-            Elevetor = y / ((black_Circle.Width) / 2);
+            Elevetor = -(y / ((black_Circle.Width) / 2));
         }
     }
 }
