@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-
 
 namespace FlightSimulatorApp.Model
 {
@@ -15,7 +10,6 @@ namespace FlightSimulatorApp.Model
         NetworkStream stm;
         private string ip;
         private int port;
-
         public Telnet(string ip, int port)
         {
             this.ip = ip;
@@ -56,7 +50,6 @@ namespace FlightSimulatorApp.Model
             byte[] ba = asen.GetBytes(command);
             stm.Write(ba, 0, ba.Length);
         }
-
         public void setTimeOutRead(int time)
         {
             this.tcpclnt.ReceiveTimeout = time;

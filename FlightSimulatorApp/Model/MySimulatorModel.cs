@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Runtime.CompilerServices;
 using System.Net.Sockets;
-using System.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System.IO;
 
@@ -19,15 +15,14 @@ namespace FlightSimulatorApp.Model
         Thread thread;
         double rudder = 0, elevator = 0, throttle = 0, aileron = 0;
         double latitude = 50, longitude = 10;
-        private bool serverError;
-
-        //bool stopWithError = false;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
+        // for errors
         private bool readError;
         private bool latError;
         private bool longError;
+        private bool serverError;
 
         public MySimulatorModel(ITelnetClient telnetClient)
         {
@@ -149,8 +144,6 @@ namespace FlightSimulatorApp.Model
                         stop = true;
                         ServerError = true;
                         Console.WriteLine("problem with IO");
-
-
                     }
                     catch
                     {
@@ -430,6 +423,8 @@ namespace FlightSimulatorApp.Model
                 }
             }
         }
+
+        // when there is a problem with reading the variables
         public bool ReadError
         {
             get
@@ -452,6 +447,8 @@ namespace FlightSimulatorApp.Model
                 }
             }
         }
+
+        // when the value of the variables is out of range 
         public bool LatError
         {
             get
@@ -498,4 +495,3 @@ namespace FlightSimulatorApp.Model
         }
     }
 }
-

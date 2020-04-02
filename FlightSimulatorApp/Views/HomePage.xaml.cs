@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
-using System.Resources;
 using FlightSimulatorApp.Views;
 using System.Configuration;
 
@@ -49,9 +36,13 @@ namespace FlightSimulatorApp
                 Message = "You need to insert IP and Port";
                 return;
             }
-            if (!port.Equals(""))
+            try
             {
                 p = int.Parse(this.port);
+            } catch (Exception e1)
+            {
+                Message = "You need to insert a valid port";
+                return;
             }
             SimulatorView simulatorView;
             try
@@ -123,8 +114,9 @@ namespace FlightSimulatorApp
             IP = "";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
+            // close the program
             System.Environment.Exit(0);
         }
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using FlightSimulatorApp.Model;
 
@@ -28,6 +24,7 @@ namespace FlightSimulatorApp.ViewModels
             }
         }
 
+        // properties of errors
         public bool VM_ServerError
         {
             get
@@ -39,7 +36,6 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.ServerError = value;
             }
         }
-
         public bool VM_ReadError
         {
             get
@@ -51,7 +47,6 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.ReadError = value;
             }
         }
-
         public bool VM_LatError
         {
             get
@@ -63,7 +58,6 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.LatError = value;
             }
         }
-
         public bool VM_LongError
         {
             get
@@ -75,7 +69,6 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.LongError = value;
             }
         }
-
         public void disconnect()
         {
             this.model.disconnect();

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
 using FlightSimulatorApp.Model;
@@ -62,6 +58,7 @@ namespace FlightSimulatorApp.ViewModels
         {
             get { return String.Format("{0:0.000}", model.AltimeterIndicatedAltitudeFt); }
         }
+
         // the location of the plane on the map
         public Location VM_Location
         {
@@ -70,8 +67,6 @@ namespace FlightSimulatorApp.ViewModels
                 return model.Location;
             }
         }
-
-
         public string VM_LongitudeT
         {
             get { return "Longitude: " + String.Format("{0:0.000}", model.Longitude); }
