@@ -28,55 +28,111 @@
             </Frame>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Heading: " />
+                    <TextBlock FontWeight="Bold" Text="Heading: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Vertical Speed: " />
+                    <TextBlock FontWeight="Bold" Text="Vertical Speed: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_GpsIndicatedVerticalSpeed}" Width="50" />
                 </WrapPanel>
             </StackPanel>
-            <StackPanel Margin="5,5,20,5" Height="26">
+            <StackPanel Margin="0,4,0,0" Height="26">
                 <WrapPanel Margin="0,4,31,0" Height="19">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Ground Speed: " />
+                    <TextBlock FontWeight="Bold" Text="Ground Speed: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_GpsIndicatedGroundSpeedKt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Air Speed: " />
+                    <TextBlock FontWeight="Bold" Text="Air Speed: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_AirspeedIndicatorIndicatedSpeedKt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Altitude: " />
+                    <TextBlock FontWeight="Bold" Text="Altitude: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_GpsIndicatedAltitudeFt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Roll Deg: " />
+                    <TextBlock FontWeight="Bold" Text="Roll Deg: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_AttitudeIndicatorInternalRollDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Pitch Deg: " />
+                    <TextBlock FontWeight="Bold" Text="Pitch Deg: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_AttitudeIndicatorInternalPitchDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Foreground="DarkBlue" Text="Altimeter: " />
+                    <TextBlock FontWeight="Bold" Text="Altimeter: " >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0.12"/>
+                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
                     <TextBlock Text="{Binding VM_AltimeterIndicatedAltitudeFt}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>
         <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
-            <local:Sliders x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="575" Width="636"/>
+            <local:Sliders x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="617" Width="692"/>
         </Viewbox>
         <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" Height="39" FontWeight="Bold" Click="Button_Click" Margin="0,0,16,0">
             <Button.Template>
@@ -125,12 +181,39 @@
                 </StackPanel>
             </m:Map>
         </Canvas>
-        <Button Grid.Column="3" Grid.Row="2" Content="BACK" Click="Button_Click_Back" VerticalAlignment="Bottom" Width="44" Margin="214.667,0,16,44" FontWeight="Bold" HorizontalAlignment="Center" Height="25">
+        <Button Grid.Column="3" Grid.Row="2" Width="64" Height="39" Content="BACK" Click="Button_Click_Back" VerticalAlignment="Bottom" Margin="201.667,0,18,44" HorizontalAlignment="Center" FontWeight="Bold">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF24DED9" Offset="0.5"/>
+                                <GradientStop Color="#FF2E676F" Offset="0"/>
+                                <GradientStop Color="#FF2E676F" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,6,8,6" ContentSource="Content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bdr_main" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E676F" Offset="0.5"/>
+                                        <GradientStop Color="#FF24DED9" Offset="0"/>
+                                        <GradientStop Color="#FF24DED9" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF00B9FF" Offset="0.5"/>
-                    <GradientStop Color="#FF1021AA" Offset="0"/>
-                    <GradientStop Color="#FF1021AA" Offset="1"/>
+                    <GradientStop Color="#FF0AFF00" Offset="0.5"/>
+                    <GradientStop Color="#FF1E5C12" Offset="0"/>
+                    <GradientStop Color="#FF338120" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
@@ -142,6 +225,7 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
+
 
     </Grid>
 </Page>

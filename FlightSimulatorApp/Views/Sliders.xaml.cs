@@ -108,7 +108,6 @@ namespace FlightSimulatorApp.Views
             set
             {
                 this.throttle = value;
-                Console.WriteLine("hello im ttrotle");
                 this.NotifyPropertyChanged("Throttle", value);
                 this.NotifyPropertyChanged("Throttle_Text");
 
@@ -125,7 +124,6 @@ namespace FlightSimulatorApp.Views
         {
             get
             {
-                Console.WriteLine("propertycsdfdsf");
                 return String.Format("{0:0.000}", Throttle);
             }
         }

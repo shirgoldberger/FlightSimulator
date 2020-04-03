@@ -58,17 +58,17 @@
                     <RotateTransform Angle="90"/>
                 </Slider.LayoutTransform>
             </Slider>
-            <Label Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" Grid.Column="5" Grid.Row="1" Height="56" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.Left="233" Canvas.Top="115">← Rudder →</Label>
+            <Label Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" Grid.Column="5" Grid.Row="1" Height="56" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.Left="231" Canvas.Top="120">← Rudder →</Label>
             <Label Grid.Row="4" Grid.Column="9" Grid.RowSpan="3" FontSize="20" FontWeight="Bold" Content="← Elevator →" RenderTransformOrigin="0.551,0.475" Width="208" VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Left="431" Canvas.Top="253">
                 <Label.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </Label.LayoutTransform>
             </Label>
 
-            <TextBlock TextWrapping="Wrap" Text="{Binding Rudder_Text}" FontSize="25" Canvas.Left="249" Canvas.Top="66" Width="98" Height="44" RenderTransformOrigin="0.093,-0.707" FontWeight="Bold" HorizontalAlignment="Center"><Run/><LineBreak/><Run/></TextBlock>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Elevator_Text}" FontSize="25" Canvas.Left="462" Canvas.Top="298" Width="84" Height="40" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Throttle_Text}" FontSize="25" Canvas.Left="245" Canvas.Top="500" Width="92" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Aileron_Text}" FontSize="25" Canvas.Left="6" Canvas.Top="308" Width="84" Height="30" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Rudder_Text}" FontSize="22" Canvas.Left="245" Canvas.Top="71" Width="98" Height="44" RenderTransformOrigin="0.093,-0.707" FontWeight="Bold" HorizontalAlignment="Center"><Run/><LineBreak/><Run/></TextBlock>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Elevator_Text}" FontSize="22" Canvas.Left="462" Canvas.Top="298" Width="84" Height="40" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Throttle_Text}" FontSize="22" Canvas.Left="245" Canvas.Top="500" Width="92" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Aileron_Text}" FontSize="22" Canvas.Left="6" Canvas.Top="308" Width="84" Height="30" FontWeight="Bold" HorizontalAlignment="Center"/>
         </Canvas>
     </Grid>
 </UserControl>
