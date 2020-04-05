@@ -136,7 +136,7 @@ namespace FlightSimulatorApp.Model
                     catch (SocketException)
                     {
                         stop = true;
-                        readError = true;
+                        ReadError = true;
                         Console.WriteLine("read timeout");
                     }
                     catch (IOException)
