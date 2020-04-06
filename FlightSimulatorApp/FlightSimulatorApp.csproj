@@ -127,10 +127,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Views\Images\4.jpg" />
+    <None Include="Views\Images\sh.webp" />
+    <Resource Include="Fonts\Fonland.ttf" />
+    <Resource Include="Fonts\FIALIGA FREE.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Stayland.otf" />
+    <Resource Include="Fonts\Stayland.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -141,6 +147,12 @@
     <Resource Include="Views\Images\sim.png" />
     <Resource Include="Views\Images\simbol.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\sim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\3.JPG" />
+    <Content Include="Views\Images\pla.jfif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

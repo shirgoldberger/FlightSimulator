@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:FlightSimulatorApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="font">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/Fonts/FIALIGA FREE.ttf #FIALIGA FREE ">
+            </Setter>
+        </Style>
+        
     </Application.Resources>
+    
+    
 </Application>

@@ -55,7 +55,7 @@
                 VerticalAlignment="Center"
                 Width="340" Height="55" RenderTransformOrigin="0.5,0.5" Canvas.Left="55" Canvas.Top="157">
                 <Slider.LayoutTransform>
-                    <RotateTransform Angle="90"/>
+                    <RotateTransform Angle="270"/>
                 </Slider.LayoutTransform>
             </Slider>
             <Label Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" Grid.Column="5" Grid.Row="1" Height="56" HorizontalAlignment="Center" VerticalAlignment="Bottom" Canvas.Left="231" Canvas.Top="120">← Rudder →</Label>
