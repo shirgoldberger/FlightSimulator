@@ -8,7 +8,7 @@ using System.IO;
 
 namespace FlightSimulatorApp.Model
 {
-    class MySimulatorModel : ISimulatorModel
+    public class MySimulatorModel : ISimulatorModel
     {
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;

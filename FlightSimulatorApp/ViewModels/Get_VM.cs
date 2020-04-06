@@ -2,13 +2,12 @@
 using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
 using FlightSimulatorApp.Model;
-
 namespace FlightSimulatorApp.ViewModels
 {
-    class VM1 : INotifyPropertyChanged
+    public class Get_VM : INotifyPropertyChanged
     {
         private MySimulatorModel model;
-        public VM1(MySimulatorModel m)
+        public Get_VM(MySimulatorModel m)
         {
             this.model = m;
             m.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)

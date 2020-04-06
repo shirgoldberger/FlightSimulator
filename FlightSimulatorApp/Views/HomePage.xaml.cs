@@ -3,6 +3,8 @@ using System.Windows;
 using System.ComponentModel;
 using FlightSimulatorApp.Views;
 using System.Configuration;
+using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModels;
 
 namespace FlightSimulatorApp
 {
@@ -48,7 +50,8 @@ namespace FlightSimulatorApp
             try
             {
                 // show the view
-                simulatorView = new SimulatorView(this, this.ip, p);
+                MySimulatorModel m = new MySimulatorModel(new Telnet(ip, p));
+                simulatorView = new SimulatorView(new Get_VM(m), new Set_VM(m), new Errors_VM(m));
                 this.NavigationService.Navigate(simulatorView);
                 check_box.IsChecked = false;
             }

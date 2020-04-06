@@ -4,10 +4,10 @@ using FlightSimulatorApp.Model;
 
 namespace FlightSimulatorApp.ViewModels
 {
-    class VM2 : INotifyPropertyChanged
+    public class Errors_VM : INotifyPropertyChanged
     {
         private MySimulatorModel model;
-        public VM2(MySimulatorModel m)
+        public Errors_VM(MySimulatorModel m)
         {
             this.model = m;
             m.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -24,50 +24,54 @@ namespace FlightSimulatorApp.ViewModels
             }
         }
 
-        // 4 properties that set to the simulator
-        public double VM_Rudder
+        // properties of errors
+        public bool VM_ServerError
         {
             get
             {
-                return this.model.Rudder;
+                return this.model.ServerError;
             }
             set
             {
-                this.model.Rudder = value;
+                this.model.ServerError = value;
             }
         }
-        public double VM_Elevator
+        public bool VM_ReadError
         {
             get
             {
-                return this.model.Elevator;
+                return this.model.ReadError;
             }
             set
             {
-                this.model.Elevator = value;
+                this.model.ReadError = value;
             }
         }
-        public double VM_Aileron
+        public bool VM_LatError
         {
             get
             {
-                return this.model.Aileron;
+                return this.model.LatError;
             }
             set
             {
-                this.model.Aileron = value;
+                this.model.LatError = value;
             }
         }
-        public double VM_Throttle
+        public bool VM_LongError
         {
             get
             {
-                return this.model.Throttle;
+                return this.model.LongError;
             }
             set
             {
-                this.model.Throttle = value;
+                this.model.LongError = value;
             }
+        }
+        public void disconnect()
+        {
+            this.model.disconnect();
         }
     }
 }

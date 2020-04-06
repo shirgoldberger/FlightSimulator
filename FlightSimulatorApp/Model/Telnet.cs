@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FlightSimulatorApp.Model
 {
-    class Telnet : ITelnetClient
+    public class Telnet : ITelnetClient
     {
         TcpClient tcpclnt;
         NetworkStream stm;

@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
-using Microsoft.Maps.MapControl.WPF;
-using System.Runtime.InteropServices;
 using System.Threading;
 using FlightSimulatorApp.ViewModels;
 using FlightSimulatorApp.Model;
@@ -26,22 +14,17 @@ namespace FlightSimulatorApp.Views
     /// </summary>
     public partial class SimulatorView : Page, INotifyPropertyChanged
     {
-        VM1 vm1;
-        VM2 vm2;
-        VM3 vm3;
+        Get_VM vm1;
+        Set_VM vm2;
+        Errors_VM vm3;
         double elevator, rudder, throttle, aileron;
-        LocationRect bounds;
-        double preX, preY;
-        private bool firstTime = true;
         private string message;
-        public SimulatorView(HomePage homePage, string ip, int port)
+        public SimulatorView(Get_VM vm_1, Set_VM vm_2, Errors_VM vm_3)
         {
             InitializeComponent();
-
-            MySimulatorModel m = new MySimulatorModel(new Telnet(ip, port));
-            this.vm1 = new VM1(m);
-            this.vm2 = new VM2(m);
-            this.vm3 = new VM3(m);
+            this.vm1 = vm_1;
+            this.vm2 = vm_2;
+            this.vm3 = vm_3;
 
             dash.DataContext = vm1;
             myMap.DataContext = vm1;

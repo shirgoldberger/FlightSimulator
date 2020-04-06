@@ -65,9 +65,9 @@
     <Compile Include="Model\Telnet.cs" />
     <Compile Include="Notify.cs" />
     <Compile Include="PropertyChangedExtendedEventArgs.cs" />
-    <Compile Include="ViewModels\VM1.cs" />
-    <Compile Include="ViewModels\VM2.cs" />
-    <Compile Include="ViewModels\VM3.cs" />
+    <Compile Include="ViewModels\Errors_VM.cs" />
+    <Compile Include="ViewModels\Get_VM.cs" />
+    <Compile Include="ViewModels\Set_VM.cs" />
     <Compile Include="Views\controls\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>

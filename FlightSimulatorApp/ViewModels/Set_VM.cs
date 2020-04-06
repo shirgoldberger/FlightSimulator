@@ -4,10 +4,10 @@ using FlightSimulatorApp.Model;
 
 namespace FlightSimulatorApp.ViewModels
 {
-    class VM3 : INotifyPropertyChanged
+    public class Set_VM : INotifyPropertyChanged
     {
         private MySimulatorModel model;
-        public VM3(MySimulatorModel m)
+        public Set_VM(MySimulatorModel m)
         {
             this.model = m;
             m.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -24,54 +24,50 @@ namespace FlightSimulatorApp.ViewModels
             }
         }
 
-        // properties of errors
-        public bool VM_ServerError
+        // 4 properties that set to the simulator
+        public double VM_Rudder
         {
             get
             {
-                return this.model.ServerError;
+                return this.model.Rudder;
             }
             set
             {
-                this.model.ServerError = value;
+                this.model.Rudder = value;
             }
         }
-        public bool VM_ReadError
+        public double VM_Elevator
         {
             get
             {
-                return this.model.ReadError;
+                return this.model.Elevator;
             }
             set
             {
-                this.model.ReadError = value;
+                this.model.Elevator = value;
             }
         }
-        public bool VM_LatError
+        public double VM_Aileron
         {
             get
             {
-                return this.model.LatError;
+                return this.model.Aileron;
             }
             set
             {
-                this.model.LatError = value;
+                this.model.Aileron = value;
             }
         }
-        public bool VM_LongError
+        public double VM_Throttle
         {
             get
             {
-                return this.model.LongError;
+                return this.model.Throttle;
             }
             set
             {
-                this.model.LongError = value;
+                this.model.Throttle = value;
             }
-        }
-        public void disconnect()
-        {
-            this.model.disconnect();
         }
     }
 }
