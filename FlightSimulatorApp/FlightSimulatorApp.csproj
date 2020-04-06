@@ -71,12 +71,22 @@
     <Compile Include="Views\controls\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Map.xaml.cs">
+      <DependentUpon>Map.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Navigators.xaml.cs">
+      <DependentUpon>Navigators.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sliders.xaml.cs">
-      <DependentUpon>Sliders.xaml</DependentUpon>
-    </Compile>
+    <Page Include="Views\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,11 +110,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SimulatorView.xaml">
+    <Page Include="Views\Map.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sliders.xaml">
+    <Page Include="Views\Navigators.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SimulatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

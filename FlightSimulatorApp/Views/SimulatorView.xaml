@@ -23,116 +23,11 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel x:Name="fromSim"  Grid.Column="2"  Grid.RowSpan="2" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="293" Margin="200.333,0,132,0">
-            <Frame x:Name="frmMainTop" NavigationUIVisibility="Hidden">
-            </Frame>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Heading: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Vertical Speed: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_GpsIndicatedVerticalSpeed}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="0,4,0,0" Height="26">
-                <WrapPanel Margin="0,4,31,0" Height="19">
-                    <TextBlock FontWeight="Bold" Text="Ground Speed: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_GpsIndicatedGroundSpeedKt}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Air Speed: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_AirspeedIndicatorIndicatedSpeedKt}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Altitude: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_GpsIndicatedAltitudeFt}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Roll Deg: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalRollDeg}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Pitch Deg: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalPitchDeg}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <WrapPanel Margin="0,4,0,0">
-                    <TextBlock FontWeight="Bold" Text="Altimeter: " >
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0.12"/>
-                                <GradientStop Color="#FF237FFF" Offset="0.697"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    <TextBlock Text="{Binding VM_AltimeterIndicatedAltitudeFt}" Width="50" />
-                </WrapPanel>
-            </StackPanel>
-        </StackPanel>
+        <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" Margin="30,0,0,0">
+            <local:Dashboard x:Name="dash" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="288" Width="369"/>
+        </Viewbox>
         <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
-            <local:Sliders x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="617" Width="692"/>
+            <local:Navigators x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="617" Width="692"/>
         </Viewbox>
         <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" Height="39" FontWeight="Bold" Click="Button_Click" Margin="0,0,16,0">
             <Button.Template>
@@ -163,23 +58,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-
         <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
-            <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="551" Width="722" RenderTransformOrigin="0.5,0.5" Canvas.Left="10">
-
-                <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
-                    <m:Pushpin.RenderTransform>
-                        <TransformGroup>
-                            <TranslateTransform x:Name="PlainPosition"/>
-                        </TransformGroup>
-                    </m:Pushpin.RenderTransform>
-                    <Image x:Name="plane" Source ="Images/plane.png"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
-                </m:Pushpin>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,414">
-                    <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
-                    <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
-                </StackPanel>
-            </m:Map>
+            <local:Map x:Name="myMap" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Height="552" Width="723" Canvas.Left="10"/>
         </Canvas>
         <Button Grid.Column="3" Grid.Row="2" Width="64" Height="39" Content="BACK" Click="Button_Click_Back" VerticalAlignment="Bottom" Margin="201.667,0,18,44" HorizontalAlignment="Center" FontWeight="Bold">
             <Button.Template>
@@ -225,7 +105,5 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-
-
     </Grid>
 </Page>

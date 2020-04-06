@@ -1,10 +1,9 @@
-﻿<UserControl x:Class="FlightSimulatorApp.Views.Sliders"
+﻿<UserControl x:Class="FlightSimulatorApp.Views.Navigators"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FlightSimulatorApp.Views"
-             xmlns:Controls ="clr-namespace:FlightSimulatorApp.Views.controls"
+            xmlns:Controls ="clr-namespace:FlightSimulatorApp.Views.controls"
              mc:Ignorable="d" 
               d:DesignHeight="550" d:DesignWidth="550">
     <Grid>

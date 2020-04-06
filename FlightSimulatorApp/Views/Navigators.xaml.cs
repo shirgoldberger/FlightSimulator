@@ -17,12 +17,12 @@ using System.Windows.Shapes;
 namespace FlightSimulatorApp.Views
 {
     /// <summary>
-    /// Interaction logic for Sliders.xaml
+    /// Interaction logic for Navigators.xaml
     /// </summary>
-    public partial class Sliders : UserControl, Notify, INotifyPropertyChanged
+    public partial class Navigators : UserControl, Notify, INotifyPropertyChanged
     {
         private double throttle, elevator, rudder, aileron;
-        public Sliders()
+        public Navigators()
         {
             InitializeComponent();
             DataContext = this;
