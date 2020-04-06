@@ -127,8 +127,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Views\Images\4.jpg" />
-    <None Include="Views\Images\sh.webp" />
     <Resource Include="Fonts\Fonland.ttf" />
     <Resource Include="Fonts\FIALIGA FREE.ttf" />
     <None Include="Properties\Settings.settings">
@@ -149,10 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\sim.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\Images\3.JPG" />
-    <Content Include="Views\Images\pla.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
