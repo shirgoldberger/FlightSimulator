@@ -12,7 +12,7 @@
 
         <!--Background-->
         <Grid.Background>
-            <ImageBrush ImageSource="Images/flight.jpg" TileMode="Tile"/>
+            <ImageBrush ImageSource="Images/flight2.jpg" TileMode="Tile"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -50,7 +50,7 @@
             <TextBlock Grid.Row="1" Foreground="#FFD8E0E8" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" FontWeight="Bold">Enter Port:</TextBlock>
             <TextBox x:Name="ServerPort" Grid.Row="5" Grid.Column="1" Height="40" Width="270" Text="{Binding Port, Mode=TwoWay}" Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" HorizontalContentAlignment="Center" FontSize="18" GotFocus="ServerPort_GotFocus"/>
             <!--default prot and ip-->
-            <CheckBox x:Name="check_box" HorizontalAlignment="Center"  Foreground="#FFFBAA03" FontWeight="Bold" Content="default port and ip" Margin="0,0,0.333,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox x:Name="check_box" HorizontalAlignment="Center"  Foreground="#FFFCFF00" FontWeight="Bold" Content="default port and ip" Margin="0,0,0.333,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
             <!--fly button-->
             <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"
             Grid.ColumnSpan="1" Margin="165,20,151,0" Padding="5" Width="118" Click="Button_Click_Fly" FontSize="25" FontWeight="Bold" Background="#FF28617A">Fly!
