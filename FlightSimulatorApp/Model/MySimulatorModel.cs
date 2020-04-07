@@ -10,6 +10,7 @@ namespace FlightSimulatorApp.Model
 {
     public class MySimulatorModel : ISimulatorModel
     {
+        // dashbord variables
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
         Thread thread;
@@ -135,6 +136,7 @@ namespace FlightSimulatorApp.Model
                     }
                     catch (SocketException)
                     {
+                        // problem with reading values
                         stop = true;
                         ReadError = true;
                         Console.WriteLine("read timeout");

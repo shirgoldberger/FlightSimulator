@@ -141,14 +141,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Fonland.ttf" />
     <Resource Include="Fonts\FIALIGA FREE.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Resource Include="Stayland.otf" />
-    <Resource Include="Fonts\Stayland.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
