@@ -25,16 +25,19 @@ namespace FlightSimulatorApp.Model
         private bool longError;
         private bool serverError;
 
-        public MySimulatorModel(ITelnetClient telnetClient)
+        public MySimulatorModel()
         {
-            this.telnetClient = telnetClient;
             stop = false;
-            this.connect();
-            this.telnetClient.setTimeOutRead(10000);
             serverError = false;
             readError = false;
             latError = false;
             longError = false;
+        }
+        public void set(string ip, int port)
+        {
+            this.telnetClient = new Telnet(ip, port);
+            this.connect();
+            this.telnetClient.setTimeOutRead(10000);
         }
         public void connect()
         {
@@ -140,18 +143,20 @@ namespace FlightSimulatorApp.Model
                         // problem with reading values
                         stop = true;
                         ReadError = true;
+
                         Console.WriteLine("read timeout");
                     }
-                    catch (IOException)
+                    catch (IOException e)
                     {
                         stop = true;
                         ServerError = true;
                         Console.WriteLine("problem with IO");
                     }
-                    catch
+                    catch (Exception e)
                     {
                         // problem with connecting to the server
                         Console.WriteLine("problem with connecting to the server");
+                        Console.WriteLine("error : " + e.Message);
                         stop = true;
                         ServerError = true;
                     }

@@ -19,12 +19,12 @@ namespace FlightSimulatorApp.Views
         Errors_VM vm3;
         double elevator, rudder, throttle, aileron;
         private string message;
-        public SimulatorView(Get_VM vm_1, Set_VM vm_2, Errors_VM vm_3)
+        public SimulatorView()
         {
             InitializeComponent();
-            this.vm1 = vm_1;
-            this.vm2 = vm_2;
-            this.vm3 = vm_3;
+            this.vm1 = (Application.Current as App).Get_VM;
+            this.vm2 = (Application.Current as App).Set_VM;
+            this.vm3 = (Application.Current as App).Errors_VM;
 
             dash.DataContext = vm1;
             myMap.DataContext = vm1;

@@ -50,8 +50,8 @@ namespace FlightSimulatorApp
             try
             {
                 // show the view
-                MySimulatorModel m = new MySimulatorModel(new Telnet(ip, p));
-                simulatorView = new SimulatorView(new Get_VM(m), new Set_VM(m), new Errors_VM(m));
+                (Application.Current as App).Model.set(ip, p);
+                simulatorView = new SimulatorView();
                 this.NavigationService.Navigate(simulatorView);
                 check_box.IsChecked = false;
             }

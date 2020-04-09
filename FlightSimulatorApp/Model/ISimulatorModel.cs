@@ -14,6 +14,8 @@ namespace FlightSimulatorApp.Model
         void disconnect();
         void start();
 
+        void set(string ip, int port);
+
         // Dashboard
         double IndicatedHeadingDeg { get; set; }
         double GpsIndicatedVerticalSpeed { get; set; }
