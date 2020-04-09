@@ -128,8 +128,9 @@ namespace FlightSimulatorApp.Model
                         // set the variables in the queue
                         while (this.update.Count != 0)
                         {
-                            string s = "set " + update.Dequeue();
+                            string s = "set " + update.Dequeue() + "\n";
                             telnetClient.write(s);
+                            telnetClient.read();
                         }
                         // the same for the other sensors properties
                         Thread.Sleep(250);// read the data in 4Hz

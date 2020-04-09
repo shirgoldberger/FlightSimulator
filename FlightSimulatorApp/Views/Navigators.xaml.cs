@@ -110,8 +110,6 @@ namespace FlightSimulatorApp.Views
                 this.throttle = value;
                 this.NotifyPropertyChanged("Throttle", value);
                 this.NotifyPropertyChanged("Throttle_Text");
-
-
             }
         }
 
