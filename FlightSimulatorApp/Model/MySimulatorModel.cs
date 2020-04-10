@@ -138,19 +138,22 @@ namespace FlightSimulatorApp.Model
                         // the same for the other sensors properties
                         Thread.Sleep(250);// read the data in 4Hz
                     }
-                    catch (SocketException)
-                    {
-                        // problem with reading values
-                        stop = true;
-                        ReadError = true;
-
-                        Console.WriteLine("read timeout");
-                    }
                     catch (IOException e)
                     {
-                        stop = true;
-                        ServerError = true;
-                        Console.WriteLine("problem with IO");
+                        if (e.ToString().Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."))
+                        {
+                            // problem with reading values
+                            stop = true;
+                            ReadError = true;
+
+                            Console.WriteLine("read timeout");
+                        }
+                        else {
+                            stop = true;
+                            ServerError = true;
+                            Console.WriteLine("problem with IO");
+
+                        }
                     }
                     catch (Exception e)
                     {
