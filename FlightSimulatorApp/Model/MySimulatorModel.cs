@@ -21,6 +21,7 @@ namespace FlightSimulatorApp.Model
         volatile Boolean stop;
         // for errors
         private bool readError;
+        private bool timeout;
         private bool latError;
         private bool longError;
         private bool serverError;
@@ -30,6 +31,7 @@ namespace FlightSimulatorApp.Model
             stop = false;
             serverError = false;
             readError = false;
+            timeout = false;
             latError = false;
             longError = false;
         }
@@ -58,6 +60,14 @@ namespace FlightSimulatorApp.Model
                 {
                     try
                     {
+                        if (timeout) {
+                            msg = telnetClient.read();
+                            if (!msg.Contains("ERR"))
+                            {
+                                Console.WriteLine(Double.Parse(msg));
+                            }
+                            timeout = false;
+                        }
                         // 1
                         telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                         msg = telnetClient.read();
@@ -143,14 +153,15 @@ namespace FlightSimulatorApp.Model
                         if (e.ToString().Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."))
                         {
                             // problem with reading values
-                            stop = true;
                             ReadError = true;
+                            timeout = true;
 
                             Console.WriteLine("read timeout");
                         }
                         else {
                             stop = true;
                             ServerError = true;
+                            update.Clear();
                             Console.WriteLine("problem with IO");
 
                         }
@@ -160,6 +171,7 @@ namespace FlightSimulatorApp.Model
                         // problem with connecting to the server
                         Console.WriteLine("problem with connecting to the server");
                         Console.WriteLine("error : " + e.Message);
+                        update.Clear();
                         stop = true;
                         ServerError = true;
                     }

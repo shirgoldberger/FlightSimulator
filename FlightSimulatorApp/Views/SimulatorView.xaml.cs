@@ -36,6 +36,7 @@ namespace FlightSimulatorApp.Views
                 {
 
                     Message = "We lost contact with the simulator, you are redirected to the log in page";
+                    this.vm3.disconnect();
                     Thread.Sleep(5000);
                     Dispatcher.Invoke(new Action(() =>
                     {
@@ -50,17 +51,9 @@ namespace FlightSimulatorApp.Views
                 if (e.PropertyName.Equals("VM_ReadError") && vm3.VM_ReadError)
                 {
 
-                    Message = "we didnt get response from the simulator server, therefor the program has stoped.\n" +
-                        "you are redirected to the log in page";
+                    Message = "we didn't get response from the simulator for 10 sec...\n" +
+                    "you can wait, go back to the home page or exit";
                     Thread.Sleep(5000);
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-
-                        if (NavigationService.CanGoBack)
-                        {
-                            this.NavigationService.GoBack();
-                        }
-                    }));
                 }
 
                 if (e.PropertyName.Equals("VM_LatError") && vm3.VM_LatError)
