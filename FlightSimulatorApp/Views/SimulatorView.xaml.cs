@@ -36,17 +36,10 @@ namespace FlightSimulatorApp.Views
                 if (e.PropertyName.Equals("VM_ServerError") && vm3.VM_ServerError)
                 {
 
-                    Message = "We lost contact with the simulator, you are redirected to the log in page";
+                    Message = "We lost contact with the simulator\n" +
+                    "you can stay at this page, press back to go back to the log in page or exit to exit";
                     this.vm3.disconnect();
                     Thread.Sleep(5000);
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-
-                        if (NavigationService.CanGoBack)
-                        {
-                            this.NavigationService.GoBack();
-                        }
-                    }));
                 }
 
                 if (e.PropertyName.Equals("VM_ReadError") && vm3.VM_ReadError)

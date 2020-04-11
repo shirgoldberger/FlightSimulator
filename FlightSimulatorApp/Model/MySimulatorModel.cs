@@ -14,8 +14,8 @@ namespace FlightSimulatorApp.Model
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
         Thread thread;
-        double rudder = 0, elevator = 0, throttle = 0, aileron = 0;
-        double latitude = 50, longitude = 10;
+        double rudder, elevator, throttle, aileron;
+        double latitude = 0, longitude = 0;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -25,17 +25,9 @@ namespace FlightSimulatorApp.Model
         private bool latError;
         private bool longError;
         private bool serverError;
-        private bool connectError;
 
-        public MySimulatorModel()
-        {
-            stop = false;
-            serverError = false;
-            readError = false;
-            timeout = false;
-            latError = false;
-            longError = false;
-            connectError = false;
+        public MySimulatorModel(){
+          Initialize();
         }
         public void set(string ip, int port)
         {
@@ -45,19 +37,35 @@ namespace FlightSimulatorApp.Model
         }
         public void connect()
         {
-            try
-            {
-                telnetClient.connect();
-                this.start();
-            }
-            catch (Exception e)
-            {
-                if (e.Message == "not connected")
-                {
-                    this.ConnectError = true;
-                }
-            }
+            telnetClient.connect();
+            Initialize();
+            this.start();
         }
+
+        private void Initialize()
+        {
+            stop = false;
+            serverError = false;
+            readError = false;
+            timeout = false;
+            latError = false;
+            longError = false;
+            indicatedHeadingDeg = 0;
+            gpsIndicatedVerticalSpeed = 0;
+            gpsIndicatedGroundSpeedKt = 0;
+            airspeedIndicatorIndicatedSpeedKt = 0;
+            gpsIndicatedAltitudeFt = 0;
+            attitudeIndicatorInternalRollDeg = 0;
+            attitudeIndicatorInternalPitchDeg = 0;
+            altimeterIndicatedAltitudeFt = 0;
+            rudder = 0;
+            elevator = 0;
+            throttle = 0;
+            aileron = 0;
+            latitude = 0;
+            longitude = 0;
+        }
+
         public void disconnect()
         {
             stop = true;
@@ -72,8 +80,8 @@ namespace FlightSimulatorApp.Model
                 {
                     try
                     {
-                        if (timeout)
-                        {
+                        if (timeout) {
+
                             msg = telnetClient.read();
                             if (!msg.Contains("ERR"))
                             {
@@ -171,8 +179,7 @@ namespace FlightSimulatorApp.Model
 
                             Console.WriteLine("read timeout");
                         }
-                        else
-                        {
+                        else {
                             stop = true;
                             ServerError = true;
                             update.Clear();
@@ -458,18 +465,6 @@ namespace FlightSimulatorApp.Model
                     this.serverError = value;
                     this.NotifyPropertyChanged("ServerError");
                 }
-            }
-        }
-        public bool ConnectError
-        {
-            get
-            {
-                return this.connectError;
-            }
-            set
-            {
-                this.connectError = value;
-                this.NotifyPropertyChanged("ConnectError");
             }
         }
 
