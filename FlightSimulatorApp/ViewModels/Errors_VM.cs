@@ -36,6 +36,18 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.ServerError = value;
             }
         }
+        public bool VM_ConnectError
+        {
+            get
+            {
+                return this.model.ConnectError;
+            }
+            set
+            {
+                this.model.ConnectError = value;
+            }
+        }
+        
         public bool VM_ReadError
         {
             get

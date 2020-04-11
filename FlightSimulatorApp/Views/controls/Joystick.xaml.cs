@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Windows.Media.Animation;
 
 namespace FlightSimulatorApp.Views.controls
 {
@@ -28,6 +29,7 @@ namespace FlightSimulatorApp.Views.controls
         public int i;
         private bool firstTime;
         Rect KnobRec;
+        Storyboard sb;
 
 
         public event PropertyChangedEventHandler PropertyChanged;

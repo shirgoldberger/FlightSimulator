@@ -25,6 +25,7 @@ namespace FlightSimulatorApp.Model
         private bool latError;
         private bool longError;
         private bool serverError;
+        private bool connectError;
 
         public MySimulatorModel()
         {
@@ -34,6 +35,7 @@ namespace FlightSimulatorApp.Model
             timeout = false;
             latError = false;
             longError = false;
+            connectError = false;
         }
         public void set(string ip, int port)
         {
@@ -43,8 +45,18 @@ namespace FlightSimulatorApp.Model
         }
         public void connect()
         {
-            telnetClient.connect();
-            this.start();
+            try
+            {
+                telnetClient.connect();
+                this.start();
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "not connected")
+                {
+                    this.ConnectError = true;
+                }
+            }
         }
         public void disconnect()
         {
@@ -60,7 +72,8 @@ namespace FlightSimulatorApp.Model
                 {
                     try
                     {
-                        if (timeout) {
+                        if (timeout)
+                        {
                             msg = telnetClient.read();
                             if (!msg.Contains("ERR"))
                             {
@@ -158,7 +171,8 @@ namespace FlightSimulatorApp.Model
 
                             Console.WriteLine("read timeout");
                         }
-                        else {
+                        else
+                        {
                             stop = true;
                             ServerError = true;
                             update.Clear();
@@ -444,6 +458,18 @@ namespace FlightSimulatorApp.Model
                     this.serverError = value;
                     this.NotifyPropertyChanged("ServerError");
                 }
+            }
+        }
+        public bool ConnectError
+        {
+            get
+            {
+                return this.connectError;
+            }
+            set
+            {
+                this.connectError = value;
+                this.NotifyPropertyChanged("ConnectError");
             }
         }
 

@@ -19,6 +19,7 @@ namespace FlightSimulatorApp.Views
         Errors_VM vm3;
         double elevator, rudder, throttle, aileron;
         private string message;
+        bool connectError = false;
         public SimulatorView()
         {
             InitializeComponent();
@@ -54,6 +55,11 @@ namespace FlightSimulatorApp.Views
                     Message = "we didn't get response from the simulator for 10 sec...\n" +
                     "you can wait, go back to the home page or exit";
                     Thread.Sleep(5000);
+                }
+
+                if (e.PropertyName.Equals("VM_ConnectError") && vm3.VM_ConnectError)
+                {
+                    V_ConnectError = true;
                 }
 
                 if (e.PropertyName.Equals("VM_LatError") && vm3.VM_LatError)
@@ -160,6 +166,16 @@ namespace FlightSimulatorApp.Views
             {
                 this.aileron = value;
                 this.vm2.VM_Aileron = this.aileron;
+            }
+        }
+
+        public bool V_ConnectError
+        {
+            get { return this.connectError; }
+            set 
+            { 
+                this.connectError = value;
+                NotifyPropertyChanged("V_ConnectError");
             }
         }
         public double V_Elevator

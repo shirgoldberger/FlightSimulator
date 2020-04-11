@@ -5,6 +5,7 @@ using FlightSimulatorApp.Views;
 using System.Configuration;
 using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModels;
+using System.Threading;
 
 namespace FlightSimulatorApp
 {
@@ -31,6 +32,7 @@ namespace FlightSimulatorApp
         }
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
+            Message = "";
             int p = 0;
             // if the user didn't insert port and ip
             if (ip.Equals("") || port.Equals(""))
@@ -50,20 +52,33 @@ namespace FlightSimulatorApp
             try
             {
                 // show the view
-                (Application.Current as App).Model.set(ip, p);
+
                 simulatorView = new SimulatorView();
-                this.NavigationService.Navigate(simulatorView);
-                check_box.IsChecked = false;
+                simulatorView.PropertyChanged += delegate (Object s, PropertyChangedEventArgs e1)
+                {
+                    if (e1.PropertyName.Equals("V_ConnectError") && simulatorView.V_ConnectError)
+                    {
+                        this.Message = "not connected to the simulator, try again";
+                        Thread.Sleep(5000);
+                    }
+                };
+                (Application.Current as App).Model.set(ip, p);
+                if (this.Message == "")
+                {
+                    this.NavigationService.Navigate(simulatorView);
+                    check_box.IsChecked = false;
+                }
             }
             catch (Exception e1)
             {
                 // if the server is not connect
-                if (e1.Message == "not connected")
-                {
-                    Message = "not connected to the simulator, try again";
-                }
+                //if (e1.Message == "not connected")
+                //{
+                //    Message = "not connected to the simulator, try again";
+                //}
             }
         }
+           
         public string IP
         {
             get 
