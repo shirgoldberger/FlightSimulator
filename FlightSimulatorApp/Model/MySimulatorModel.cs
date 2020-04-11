@@ -14,8 +14,8 @@ namespace FlightSimulatorApp.Model
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
         Thread thread;
-        double rudder = 0, elevator = 0, throttle = 0, aileron = 0;
-        double latitude = 50, longitude = 10;
+        double rudder, elevator, throttle, aileron;
+        double latitude = 0, longitude = 0;
         Queue<string> update = new Queue<string>();
         ITelnetClient telnetClient;
         volatile Boolean stop;
@@ -26,14 +26,8 @@ namespace FlightSimulatorApp.Model
         private bool longError;
         private bool serverError;
 
-        public MySimulatorModel()
-        {
-            stop = false;
-            serverError = false;
-            readError = false;
-            timeout = false;
-            latError = false;
-            longError = false;
+        public MySimulatorModel(){
+          Initialize();
         }
         public void set(string ip, int port)
         {
@@ -44,8 +38,34 @@ namespace FlightSimulatorApp.Model
         public void connect()
         {
             telnetClient.connect();
+            Initialize();
             this.start();
         }
+
+        private void Initialize()
+        {
+            stop = false;
+            serverError = false;
+            readError = false;
+            timeout = false;
+            latError = false;
+            longError = false;
+            indicatedHeadingDeg = 0;
+            gpsIndicatedVerticalSpeed = 0;
+            gpsIndicatedGroundSpeedKt = 0;
+            airspeedIndicatorIndicatedSpeedKt = 0;
+            gpsIndicatedAltitudeFt = 0;
+            attitudeIndicatorInternalRollDeg = 0;
+            attitudeIndicatorInternalPitchDeg = 0;
+            altimeterIndicatedAltitudeFt = 0;
+            rudder = 0;
+            elevator = 0;
+            throttle = 0;
+            aileron = 0;
+            latitude = 0;
+            longitude = 0;
+        }
+
         public void disconnect()
         {
             stop = true;
@@ -61,6 +81,7 @@ namespace FlightSimulatorApp.Model
                     try
                     {
                         if (timeout) {
+
                             msg = telnetClient.read();
                             if (!msg.Contains("ERR"))
                             {
