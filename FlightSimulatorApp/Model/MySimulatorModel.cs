@@ -25,6 +25,7 @@ namespace FlightSimulatorApp.Model
         private bool latError;
         private bool longError;
         private bool serverError;
+        private bool connectError;
 
         public MySimulatorModel(){
           Initialize();
@@ -37,9 +38,18 @@ namespace FlightSimulatorApp.Model
         }
         public void connect()
         {
-            telnetClient.connect();
-            Initialize();
-            this.start();
+            try
+            {
+                telnetClient.connect();
+                Initialize();
+                this.start();
+            } catch (Exception e)
+            {
+                if (e.Message == "not connected")
+                {
+                    this.ConnectError = true;
+                }
+            }
         }
 
         private void Initialize()
@@ -464,6 +474,22 @@ namespace FlightSimulatorApp.Model
                 {
                     this.serverError = value;
                     this.NotifyPropertyChanged("ServerError");
+                }
+            }
+        }
+
+        public bool ConnectError
+        {
+            get
+            {
+                return this.connectError;
+            }
+            set
+            {
+                if (!serverError)
+                {
+                    this.connectError = value;
+                    this.NotifyPropertyChanged("ConnectError");
                 }
             }
         }

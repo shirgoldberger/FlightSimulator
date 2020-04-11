@@ -59,7 +59,6 @@ namespace FlightSimulatorApp
                     if (e1.PropertyName.Equals("V_ConnectError") && simulatorView.V_ConnectError)
                     {
                         this.Message = "not connected to the simulator, try again";
-                        Thread.Sleep(5000);
                     }
                 };
                 (Application.Current as App).Model.set(ip, p);
