@@ -29,7 +29,7 @@ namespace FlightSimulatorApp.Views.controls
         public int i;
         private bool firstTime;
         Rect KnobRec;
-        Storyboard sb;
+        private readonly Storyboard centerKnob;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,6 +37,7 @@ namespace FlightSimulatorApp.Views.controls
         public Joystick()
         {
             InitializeComponent();
+            centerKnob = Knob.Resources["CenterKnob"] as Storyboard;
             firstTime = true;
             this.rec = new Rect();
             KnobRec.X = 0 - black_Circle.Width / 2 + k;
@@ -47,6 +48,7 @@ namespace FlightSimulatorApp.Views.controls
         }
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            centerKnob.Stop();
             if (firstTime)
             {
                 ofset = black_Circle.PointToScreen(new Point(0, 0));
@@ -114,9 +116,8 @@ namespace FlightSimulatorApp.Views.controls
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
             // return the joystick to the center
+            centerKnob.Begin();
             (Knob).ReleaseMouseCapture();
-            knobPosition.X = 0;
-            knobPosition.Y = 0;
             Rudder = 0;
             Elevetor = 0;
         }
