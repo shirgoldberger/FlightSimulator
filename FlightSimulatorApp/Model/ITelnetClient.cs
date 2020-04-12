@@ -5,7 +5,8 @@ namespace FlightSimulatorApp.Model
     {
         void connect();
         void write(string command);
-        string read(); // blocking call 
+        // Blocking call.
+        string read(); 
         void disconnect();
         void setTimeOutRead(int time);
     }

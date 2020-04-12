@@ -46,16 +46,16 @@
         <StackPanel Grid.Row="3" Grid.RowSpan="5" Orientation="Vertical" Grid.ColumnSpan="3" Margin="333,0.514,333,10.486">
             <!--ip-->
             <!--ip-->
-            <TextBlock Padding="3" FontSize="25" HorizontalAlignment="Center" Foreground="#FFD8E0E8" FontWeight="Bold" TextDecorations="{x:Null}"><Run Text="Enter IP:"/></TextBlock>
+            <TextBlock Padding="3" FontSize="25" HorizontalAlignment="Center" Foreground="#FFD8E0E8" FontWeight="Bold" TextDecorations="{x:Null}" FontFamily="Calisto MT"><Run Text="Enter IP:"/></TextBlock>
             <TextBox x:Name="ServerIP" HorizontalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Height="40" Width="270" Text="{Binding IP, Mode=TwoWay}"   Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" FontSize="18" HorizontalAlignment="Center" GotFocus="ServerIP_GotFocus"/>
             <!--port-->
-            <TextBlock Grid.Row="1" Foreground="#FFD8E0E8" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" FontWeight="Bold"><Run Text="Enter Port:"/></TextBlock>
+            <TextBlock Grid.Row="1" Foreground="#FFD8E0E8" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" FontWeight="Bold" FontFamily="Calisto MT"><Run Text="Enter Port:"/></TextBlock>
             <TextBox x:Name="ServerPort" Grid.Row="5" Grid.Column="1" Height="40" Width="270" Text="{Binding Port, Mode=TwoWay}" Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" HorizontalContentAlignment="Center" FontSize="18" GotFocus="ServerPort_GotFocus"/>
             <!--default prot and ip-->
-            <CheckBox x:Name="check_box" HorizontalAlignment="Center"  Foreground="#FFFCFF00" FontWeight="Bold" Content="default port and ip" Margin="0,0,0.333,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox x:Name="check_box" HorizontalAlignment="Center"  Foreground="#FFFCFF00" FontWeight="Bold" Content="default port and ip" Margin="0,0,0.333,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" FontFamily="Calisto MT"/>
             <!--fly button-->
             <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"
-            Grid.ColumnSpan="1" Margin="165,20,151,0" Padding="5" Width="118" Click="Button_Click_Fly" FontSize="25" FontWeight="Bold" Background="#FF28617A" Content="Fly!">
+            Grid.ColumnSpan="1" Margin="165,20,151,0" Padding="5" Width="118" Click="Button_Click_Fly" FontSize="25" FontWeight="Bold" Background="#FF28617A" Content="Fly!" FontFamily="Calisto MT">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
@@ -86,7 +86,7 @@
             </Button>
         </StackPanel>
         <!--exit button-->
-        <Button Grid.Column="2" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,10,0" Height="39">
+        <Button Grid.Column="2" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="52" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,10,0" Height="43" FontFamily="BN Eyal" FontSize="10">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">

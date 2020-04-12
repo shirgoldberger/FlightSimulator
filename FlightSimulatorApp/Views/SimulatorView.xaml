@@ -29,7 +29,7 @@
         <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
             <local:Navigators x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="617" Width="692"/>
         </Viewbox>
-        <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" Height="39" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,16,0" FontFamily="BN Eyal">
+        <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="52" Height="44" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,16,0" FontFamily="BN Eyal" FontSize="10">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
