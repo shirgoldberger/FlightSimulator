@@ -64,7 +64,7 @@ namespace FlightSimulatorApp
             }
         }
 
-        public string IP
+        public string Ip
         {
             get
             {
@@ -73,7 +73,7 @@ namespace FlightSimulatorApp
             set
             {
                 this.ip = value;
-                NotifyPropertyChanged("Port");
+                NotifyPropertyChanged("Ip");
 
             }
         }
@@ -105,7 +105,7 @@ namespace FlightSimulatorApp
             ServerIP.Text = ConfigurationManager.AppSettings["ServerIP"];
             ServerPort.Text = ConfigurationManager.AppSettings["ServerPort"];
             Port = ConfigurationManager.AppSettings["ServerPort"];
-            IP = ConfigurationManager.AppSettings["ServerIP"];
+            Ip = ConfigurationManager.AppSettings["ServerIP"];
             Message = "";
         }
 
@@ -114,7 +114,7 @@ namespace FlightSimulatorApp
             ServerIP.Text = "";
             ServerPort.Text = "";
             Port = "";
-            IP = "";
+            Ip = "";
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)

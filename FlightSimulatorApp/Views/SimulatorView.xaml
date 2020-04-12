@@ -23,7 +23,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" Margin="30,0,0,0">
+        <Viewbox Grid.RowSpan="2"  Height="550" Width="550" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" Margin="30,0,0,0">
             <local:Dashboard x:Name="dash" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="288" Width="369"/>
         </Viewbox>
         <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
@@ -106,7 +106,7 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <TextBlock Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Connection Status:" VerticalAlignment="Center" Margin="152.667,44,10,142" FontFamily="Ubuntu" Width="112" FontWeight="Bold"/>
-        <TextBlock x:Name="connect" Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding VM_Connecting, Mode=TwoWay}" VerticalAlignment="Center" Margin="161.667,58,16,128" FontFamily="Ubuntu" Width="97" FontWeight="Bold"/>
+        <TextBlock Grid.Column="3" TextWrapping="Wrap" Text="Connection Status:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <TextBlock x:Name="connect" Grid.Column="3" TextWrapping="Wrap" Text="{Binding VM_Connecting, Mode=TwoWay}" FontFamily="Ubuntu" Width="103" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="81.667,25,90,161" TextAlignment="Center"/>
     </Grid>
 </Page>
