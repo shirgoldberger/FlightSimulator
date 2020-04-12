@@ -146,7 +146,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Stayland.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

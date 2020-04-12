@@ -14,7 +14,7 @@ namespace FlightSimulatorApp.Model
         void disconnect();
         void start();
 
-        void set(string ip, int port);
+        void run(string ip, int port);
 
         // Dashboard
         double IndicatedHeadingDeg { get; set; }

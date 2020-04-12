@@ -22,13 +22,16 @@ namespace FlightSimulatorApp.Views.controls
     /// </summary>
     public partial class Joystick : UserControl, Notify
     {
+        // for the movement of the handle
         double k = 30;
         Rect rec;
         Point ofset;
-        private double rudder, elevator;
         public int i;
         private bool firstTime;
         Rect KnobRec;
+        // The variables that change when the joystick moves
+        private double rudder, elevator;
+        // The animation of backing to the center
         private readonly Storyboard centerKnob;
 
 
@@ -150,7 +153,7 @@ namespace FlightSimulatorApp.Views.controls
         {
             // set rudder and elevator
             Rudder = x / ((rec.Width) / 2);
-            Elevetor = -(y / ((rec.Width) / 2));
+            Elevetor = - (y / ((rec.Width) / 2));
         }
     }
 }

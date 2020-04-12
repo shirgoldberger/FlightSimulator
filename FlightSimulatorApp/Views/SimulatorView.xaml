@@ -29,7 +29,7 @@
         <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
             <local:Navigators x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="617" Width="692"/>
         </Viewbox>
-        <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" Height="39" FontWeight="Bold" Click="Button_Click" Margin="0,0,16,0">
+        <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="57" Height="39" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,16,0" FontFamily="BN Eyal">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
@@ -61,7 +61,7 @@
         <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
             <local:Map x:Name="myMap" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Height="552" Width="723" Canvas.Left="10"/>
         </Canvas>
-        <Button Grid.Column="3" Grid.Row="2" Width="64" Height="39" Content="BACK" Click="Button_Click_Back" VerticalAlignment="Bottom" Margin="201.667,0,18,44" HorizontalAlignment="Center" FontWeight="Bold">
+        <Button Grid.Column="3" Grid.Row="2" Width="64" Height="39" Content="BACK" Click="Button_Click_Back" VerticalAlignment="Bottom" Margin="201.667,0,18,44" HorizontalAlignment="Center" FontWeight="Bold" FontFamily="BN Eyal">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
@@ -97,6 +97,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+
         <TextBlock x:Name="myMessage" Text="{Binding Message}" Grid.Row="1" FontSize="20" Grid.Column="1" Width="428" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Height="130" Margin="96.667,0,25.333,70" TextAlignment="Center" Grid.ColumnSpan="2">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -105,5 +106,7 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Connection Status:" VerticalAlignment="Center" Margin="152.667,44,10,142" FontFamily="Ubuntu" Width="112" FontWeight="Bold"/>
+        <TextBlock x:Name="connect" Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding VM_Connecting, Mode=TwoWay}" VerticalAlignment="Center" Margin="161.667,58,16,128" FontFamily="Ubuntu" Width="97" FontWeight="Bold"/>
     </Grid>
 </Page>

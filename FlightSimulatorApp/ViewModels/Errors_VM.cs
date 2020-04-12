@@ -81,9 +81,23 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.LongError = value;
             }
         }
+        
+        // Disconnect from the simulator
         public void disconnect()
         {
             this.model.disconnect();
+        }
+
+        public string VM_Connecting
+        {
+            get
+            {
+                return this.model.Connecting;
+            }
+            set
+            {
+                this.model.Connecting = value;
+            }
         }
     }
 }

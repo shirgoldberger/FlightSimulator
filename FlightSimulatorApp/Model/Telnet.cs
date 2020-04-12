@@ -6,7 +6,9 @@ namespace FlightSimulatorApp.Model
 {
     public class Telnet : ITelnetClient
     {
+        // for connecting to the simulator
         TcpClient tcpclnt;
+        // for reading and writing data
         NetworkStream stm;
         private string ip;
         private int port;
@@ -26,8 +28,12 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                Exception e1 = new Exception("not connected");
-                throw e1;
+                // can't connect
+                if (e.Message.Contains("No connection"))
+                {
+                    Exception e1 = new Exception("not connected");
+                    throw e1;
+                }
             }
         }
         public void disconnect()
@@ -39,6 +45,7 @@ namespace FlightSimulatorApp.Model
             byte[] bb = new byte[100];
             int k = this.stm.Read(bb, 0, 100);
             string massage = "";
+            // convert from bytes to string
             for (int i = 0; i < k; i++)
                 massage += (Convert.ToChar(bb[i]));
             return massage;

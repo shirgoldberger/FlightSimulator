@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
-using System.Net.Sockets;
 using Microsoft.Maps.MapControl.WPF;
 using System.IO;
 
@@ -10,14 +9,19 @@ namespace FlightSimulatorApp.Model
 {
     public class MySimulatorModel : ISimulatorModel
     {
-        // dashbord variables
+        // Dashbord variables
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
         Thread thread;
+        // Navigators variables
         double rudder, elevator, throttle, aileron;
-        double latitude = 0, longitude = 0;
+        // Map variables
+        double latitude, longitude;
+        // Queue that contain set commands to send to simulator
         Queue<string> update = new Queue<string>();
+        //
         ITelnetClient telnetClient;
+        // Boolean variable for stopping receiving and sending data
         volatile Boolean stop;
         // for errors
         private bool readError;
@@ -27,24 +31,32 @@ namespace FlightSimulatorApp.Model
         private bool serverError;
         private bool connectError;
 
+        private string connecting = "disconnected";
+
         public MySimulatorModel(){
           Initialize();
         }
-        public void set(string ip, int port)
+        public void run(string ip, int port)
         {
+            // set ip and port
             this.telnetClient = new Telnet(ip, port);
+            // connect to the simulator
             this.connect();
+            // set time out to 10 seconds
             this.telnetClient.setTimeOutRead(10000);
         }
         public void connect()
         {
             try
             {
+                // try connect
                 telnetClient.connect();
+                Connecting = "connected";
                 Initialize();
                 this.start();
             } catch (Exception e)
             {
+                // We couldn't connect
                 if (e.Message == "not connected")
                 {
                     this.ConnectError = true;
@@ -54,6 +66,7 @@ namespace FlightSimulatorApp.Model
 
         private void Initialize()
         {
+            // initialize all the variables for new running 
             stop = false;
             serverError = false;
             readError = false;
@@ -78,8 +91,11 @@ namespace FlightSimulatorApp.Model
 
         public void disconnect()
         {
+            // stop the thread that receiving and sending data
             stop = true;
+            // stop the connection with the simulator
             telnetClient.disconnect();
+            Connecting = "disconnected";
         }
         public void start()
         {
@@ -186,11 +202,11 @@ namespace FlightSimulatorApp.Model
                             // problem with reading values
                             ReadError = true;
                             timeout = true;
-
                             Console.WriteLine("read timeout");
                         }
                         else {
                             stop = true;
+                            Connecting = "disconnected";
                             ServerError = true;
                             update.Clear();
                             Console.WriteLine("problem with IO");
@@ -201,9 +217,9 @@ namespace FlightSimulatorApp.Model
                     {
                         // problem with connecting to the server
                         Console.WriteLine("problem with connecting to the server");
-                        Console.WriteLine("error : " + e.Message);
                         update.Clear();
                         stop = true;
+                        Connecting = "disconnected";
                         ServerError = true;
                     }
                 }
@@ -478,6 +494,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
+        // When we were unable to connect to the simulator
         public bool ConnectError
         {
             get
@@ -561,6 +578,17 @@ namespace FlightSimulatorApp.Model
                         this.longError = value;
                     }
                 }
+            }
+        }
+
+        // connect / not connect
+        public string Connecting
+        {
+            get { return this.connecting; }
+            set 
+            { 
+                this.connecting = value;
+                this.NotifyPropertyChanged("Connecting");
             }
         }
     }
