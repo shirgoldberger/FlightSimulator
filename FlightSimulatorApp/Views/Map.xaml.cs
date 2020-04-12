@@ -25,6 +25,7 @@ namespace FlightSimulatorApp.Views
         LocationRect bounds;
         double preX, preY;
         private bool firstTime = true;
+        private int zoom = 5;
         public Map()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace FlightSimulatorApp.Views
                 double longtitude = pin.Location.Longitude;
                 if (firstTime)
                 {
-                    myMap.SetView(new Location(latitude, longtitude), 4);
+                    myMap.SetView(new Location(latitude, longtitude), zoom);
                     PlainPosition.X = 0;
                     PlainPosition.Y = 0;
                     firstTime = false;
@@ -61,11 +62,11 @@ namespace FlightSimulatorApp.Views
                     {
                         if (longtitude >= centerLon)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, 2 * longtitude - centerLon), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, 2 * longtitude - centerLon), zoom);
                         }
                         else
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, centerLon), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat - 2.5, centerLon), zoom);
                         }
                     }
 
@@ -73,11 +74,11 @@ namespace FlightSimulatorApp.Views
                     {
                         if (longtitude >= centerLon)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat + 2.5, 2 * longtitude - centerLon), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + 2.5, 2 * longtitude - centerLon), zoom);
                         }
                         else
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat + 2.5, centerLon), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + 2.5, centerLon), zoom);
                         }
                     }
 
@@ -85,11 +86,11 @@ namespace FlightSimulatorApp.Views
                     {
                         if (latitude >= centerLat)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 2.5), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 2.5), zoom);
                         }
                         else
                         {
-                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 2.5), 4);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 2.5), zoom);
                         }
                     }
 
@@ -97,11 +98,11 @@ namespace FlightSimulatorApp.Views
                     {
                         if (latitude <= centerLat)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 2.5), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 2.5), zoom);
                         }
                         else
                         {
-                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 2.5), 4);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 2.5), zoom);
                         }
                     }
 
@@ -109,11 +110,11 @@ namespace FlightSimulatorApp.Views
                     {
                         if (latitude >= centerLat)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 2.5), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 2.5), zoom);
                         }
                         else
                         {
-                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 2.5), 4);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 2.5), zoom);
                         }
                     }
 
@@ -121,11 +122,11 @@ namespace FlightSimulatorApp.Views
                     {
                         if (latitude <= centerLat)
                         {
-                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 2.5), 4);
+                            myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 2.5), zoom);
                         }
                         else
                         {
-                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 2.5), 4);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 2.5), zoom);
                         }
                     }
                 }
