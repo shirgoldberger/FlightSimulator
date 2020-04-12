@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulatorApp"
         mc:Ignorable="d"
-        Title="FlightSimulatorApp" Height="592.666" Width="1100" Background="AliceBlue" Source="Views/HomePage.xaml" Loaded="NavigationWindow_Loaded">
+        Title="FlightSimulatorApp" ResizeMode="NoResize" Height="592.666" Width="1100" Background="AliceBlue" Source="Views/HomePage.xaml" Loaded="NavigationWindow_Loaded">
 
 </NavigationWindow>

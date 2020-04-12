@@ -3,9 +3,6 @@ using System.Windows;
 using System.ComponentModel;
 using FlightSimulatorApp.Views;
 using System.Configuration;
-using FlightSimulatorApp.Model;
-using FlightSimulatorApp.ViewModels;
-using System.Threading;
 
 namespace FlightSimulatorApp
 {
@@ -43,49 +40,38 @@ namespace FlightSimulatorApp
             try
             {
                 p = int.Parse(this.port);
-            } catch (Exception e1)
+            }
+            catch (Exception e1)
             {
                 Message = "You need to insert a valid port";
                 return;
             }
             SimulatorView simulatorView;
-            try
+            // Show the view.
+            simulatorView = new SimulatorView();
+            simulatorView.PropertyChanged += delegate (Object s, PropertyChangedEventArgs e1)
             {
-                // show the view
-
-                simulatorView = new SimulatorView();
-                simulatorView.PropertyChanged += delegate (Object s, PropertyChangedEventArgs e1)
+                if (e1.PropertyName.Equals("V_ConnectError") && simulatorView.V_ConnectError)
                 {
-                    if (e1.PropertyName.Equals("V_ConnectError") && simulatorView.V_ConnectError)
-                    {
-                        this.Message = "not connected to the simulator, try again";
-                    }
-                };
-                (Application.Current as App).Model.run(ip, p);
-                if (this.Message == "")
-                {
-                    this.NavigationService.Navigate(simulatorView);
-                    check_box.IsChecked = false;
+                    this.Message = "not connected to the simulator, try again";
                 }
-            }
-            catch (Exception e1)
+            };
+            (Application.Current as App).Model.run(ip, p);
+            if (this.Message == "")
             {
-                // if the server is not connect
-                //if (e1.Message == "not connected")
-                //{
-                //    Message = "not connected to the simulator, try again";
-                //}
+                this.NavigationService.Navigate(simulatorView);
+                check_box.IsChecked = false;
             }
         }
-           
+
         public string IP
         {
-            get 
+            get
             {
-                return this.ip; 
+                return this.ip;
             }
-            set 
-            { 
+            set
+            {
                 this.ip = value;
                 NotifyPropertyChanged("Port");
 
@@ -97,7 +83,7 @@ namespace FlightSimulatorApp
             {
                 return this.port;
             }
-            set 
+            set
             {
                 this.port = value;
                 NotifyPropertyChanged("Port");
@@ -107,8 +93,8 @@ namespace FlightSimulatorApp
         public string Message
         {
             get { return this.message; }
-            set 
-            { 
+            set
+            {
                 this.message = value;
                 NotifyPropertyChanged("Message");
             }
@@ -146,8 +132,5 @@ namespace FlightSimulatorApp
         {
             Message = "";
         }
-
-
-
     }
 }
