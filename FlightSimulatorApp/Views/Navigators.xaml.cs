@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FlightSimulatorApp.Views
 {
@@ -53,7 +41,6 @@ namespace FlightSimulatorApp.Views
 
         public event PropertyChangedEventHandler PropertyChangedNotify;
 
-
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -66,6 +53,8 @@ namespace FlightSimulatorApp.Views
             if (this.PropertyChangedNotify != null)
                 PropertyChangedNotify(this, new PropertyChangedExtendedEventArgs(propertyName, newValue));
         }
+
+        // 4 properties that set to the simulator.
         public double Rudder
         {
             get { return this.rudder; }
@@ -77,8 +66,6 @@ namespace FlightSimulatorApp.Views
 
             }
         }
-
-
         public double Elevator
         {
             get { return this.elevator; }
@@ -113,6 +100,7 @@ namespace FlightSimulatorApp.Views
             }
         }
 
+        // Properties for showing the values of the variables.
         public string Rudder_Text
         {
             get { return String.Format("{0:0.000}", Rudder); }

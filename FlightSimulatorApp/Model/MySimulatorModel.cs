@@ -9,21 +9,20 @@ namespace FlightSimulatorApp.Model
 {
     public class MySimulatorModel : ISimulatorModel
     {
-        // Dashbord variables
+        // Dashbord variables.
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
         Thread thread;
-        // Navigators variables
+        // Navigators variables.
         double rudder, elevator, throttle, aileron;
-        // Map variables
+        // Map variables.
         double latitude, longitude;
-        // Queue that contain set commands to send to simulator
+        // Queue that contain set commands to send to simulator.
         Queue<string> update = new Queue<string>();
-        //
         ITelnetClient telnetClient;
-        // Boolean variable for stopping receiving and sending data
+        // Boolean variable for stopping receiving and sending data.
         volatile Boolean stop;
-        // for errors
+        // For errors.
         private bool readError;
         private bool timeout;
         private bool latError;
@@ -91,9 +90,9 @@ namespace FlightSimulatorApp.Model
 
         public void disconnect()
         {
-            // stop the thread that receiving and sending data
+            // Stop the thread that receiving and sending data
             stop = true;
-            // stop the connection with the simulator
+            // Stop the connection with the simulator
             telnetClient.disconnect();
             Connecting = "disconnected";
         }
