@@ -61,6 +61,24 @@ namespace FlightSimulatorApp.Views
             }
         }
 
+        private void myMap_LayoutUpdated(object sender, EventArgs e)
+        {
+            if (!firstTime)
+            {
+                double latitude = pin.Location.Latitude;
+                double longtitude = pin.Location.Longitude;
+                this.bounds = myMap.BoundingRectangle;
+                if (longtitude > bounds.West && longtitude < bounds.East && latitude < bounds.North && latitude > bounds.South)
+                {
+                    freeMove = false;
+                }
+                else
+                {
+                    freeMove = true;
+                }
+            }
+        }
+
         private void pin_LayoutUpdated(object sender, EventArgs e)
         {
             if (pin.Location != null)
