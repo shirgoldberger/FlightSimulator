@@ -49,11 +49,12 @@ namespace FlightSimulatorApp.Views
 
         private void myMap_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (freeMove) {
+            if (freeMove)
+            {
                 double latitude = pin.Location.Latitude;
                 double longtitude = pin.Location.Longitude;
                 this.bounds = myMap.BoundingRectangle;
-                if (longtitude> bounds.West && longtitude<bounds.East && latitude < bounds.North && latitude> bounds.South)
+                if (longtitude > bounds.West && longtitude < bounds.East && latitude < bounds.North && latitude > bounds.South)
                 {
                     freeMove = false;
                 }
@@ -122,7 +123,7 @@ namespace FlightSimulatorApp.Views
                         double m = (longtitude - preX) / (latitude - preY);
 
                         //we are moving up and pass the limit of the current map page.
-                        if (m > 0 && latitude + 0.5 >= bounds.North)
+                        if (preY < latitude && latitude + 0.5 >= bounds.North)
                         {
                             //we are exceed from the right side above.
                             if (longtitude >= centerLon)
@@ -136,10 +137,10 @@ namespace FlightSimulatorApp.Views
                             }
                         }
                         //we are moving down and pass the limit of the current map page.
-                        else if (m < 0 && latitude - 0.5 <= bounds.South)
+                        else if (preY > latitude && latitude - 0.5 <= bounds.South)
                         {
                             //we are exceed from the right side down.
-                            if (longtitude >= centerLon)
+                            if (longtitude < centerLon)
                             {
                                 myMap.SetView(new Location(2 * latitude - centerLat + 0.5, 2 * longtitude - centerLon), zoom);
                             }
@@ -150,7 +151,7 @@ namespace FlightSimulatorApp.Views
                             }
                         }
 
-                        //we are moving up and going to exceed the map from the right side of the map
+                        //we are moving with positive M and going to exceed the map from the right side of the map
                         else if (m > 0 && longtitude + 0.5 >= bounds.East)
                         {
                             //we are at the top part of the right side of the map.
@@ -164,7 +165,7 @@ namespace FlightSimulatorApp.Views
                                 myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 0.5), zoom);
                             }
                         }
-                        //we are moving down and going to exceed the map from the right side of the map
+                        //we are moving with negative M and going to exceed the map from the right side of the map
                         else if (m < 0 && longtitude + 0.5 >= bounds.East)
                         {
                             //we are at the down part of the right side of the map.
