@@ -122,8 +122,8 @@ namespace FlightSimulatorApp.Views
                         //found the Slope between the two points
                         double m = (longtitude - preX) / (latitude - preY);
 
-                        //we are moving up and pass the limit of the current map page.
-                        if (preY < latitude && latitude + 0.5 >= bounds.North)
+                        //we are moving up with positive M and pass the limit of the current map page.
+                        if (m>0 && preY < latitude && latitude + 0.5 >= bounds.North)
                         {
                             //we are exceed from the right side above.
                             if (longtitude >= centerLon)
@@ -136,11 +136,39 @@ namespace FlightSimulatorApp.Views
                                 myMap.SetView(new Location(2 * latitude - centerLat - 0.5, centerLon), zoom);
                             }
                         }
-                        //we are moving down and pass the limit of the current map page.
-                        else if (preY > latitude && latitude - 0.5 <= bounds.South)
+                        //we are moving up moving with nagative M and pass the limit of the current map page.
+                        else if (m < 0 && preY < latitude && latitude + 0.5 >= bounds.North)
+                        {
+                            //we are exceed from the right side above.
+                            if (longtitude < centerLon)
+                            {
+                                myMap.SetView(new Location(2 * latitude - centerLat - 0.5, 2 * longtitude - centerLon), zoom);
+                            }
+                            //we are exceed from the left side above.
+                            else
+                            {
+                                myMap.SetView(new Location(2 * latitude - centerLat - 0.5, centerLon), zoom);
+                            }
+                        }
+                        //we are moving down with positive M and pass the limit of the current map page.
+                        else if (m >0 && preY > latitude && latitude - 0.5 <= bounds.South)
                         {
                             //we are exceed from the right side down.
                             if (longtitude < centerLon)
+                            {
+                                myMap.SetView(new Location(2 * latitude - centerLat + 0.5, 2 * longtitude - centerLon), zoom);
+                            }
+                            //we are exceed from the left side down.
+                            else
+                            {
+                                myMap.SetView(new Location(2 * latitude - centerLat + 0.5, centerLon), zoom);
+                            }
+                        }
+                        //we are moving down with nagative M and pass the limit of the current map page.
+                        else if (m < 0 && preY > latitude && latitude - 0.5 <= bounds.South)
+                        {
+                            //we are exceed from the right side down.
+                            if (longtitude >= centerLon)
                             {
                                 myMap.SetView(new Location(2 * latitude - centerLat + 0.5, 2 * longtitude - centerLon), zoom);
                             }
