@@ -24,10 +24,26 @@
                     <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
                 </StackPanel>
             </m:Map>
-            <Button x:Name="focus"  Canvas.Left="14" Canvas.Top="499" Width="46" Height="46" Click="focus_Click" FocusVisualStyle="{DynamicResource font}">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/focus.png" TileMode="Tile"/>
-                </Button.Background>
+            <Button x:Name="focus"  Canvas.Left="14" Canvas.Top="499" Width="46" Height="46" Click="focus_Click" FocusVisualStyle="{DynamicResource font}" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
+                            <Border.Background>
+                                <ImageBrush ImageSource="Images/focus.png"/>
+                            </Border.Background>
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,6,8,6" ContentSource="Content" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bdr_main" Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Images/focus.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
         </Canvas>
     </Grid>
