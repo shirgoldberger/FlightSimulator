@@ -101,8 +101,8 @@
         <TextBlock x:Name="myMessage" Text="{Binding Message}" Grid.Row="1" FontSize="20" Grid.Column="1" Width="428" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Height="130" Margin="96.667,0,25.333,70" TextAlignment="Center" Grid.ColumnSpan="2">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FFBE1515" Offset="1"/>
+                    <GradientStop Color="Black" Offset="0.657"/>
+                    <GradientStop Color="#FF0A0A0A" Offset="0.375"/>
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>

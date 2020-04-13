@@ -51,7 +51,15 @@
             </Label>
             <Slider x:Name="Aileron_Slider" Grid.Row="3" Grid.RowSpan="4" Grid.Column="1" Value="{Binding Aileron, Mode=OneWayToSource}" Maximum="1" Minimum="-1" HorizontalAlignment="Center" TickPlacement="BottomRight" TickFrequency="0.1"
                 VerticalAlignment="Center"
-                Width="340" Height="55" RenderTransformOrigin="0.5,0.5" Canvas.Left="55" Canvas.Top="157">
+                Width="340" Height="53" RenderTransformOrigin="0.5,0.5" Canvas.Left="54" Canvas.Top="444">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
                 <Slider.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </Slider.LayoutTransform>
@@ -66,7 +74,7 @@
             <TextBlock TextWrapping="Wrap" Text="{Binding Rudder_Text}" FontSize="22" Canvas.Left="245" Canvas.Top="85" Width="98" Height="44" RenderTransformOrigin="0.093,-0.707" FontWeight="Bold" HorizontalAlignment="Center"><Run/><LineBreak/><Run/></TextBlock>
             <TextBlock TextWrapping="Wrap" Text="{Binding Elevator_Text}" FontSize="22" Canvas.Left="462" Canvas.Top="298" Width="84" Height="40" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBlock TextWrapping="Wrap" Text="{Binding Throttle_Text}" FontSize="22" Canvas.Left="245" Canvas.Top="500" Width="92" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Aileron_Text}" FontSize="22" Canvas.Top="298" Width="84" Height="30" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Aileron_Text}" FontSize="22" Canvas.Top="298" Width="84" Height="30" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10"/>
         </Canvas>
     </Grid>
 </UserControl>
