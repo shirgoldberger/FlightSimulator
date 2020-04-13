@@ -457,7 +457,7 @@ namespace FlightSimulatorApp.Model
                     {
                         this.latitude = value;
                         this.NotifyPropertyChanged("Location");
-                        // for the text
+                        // For the text
                         this.NotifyPropertyChanged("LatitudeT");
                     }
                     else
