@@ -9,7 +9,7 @@
              d:DesignHeight="551" Width="734.238">
     <Grid>
         <Canvas>
-            <m:Map x:Name="myMap" ZoomLevel="5" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="551" Width="722" RenderTransformOrigin="0.5,0.5" Canvas.Left="10">
+            <m:Map x:Name="myMap" ZoomLevel="5" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="551" Width="722" RenderTransformOrigin="0.5,0.5" Canvas.Left="10" MouseDown="myMap_MouseDown" MouseUp="myMap_MouseUp">
 
                 <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
                     <m:Pushpin.RenderTransform>
