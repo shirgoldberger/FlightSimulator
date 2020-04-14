@@ -54,7 +54,7 @@
             <CheckBox x:Name="check_box" HorizontalAlignment="Center"  Foreground="#FFFCFF00" FontWeight="Bold" Content="default port and ip" Margin="0,0,0.333,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" FontFamily="Calisto MT"/>
             <!--fly button-->
             <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"
-            Grid.ColumnSpan="1" Margin="165,20,151,0" Padding="5" Width="118" Click="Button_Click_Fly" FontSize="25" FontWeight="Bold" Background="#FF28617A" Content="Fly!" FontFamily="Calisto MT" Cursor="Arrow">
+            Grid.ColumnSpan="1" Margin="165,20,151,0" Padding="5" Width="118" Click="Button_Click_Fly" FontSize="25" FontWeight="Bold" Background="#FF28617A" Content="Fly!" FontFamily="Calisto MT" Cursor="Hand">
                 <Button.Effect>
                     <DropShadowEffect Color="#FF48636F"/>
                 </Button.Effect>
@@ -88,7 +88,7 @@
             </Button>
         </StackPanel>
         <!--exit button-->
-        <Button Grid.Column="2" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="52" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,10,0" Height="43" FontFamily="BN Eyal" FontSize="10" Cursor="Arrow">
+        <Button Grid.Column="2" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="52" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,10,0" Height="43" FontFamily="BN Eyal" FontSize="10" Cursor="Hand">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">
