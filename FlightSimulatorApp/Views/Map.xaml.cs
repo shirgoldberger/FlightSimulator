@@ -25,11 +25,12 @@ namespace FlightSimulatorApp.Views
         LocationRect bounds;
         double preX, preY;
         private bool firstTime = true;
-        private int zoom = 5;
+        private double zoom;
         private bool freeMove = false;
         public Map()
         {
             InitializeComponent();
+            zoom = myMap.ZoomLevel;
         }
 
         private void focus_Click(object sender, RoutedEventArgs e)
@@ -77,6 +78,7 @@ namespace FlightSimulatorApp.Views
                 {
                     freeMove = true;
                 }
+                zoom = myMap.ZoomLevel;
             }
         }
 
