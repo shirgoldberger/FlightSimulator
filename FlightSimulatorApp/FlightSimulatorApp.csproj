@@ -59,7 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ISimulatorModel.cs" />
     <Compile Include="Model\ITelnetClient.cs" />
     <Compile Include="Model\MySimulatorModel.cs" />
     <Compile Include="Model\Telnet.cs" />
