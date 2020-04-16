@@ -56,7 +56,7 @@ namespace FlightSimulatorApp
                     this.Message = "not connected to the simulator, try again";
                 }
             };
-            (Application.Current as App).Model.run(ip, p);
+            (Application.Current as App).Model.Run(ip, p);
             if (this.Message == "")
             {
                 this.NavigationService.Navigate(simulatorView);

@@ -113,7 +113,7 @@ namespace FlightSimulatorApp.Views.controls
                     knobPosition.Y = y - rec.Top - rec.Height / 2;
                 }
 
-                updateParams(knobPosition.X, knobPosition.Y);
+                UpdateParams(knobPosition.X, knobPosition.Y);
             }
         }
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
@@ -149,7 +149,7 @@ namespace FlightSimulatorApp.Views.controls
             }
         }
 
-        public void updateParams(double x, double y)
+        public void UpdateParams(double x, double y)
         {
             // set rudder and elevator
             Rudder = x / ((rec.Width) / 2);

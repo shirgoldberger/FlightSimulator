@@ -17,7 +17,7 @@ namespace FlightSimulatorApp.Model
             this.ip = ip;
             this.port = port;
         }
-        public void connect()
+        public void Connect()
         {
             this.tcpclnt = new TcpClient();
             try
@@ -36,11 +36,11 @@ namespace FlightSimulatorApp.Model
                 }
             }
         }
-        public void disconnect()
+        public void Disconnect()
         {
             tcpclnt.Close();
         }
-        public string read()
+        public string Read()
         {
             byte[] bb = new byte[100];
             int k = this.stm.Read(bb, 0, 100);
@@ -50,14 +50,14 @@ namespace FlightSimulatorApp.Model
                 massage += (Convert.ToChar(bb[i]));
             return massage;
         }
-        public void write(string command)
+        public void Write(string command)
         {
             this.stm = this.tcpclnt.GetStream();
             ASCIIEncoding asen = new ASCIIEncoding();
             byte[] ba = asen.GetBytes(command);
             stm.Write(ba, 0, ba.Length);
         }
-        public void setTimeOutRead(int time)
+        public void SetTimeOutRead(int time)
         {
             this.tcpclnt.ReceiveTimeout = time;
         }

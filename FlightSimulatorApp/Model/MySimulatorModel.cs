@@ -29,7 +29,7 @@ namespace FlightSimulatorApp.Model
         private bool longError;
         private bool serverError;
         private bool connectError;
-
+        // To know if we are connected.
         private string connecting = "disconnected";
 
         public MySimulatorModel() { }
@@ -38,7 +38,7 @@ namespace FlightSimulatorApp.Model
             // set ip and port
             this.telnetClient = new Telnet(ip, port);
             // connect to the simulator
-            this.connect();
+            this.Connect();
             // set time out to 10 seconds
             this.telnetClient.SetTimeOutRead(10000);
         }

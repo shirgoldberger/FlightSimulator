@@ -1,18 +1,7 @@
-﻿using FlightSimulatorApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp.Views
@@ -43,12 +32,12 @@ namespace FlightSimulatorApp.Views
             freeMove = false;
         }
 
-        private void myMap_MouseDown(object sender, MouseButtonEventArgs e)
+        private void MyMap_MouseDown(object sender, MouseButtonEventArgs e)
         {
             freeMove = true;
         }
 
-        private void myMap_MouseUp(object sender, MouseButtonEventArgs e)
+        private void MyMap_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (freeMove)
             {
@@ -63,7 +52,7 @@ namespace FlightSimulatorApp.Views
             }
         }
 
-        private void myMap_LayoutUpdated(object sender, EventArgs e)
+        private void MyMap_LayoutUpdated(object sender, EventArgs e)
         {
             if (!firstTime)
             {
@@ -82,7 +71,7 @@ namespace FlightSimulatorApp.Views
             }
         }
 
-        private void pin_LayoutUpdated(object sender, EventArgs e)
+        private void Pin_LayoutUpdated(object sender, EventArgs e)
         {
             if (pin.Location != null)
             {

@@ -1,5 +1,4 @@
-﻿
-namespace FlightSimulatorApp.Model
+﻿namespace FlightSimulatorApp.Model
 {
     public interface ITelnetClient
     {
