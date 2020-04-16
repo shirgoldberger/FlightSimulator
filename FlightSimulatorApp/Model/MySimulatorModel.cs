@@ -200,7 +200,7 @@ namespace FlightSimulatorApp.Model
                             // problem with reading values
                             ReadError = true;
                             timeout = true;
-                            Console.WriteLine("read timeout");
+                           // Console.WriteLine("read timeout");
                         }
                         else
                         {
@@ -208,17 +208,17 @@ namespace FlightSimulatorApp.Model
                             Connecting = "disconnected";
                             ServerError = true;
                             update.Clear();
-                            Console.WriteLine("problem with IO");
+                            //Console.WriteLine("problem with IO");
 
                         }
                     }
                     catch (FormatException) {
                         Console.WriteLine("s does not represent a numeric value");
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // problem with connecting to the server
-                        Console.WriteLine("problem with connecting to the server");
+                        //Console.WriteLine("problem with connecting to the server");
                         update.Clear();
                         stop = true;
                         Connecting = "disconnected";

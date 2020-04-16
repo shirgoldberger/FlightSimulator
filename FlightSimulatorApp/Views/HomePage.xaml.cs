@@ -41,7 +41,7 @@ namespace FlightSimulatorApp
             {
                 p = int.Parse(this.port);
             }
-            catch (Exception e1)
+            catch (Exception)
             {
                 Message = "You need to insert a valid port";
                 return;
