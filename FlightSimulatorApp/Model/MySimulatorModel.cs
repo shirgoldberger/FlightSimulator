@@ -32,9 +32,7 @@ namespace FlightSimulatorApp.Model
 
         private string connecting = "disconnected";
 
-        public MySimulatorModel(){
-          Initialize();
-        }
+        public MySimulatorModel() { }
         public void run(string ip, int port)
         {
             // set ip and port
@@ -105,7 +103,8 @@ namespace FlightSimulatorApp.Model
                 {
                     try
                     {
-                        if (timeout) {
+                        if (timeout)
+                        {
 
                             msg = telnetClient.read();
                             if (!msg.Contains("ERR"))
@@ -203,7 +202,8 @@ namespace FlightSimulatorApp.Model
                             timeout = true;
                             Console.WriteLine("read timeout");
                         }
-                        else {
+                        else
+                        {
                             stop = true;
                             Connecting = "disconnected";
                             ServerError = true;
@@ -211,6 +211,9 @@ namespace FlightSimulatorApp.Model
                             Console.WriteLine("problem with IO");
 
                         }
+                    }
+                    catch (FormatException) {
+                        Console.WriteLine("s does not represent a numeric value");
                     }
                     catch (Exception e)
                     {

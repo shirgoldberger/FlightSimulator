@@ -32,8 +32,6 @@ namespace FlightSimulatorApp.Views
                         }
                     }
                 }
-
-
             };
         }
 
