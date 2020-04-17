@@ -9,6 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FlightSimulatorApp" Height="600"  Width="1100" Background="AliceBlue">
 
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -23,12 +24,13 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Viewbox Grid.RowSpan="2"  Height="550" Width="550" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" Margin="30,0,0,0">
-            <local:Dashboard x:Name="dash" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="288" Width="369"/>
-        </Viewbox>
-        <Viewbox Grid.RowSpan="2" Height="550" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
+        <!--Map-->
+        <local:Map x:Name="myMap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,101,5" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Canvas.Top="10" Canvas.Left="10" Width="734" />
+        <!--Navigator-->
+        <Viewbox Grid.RowSpan="2" Height="600" Width="550" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="30,0,0,0">
             <local:Navigators x:Name="sliders" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="617" Width="692"/>
         </Viewbox>
+        <!--exit button-->
         <Button Grid.Column="3" Content="EXIT"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="52" Height="39" FontWeight="Bold" Click="Button_Click_Exit" Margin="0,0,16,0" FontFamily="BN Eyal" FontSize="10" Cursor="Hand">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -58,9 +60,11 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,25.333,0" Grid.RowSpan="2">
-            <local:Map x:Name="myMap" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Height="552" Width="723" Canvas.Left="10"/>
-        </Canvas>
+        <!--Dashboard-->
+        <Viewbox Grid.RowSpan="3"  Height="550" Width="550" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" Margin="6,-78,-7,128">
+            <local:Dashboard x:Name="dash" RenderTransformOrigin="0.5,0.5"  Margin="180,-50,0,50" HorizontalAlignment="Right" Height="288" Width="369"/>
+        </Viewbox>
+        <!--back button-->
         <Button Grid.Column="3" Grid.Row="2" Width="64" Height="39" Content="BACK" Click="Button_Click_Back" VerticalAlignment="Bottom" Margin="201.667,0,18,44" HorizontalAlignment="Center" FontWeight="Bold" FontFamily="BN Eyal" Cursor="Hand">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -97,16 +101,14 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <!--connection status-->
+        <Canvas  Grid.Column="3" Grid.ColumnSpan="2">
+            <TextBlock TextWrapping="Wrap" Text="Connection Status:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="88" Canvas.Top="10"/>
+            <TextBlock x:Name="connect" TextWrapping="Wrap" Text="{Binding VM_Connecting, Mode=TwoWay}" FontFamily="Ubuntu" Width="103" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Canvas.Left="92" Canvas.Top="31"/>
 
-        <TextBlock x:Name="myMessage" Text="{Binding Message}" Grid.Row="1" FontSize="20" Grid.Column="1" Width="428" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Height="130" Margin="96.667,0,25.333,70" TextAlignment="Center" Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0.657"/>
-                    <GradientStop Color="#FF0A0A0A" Offset="0.375"/>
-                </LinearGradientBrush>
-            </TextBlock.Foreground>
-        </TextBlock>
-        <TextBlock Grid.Column="3" TextWrapping="Wrap" Text="Connection Status:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
-        <TextBlock x:Name="connect" Grid.Column="3" TextWrapping="Wrap" Text="{Binding VM_Connecting, Mode=TwoWay}" FontFamily="Ubuntu" Width="103" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="81.667,25,90,161" TextAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="Error Box:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="59" Canvas.Left="116"/>
+            <TextBlock x:Name="myMessage"  TextWrapping="Wrap"  Text="{Binding Message}"  FontFamily="Ubuntu" Width="191" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Canvas.Left="56" Canvas.Top="78" Height="122" Foreground="#FFF34E4E"/>
+        </Canvas>
+
     </Grid>
 </Page>

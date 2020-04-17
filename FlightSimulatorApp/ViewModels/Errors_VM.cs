@@ -83,9 +83,9 @@ namespace FlightSimulatorApp.ViewModels
         }
         
         // Disconnect from the simulator
-        public void disconnect()
+        public void Disconnect()
         {
-            this.model.disconnect();
+            this.model.Disconnect();
         }
 
         public string VM_Connecting
@@ -99,5 +99,19 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.Connecting = value;
             }
         }
+
+        public bool VM_InValidError
+        {
+            get
+            {
+                return this.model.InValidError;
+            }
+            set
+            {
+                this.model.InValidError = value;
+            }
+        }
+
+        
     }
 }
