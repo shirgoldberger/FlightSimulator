@@ -38,9 +38,8 @@ namespace FlightSimulatorApp.Views
                 {
                     Message = "We lost contact with the simulator\n" +
                     "you can stay at this page, press back to go back to the log in page or exit to exit";
-                    this.vm3.Disconnect();
-                    Thread.Sleep(10000);
-                    Message = "";
+                    this.vm3.disconnect();
+                    Thread.Sleep(5000);
                 }
 
                 // error of reading data
@@ -48,8 +47,7 @@ namespace FlightSimulatorApp.Views
                 {
                     Message = "we didn't get response from the simulator for 10 sec...\n" +
                     "you can wait, go back to the home page or exit";
-                    Thread.Sleep(10000);
-                    Message = "";
+                    Thread.Sleep(5000);
                 }
 
                 // invalid value from the simulator
@@ -72,8 +70,7 @@ namespace FlightSimulatorApp.Views
                 {
                     Message = "we have recieve an invalid latitude value therefor the latititude hasn't been update\n" +
                     "you can click back to go back to the log in page and try again";
-                    Thread.Sleep(10000);
-                    Message = "";
+                    Thread.Sleep(5000);
                 }
 
                 if (e.PropertyName.Equals("VM_LongError") && vm3.VM_LongError)
@@ -81,8 +78,7 @@ namespace FlightSimulatorApp.Views
 
                     Message = "we have recieve an invalid longtitude value therefor the latititude hasn't been update\n" +
                     "you can click back to go back to the log in page and try again";
-                    Thread.Sleep(10000);
-                    Message = "";
+                    Thread.Sleep(5000);
                 }
 
             };
@@ -127,6 +123,7 @@ namespace FlightSimulatorApp.Views
             // disconnect and go back to the home page 
             this.vm3.Disconnect();
             this.NavigationService.GoBack();
+            message = "";
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
@@ -134,6 +131,7 @@ namespace FlightSimulatorApp.Views
             // disconnect and close the program
             this.vm3.Disconnect();
             System.Environment.Exit(0);
+            message = "";
         }
         public bool V_ConnectError
         {

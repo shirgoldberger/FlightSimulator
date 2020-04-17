@@ -106,7 +106,7 @@
             <TextBlock TextWrapping="Wrap" Text="Connection Status:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="88" Canvas.Top="10"/>
             <TextBlock x:Name="connect" TextWrapping="Wrap" Text="{Binding VM_Connecting, Mode=TwoWay}" FontFamily="Ubuntu" Width="103" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Canvas.Left="92" Canvas.Top="31"/>
 
-            <TextBlock TextWrapping="Wrap" Text="Error Box:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="59" Canvas.Left="120"/>
+            <TextBlock TextWrapping="Wrap" Text="Error Box:" FontFamily="Ubuntu" Width="112" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="59" Canvas.Left="116"/>
             <TextBlock x:Name="myMessage"  TextWrapping="Wrap"  Text="{Binding Message}"  FontFamily="Ubuntu" Width="191" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Canvas.Left="56" Canvas.Top="78" Height="122" Foreground="#FFF34E4E"/>
         </Canvas>
 
