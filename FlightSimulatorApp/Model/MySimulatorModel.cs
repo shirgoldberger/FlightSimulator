@@ -12,7 +12,8 @@ namespace FlightSimulatorApp.Model
         // Dashbord variables.
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
-        Thread thread;
+        Thread threadGet;
+        Thread threadSet;
         // Navigators variables.
         double rudder, elevator, throttle, aileron;
         // Map variables.
@@ -98,7 +99,7 @@ namespace FlightSimulatorApp.Model
         }
         public void start()
         {
-            this.thread = new Thread(delegate ()
+            this.threadGet = new Thread(delegate ()
             {
                 String msg;
                 while (!stop)
@@ -224,7 +225,55 @@ namespace FlightSimulatorApp.Model
                     }
                 }
             });
-            thread.Start();
+            //this.threadSet = new Thread(delegate ()
+            //{
+            //    String msg;
+            //    while (!stop)
+            //    {
+            //        try
+            //        {
+            //            // set the variables in the queue
+            //            while (this.update.Count != 0)
+            //            {
+            //                msg = "set " + update.Dequeue() + "\n";
+            //                telnetClient.Write(msg);
+            //                telnetClient.Read();
+            //            }
+            //            // the same for the other sensors properties
+            //            Thread.Sleep(250);// read the data in 4Hz
+            //        }
+            //        catch (IOException e)
+            //        {
+            //            if (e.ToString().Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."))
+            //            {
+            //                // problem with reading values
+            //                ReadError = true;
+            //                timeout = true;
+            //                // Console.WriteLine("read timeout");
+            //            }
+            //            else
+            //            {
+            //                stop = true;
+            //                Connecting = "disconnected";
+            //                ServerError = true;
+            //                update.Clear();
+            //                //Console.WriteLine("problem with IO");
+
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
+            //            // problem with connecting to the server
+            //            //Console.WriteLine("problem with connecting to the server");
+            //            update.Clear();
+            //            stop = true;
+            //            Connecting = "disconnected";
+            //            ServerError = true;
+            //        }
+            //    }
+            //});
+            threadGet.Start();
+            //threadSet.Start();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -341,19 +390,21 @@ namespace FlightSimulatorApp.Model
             set
             {
                 // check if in the range
-                if (value > 1)
+                if (value > 1 && this.rudder != 1)
                 {
                     this.rudder = 1;
+                    this.update.Enqueue("/controls/flight/rudder " + value);
                 }
-                else if (value < -1)
+                else if (value < -1 && this.rudder != -1)
                 {
                     this.rudder = -1;
+                    this.update.Enqueue("/controls/flight/rudder " + value);
                 }
-                else
+                else if (Math.Abs(value - this.rudder) > Math.Pow(10, -4))
                 {
                     this.rudder = value;
+                    this.update.Enqueue("/controls/flight/rudder " + value);
                 }
-                this.update.Enqueue("/controls/flight/rudder " + value);
             }
         }
         public double Elevator
@@ -362,20 +413,21 @@ namespace FlightSimulatorApp.Model
             set
             {
                 // check if in the range
-                if (value > 1)
+                if (value > 1 && this.elevator != 1)
                 {
                     this.elevator = 1;
+                    this.update.Enqueue("/controls/flight/elevator " + value);
                 }
-                else if (value < -1)
+                else if (value < -1 && this.elevator != -1)
                 {
                     this.elevator = -1;
+                    this.update.Enqueue("/controls/flight/elevator " + value);
                 }
-                else
+                else if (Math.Abs(value - this.elevator) > Math.Pow(10, -4))
                 {
                     this.elevator = value;
+                    this.update.Enqueue("/controls/flight/elevator " + value);
                 }
-                this.elevator = value;
-                this.update.Enqueue("/controls/flight/elevator " + value);
             }
         }
         public double Aileron
@@ -384,20 +436,21 @@ namespace FlightSimulatorApp.Model
             set
             {
                 // check if in the range
-                if (value > 1)
+                if (value > 1 && this.aileron != 1)
                 {
                     this.aileron = 1;
+                    this.update.Enqueue("/controls/flight/aileron " + value);
                 }
-                else if (value < -1)
+                else if (value < -1 && this.aileron != -1)
                 {
                     this.aileron = -1;
+                    this.update.Enqueue("/controls/flight/aileron " + value);
                 }
-                else
+                else if (Math.Abs(value - this.aileron) > Math.Pow(10, -4))
                 {
                     this.aileron = value;
+                    this.update.Enqueue("/controls/flight/aileron " + value);
                 }
-                this.aileron = value;
-                this.update.Enqueue("/controls/flight/aileron " + value);
             }
         }
         public double Throttle
@@ -406,20 +459,24 @@ namespace FlightSimulatorApp.Model
             set
             {
                 // check if in the range
-                if (value > 1)
+                if (value > 1 && this.throttle != 1)
                 {
                     this.throttle = 1;
+                    this.update.Enqueue("/controls/engines/current-engine/throttle " + value);
+
                 }
-                else if (value < 0)
+                else if (value < 0 && this.throttle != 0)
                 {
                     this.throttle = 0;
+                    this.update.Enqueue("/controls/engines/current-engine/throttle " + value);
+
                 }
-                else
+                else if (Math.Abs(value - this.throttle) > Math.Pow(10, -4))
                 {
                     this.throttle = value;
+                    this.update.Enqueue("/controls/engines/current-engine/throttle " + value);
+
                 }
-                this.throttle = value;
-                this.update.Enqueue("/controls/engines/current-engine/throttle " + value);
             }
         }
 
