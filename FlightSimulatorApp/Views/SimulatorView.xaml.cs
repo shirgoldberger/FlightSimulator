@@ -59,6 +59,15 @@ namespace FlightSimulatorApp.Views
                     Message = "";
                 }
 
+                // invalid value from the simulator
+                if (e.PropertyName.Equals("VM_InValidError") && vm3.VM_InValidError)
+                {
+                    Message = "we get an invalid value from the simulator\n";
+                    Thread.Sleep(10000);
+                    this.vm3.VM_InValidError = false;
+                    Message = "";
+                }
+
                 // error of connecting to the simulator (cannot connect)
                 if (e.PropertyName.Equals("VM_ConnectError") && vm3.VM_ConnectError)
                 {
@@ -141,13 +150,13 @@ namespace FlightSimulatorApp.Views
         public bool V_ConnectError
         {
             get { return this.connectError; }
-            set 
-            { 
+            set
+            {
                 this.connectError = value;
                 NotifyPropertyChanged("V_ConnectError");
             }
         }
-        
+
         // text box that contains messages of errors
         public string Message
         {
