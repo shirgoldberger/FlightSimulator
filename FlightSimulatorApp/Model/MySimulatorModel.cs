@@ -12,8 +12,7 @@ namespace FlightSimulatorApp.Model
         // Dashbord variables.
         double indicatedHeadingDeg, gpsIndicatedVerticalSpeed, gpsIndicatedGroundSpeedKt, airspeedIndicatorIndicatedSpeedKt,
             gpsIndicatedAltitudeFt, attitudeIndicatorInternalRollDeg, attitudeIndicatorInternalPitchDeg, altimeterIndicatedAltitudeFt;
-        Thread threadGet;
-        Thread threadSet;
+        Thread thread;
         // Navigators variables.
         double rudder, elevator, throttle, aileron;
         // Map variables.
@@ -99,7 +98,7 @@ namespace FlightSimulatorApp.Model
         }
         public void start()
         {
-            this.threadGet = new Thread(delegate ()
+            this.thread = new Thread(delegate ()
             {
                 String msg;
                 while (!stop)
@@ -225,55 +224,7 @@ namespace FlightSimulatorApp.Model
                     }
                 }
             });
-            //this.threadSet = new Thread(delegate ()
-            //{
-            //    String msg;
-            //    while (!stop)
-            //    {
-            //        try
-            //        {
-            //            // set the variables in the queue
-            //            while (this.update.Count != 0)
-            //            {
-            //                msg = "set " + update.Dequeue() + "\n";
-            //                telnetClient.Write(msg);
-            //                telnetClient.Read();
-            //            }
-            //            // the same for the other sensors properties
-            //            Thread.Sleep(250);// read the data in 4Hz
-            //        }
-            //        catch (IOException e)
-            //        {
-            //            if (e.ToString().Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."))
-            //            {
-            //                // problem with reading values
-            //                ReadError = true;
-            //                timeout = true;
-            //                // Console.WriteLine("read timeout");
-            //            }
-            //            else
-            //            {
-            //                stop = true;
-            //                Connecting = "disconnected";
-            //                ServerError = true;
-            //                update.Clear();
-            //                //Console.WriteLine("problem with IO");
-
-            //            }
-            //        }
-            //        catch (Exception)
-            //        {
-            //            // problem with connecting to the server
-            //            //Console.WriteLine("problem with connecting to the server");
-            //            update.Clear();
-            //            stop = true;
-            //            Connecting = "disconnected";
-            //            ServerError = true;
-            //        }
-            //    }
-            //});
-            threadGet.Start();
-            //threadSet.Start();
+            thread.Start();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
