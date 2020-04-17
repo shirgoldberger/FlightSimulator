@@ -16,13 +16,14 @@ namespace FlightSimulatorApp.Views
         private bool firstTime = true;
         private double zoom;
         private bool freeMove = false;
+        private double diffrance = 0;
         public Map()
         {
             InitializeComponent();
             zoom = myMap.ZoomLevel;
         }
 
-        private void focus_Click(object sender, RoutedEventArgs e)
+        private void Focus_Click(object sender, RoutedEventArgs e)
         {
             double latitude = pin.Location.Latitude;
             double longtitude = pin.Location.Longitude;
@@ -97,13 +98,13 @@ namespace FlightSimulatorApp.Views
                     if ((latitude - preY) == 0)
                     {
                         //we are moving right
-                        if (preX < longtitude && longtitude + 0.5 >= bounds.East)
+                        if (preX < longtitude && longtitude + diffrance >= bounds.East)
                         {
-                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 0.5), zoom);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - diffrance), zoom);
                         }
-                        else if (preX > longtitude && longtitude - 0.5 <= bounds.West)
+                        else if (preX > longtitude && longtitude - diffrance <= bounds.West)
                         {
-                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 0.5), zoom);
+                            myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + diffrance), zoom);
                         }
 
        
@@ -114,116 +115,116 @@ namespace FlightSimulatorApp.Views
                         double m = (longtitude - preX) / (latitude - preY);
 
                         //we are moving up with positive M and pass the limit of the current map page.
-                        if (m>0 && preY < latitude && latitude + 0.5 >= bounds.North)
+                        if (m>0 && preY < latitude && latitude + diffrance >= bounds.North)
                         {
                             //we are exceed from the right side above.
                             if (longtitude >= centerLon)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat - 0.5, 2 * longtitude - centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat - diffrance, 2 * longtitude - centerLon), zoom);
                             }
                             //we are exceed from the left side above.
                             else
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat - 0.5, centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat - diffrance, centerLon), zoom);
                             }
                         }
                         //we are moving up moving with nagative M and pass the limit of the current map page.
-                        else if (m < 0 && preY < latitude && latitude + 0.5 >= bounds.North)
+                        else if (m < 0 && preY < latitude && latitude + diffrance >= bounds.North)
                         {
                             //we are exceed from the right side above.
                             if (longtitude < centerLon)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat - 0.5, 2 * longtitude - centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat - diffrance, 2 * longtitude - centerLon), zoom);
                             }
                             //we are exceed from the left side above.
                             else
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat - 0.5, centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat - diffrance, centerLon), zoom);
                             }
                         }
                         //we are moving down with positive M and pass the limit of the current map page.
-                        else if (m >0 && preY > latitude && latitude - 0.5 <= bounds.South)
+                        else if (m >0 && preY > latitude && latitude - diffrance <= bounds.South)
                         {
                             //we are exceed from the right side down.
                             if (longtitude < centerLon)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + 0.5, 2 * longtitude - centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat + diffrance, 2 * longtitude - centerLon), zoom);
                             }
                             //we are exceed from the left side down.
                             else
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + 0.5, centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat + diffrance, centerLon), zoom);
                             }
                         }
                         //we are moving down with nagative M and pass the limit of the current map page.
-                        else if (m < 0 && preY > latitude && latitude - 0.5 <= bounds.South)
+                        else if (m < 0 && preY > latitude && latitude - diffrance <= bounds.South)
                         {
                             //we are exceed from the right side down.
                             if (longtitude >= centerLon)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + 0.5, 2 * longtitude - centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat + diffrance, 2 * longtitude - centerLon), zoom);
                             }
                             //we are exceed from the left side down.
                             else
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + 0.5, centerLon), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat + diffrance, centerLon), zoom);
                             }
                         }
 
                         //we are moving with positive M and going to exceed the map from the right side of the map
-                        else if (m > 0 && longtitude + 0.5 >= bounds.East)
+                        else if (m > 0 && longtitude + diffrance >= bounds.East)
                         {
                             //we are at the top part of the right side of the map.
                             if (latitude >= centerLat)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 0.5), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat, 2 * longtitude - centerLon - diffrance), zoom);
                             }
                             //we are at the down part of the right side of the map.
                             else
                             {
-                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 0.5), zoom);
+                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - diffrance), zoom);
                             }
                         }
                         //we are moving with negative M and going to exceed the map from the right side of the map
-                        else if (m < 0 && longtitude + 0.5 >= bounds.East)
+                        else if (m < 0 && longtitude + diffrance >= bounds.East)
                         {
                             //we are at the down part of the right side of the map.
                             if (latitude <= centerLat)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon - 0.5), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat, 2 * longtitude - centerLon - diffrance), zoom);
                             }
                             //we are at the top part of the right side of the map.
                             else
                             {
-                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - 0.5), zoom);
+                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon - diffrance), zoom);
                             }
                         }
                         //we are moving down and going to exceed the map from the left side of the map
-                        else if (m < 0 && longtitude - 0.5 <= bounds.West)
+                        else if (m < 0 && longtitude - diffrance <= bounds.West)
                         {
                             //we are at the Top part of the left side of the map.
                             if (latitude >= centerLat)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 0.5), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat, 2 * longtitude - centerLon + diffrance), zoom);
                             }
                             //we are at the down part of the left side of the map.
                             else
                             {
-                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 0.5), zoom);
+                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + diffrance), zoom);
                             }
                         }
                         //we are moving up and going to exceed the map from the left side of the map
-                        else if (m > 0 && longtitude - 0.5 <= bounds.West)
+                        else if (m > 0 && longtitude - diffrance <= bounds.West)
                         {
                             //we are at the down part of the left side of the map.
                             if (latitude <= centerLat)
                             {
-                                myMap.SetView(new Location(2 * latitude - centerLat + (bounds.North - centerLat), 2 * longtitude - centerLon + 0.5), zoom);
+                                myMap.SetView(new Location(2 * latitude - centerLat, 2 * longtitude - centerLon + diffrance), zoom);
                             }
                             //we are at the Top part of the left side of the map.
                             else
                             {
-                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + 0.5), zoom);
+                                myMap.SetView(new Location(centerLat, 2 * longtitude - centerLon + diffrance), zoom);
                             }
                         }
                     }

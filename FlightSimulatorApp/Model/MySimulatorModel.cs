@@ -29,6 +29,7 @@ namespace FlightSimulatorApp.Model
         private bool longError;
         private bool serverError;
         private bool connectError;
+        private bool inValidError;
         // To know if we are connected.
         private string connecting = "disconnected";
 
@@ -70,6 +71,7 @@ namespace FlightSimulatorApp.Model
             timeout = false;
             latError = false;
             longError = false;
+            inValidError = false;
             indicatedHeadingDeg = 0;
             gpsIndicatedVerticalSpeed = 0;
             gpsIndicatedGroundSpeedKt = 0;
@@ -86,7 +88,7 @@ namespace FlightSimulatorApp.Model
             longitude = 0;
         }
 
-        public void disconnect()
+        public void Disconnect()
         {
             // Stop the thread that receiving and sending data
             stop = true;
@@ -105,12 +107,7 @@ namespace FlightSimulatorApp.Model
                     {
                         if (timeout)
                         {
-
                             msg = telnetClient.Read();
-                            if (!msg.Contains("ERR"))
-                            {
-                                Console.WriteLine(Double.Parse(msg));
-                            }
                             timeout = false;
                         }
                         // 1
@@ -213,7 +210,8 @@ namespace FlightSimulatorApp.Model
                         }
                     }
                     catch (FormatException) {
-                        Console.WriteLine("s does not represent a numeric value");
+                        InValidError = true;
+                        //Console.WriteLine("s does not represent a numeric value");
                     }
                     catch (Exception)
                     {
@@ -505,10 +503,33 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                if (!serverError)
+                if (!connectError)
                 {
                     this.connectError = value;
                     this.NotifyPropertyChanged("ConnectError");
+                }
+            }
+        }
+        // When we were unable to connect to the simulator
+        public bool InValidError
+        {
+            get
+            {
+                return this.inValidError;
+            }
+            set
+            {
+                if (!inValidError)
+                {
+                    this.inValidError = value;
+                    this.NotifyPropertyChanged("InValidError");
+                }
+                else
+                {
+                    if (inValidError && !value)
+                    {
+                        this.inValidError = value;
+                    }
                 }
             }
         }

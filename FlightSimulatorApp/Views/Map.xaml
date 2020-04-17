@@ -9,8 +9,9 @@
              d:DesignHeight="551" Width="734.238">
     <Grid>
         <Canvas>
+            <!--Map-->
             <m:Map x:Name="myMap" ZoomLevel="5" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="551" Width="722" RenderTransformOrigin="0.5,0.5" Canvas.Left="10" MouseDown="MyMap_MouseDown" MouseUp="MyMap_MouseUp" LayoutUpdated="MyMap_LayoutUpdated">
-
+                <!--Plain's pin-->
                 <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="Pin_LayoutUpdated">
                     <m:Pushpin.RenderTransform>
                         <TransformGroup>
@@ -20,11 +21,14 @@
                     <Image x:Name="plane" Source ="Images/plane.png"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
                 </m:Pushpin>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,414">
+                    <!--latitude-->
                     <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
+                    <!--longtitude-->
                     <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeT}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" />
                 </StackPanel>
             </m:Map>
-            <Button x:Name="focus"  Canvas.Left="14" Canvas.Top="495" Width="51" Height="50" Click="focus_Click" FocusVisualStyle="{DynamicResource font}" Cursor="Hand">
+            <!--Focus button-->
+            <Button x:Name="focus"  Canvas.Left="14" Canvas.Top="495" Width="51" Height="50" Click="Focus_Click" FocusVisualStyle="{DynamicResource font}" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="bdr_main" CornerRadius="20" Margin="4" BorderThickness="1" BorderBrush="Black">

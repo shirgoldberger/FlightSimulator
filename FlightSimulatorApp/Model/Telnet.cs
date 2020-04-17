@@ -45,7 +45,7 @@ namespace FlightSimulatorApp.Model
             byte[] bb = new byte[100];
             int k = this.stm.Read(bb, 0, 100);
             string massage = "";
-            // convert from bytes to string
+            // Convert from bytes to string.
             for (int i = 0; i < k; i++)
                 massage += (Convert.ToChar(bb[i]));
             return massage;
