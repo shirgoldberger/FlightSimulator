@@ -154,7 +154,6 @@
     <Resource Include="Views\Images\flight.jpg" />
     <Resource Include="Views\Images\plane.png" />
     <Resource Include="Views\Images\sim.png" />
-    <Resource Include="Views\Images\simbol.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\sim.png" />

@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Windows.Media.Animation;
 
@@ -22,16 +12,16 @@ namespace FlightSimulatorApp.Views.controls
     /// </summary>
     public partial class Joystick : UserControl, Notify
     {
-        // for the movement of the handle
+        // For the movement of the handle.
         double k = 30;
         Rect rec;
         Point ofset;
         public int i;
         private bool firstTime;
         Rect KnobRec;
-        // The variables that change when the joystick moves
+        // The variables that change when the joystick moves.
         private double rudder, elevator;
-        // The animation of backing to the center
+        // The animation of backing to the center.
         private readonly Storyboard centerKnob;
 
 
@@ -68,13 +58,13 @@ namespace FlightSimulatorApp.Views.controls
         {
             if (Knob.IsMouseCaptured)
             {
-                //real place of x and y 
+                // Real place of x and y. 
                 double x = e.GetPosition(black_Circle).X + rec.Left - k;
                 double y = e.GetPosition(black_Circle).Y + rec.Top - k;
 
                 if (x < rec.Left)
                 {
-                    //y is in range
+                    // Y is in range.
                     if (y > rec.Top && y < rec.Bottom)
                     {
                         knobPosition.X = KnobRec.Left;
@@ -118,7 +108,7 @@ namespace FlightSimulatorApp.Views.controls
         }
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            // return the joystick to the center
+            // Return the joystick to the center.
             centerKnob.Begin();
             (Knob).ReleaseMouseCapture();
             Rudder = 0;
@@ -151,7 +141,7 @@ namespace FlightSimulatorApp.Views.controls
 
         public void UpdateParams(double x, double y)
         {
-            // set rudder and elevator
+            // Set rudder and elevator.
             Rudder = x / ((rec.Width) / 2);
             Elevetor = - (y / ((rec.Width) / 2));
         }

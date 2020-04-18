@@ -6,9 +6,9 @@ namespace FlightSimulatorApp.Model
 {
     public class Telnet : ITelnetClient
     {
-        // for connecting to the simulator
+        // For connecting to the simulator.
         TcpClient tcpclnt;
-        // for reading and writing data
+        // For reading and writing data.
         NetworkStream stm;
         private string ip;
         private int port;
@@ -22,13 +22,13 @@ namespace FlightSimulatorApp.Model
             this.tcpclnt = new TcpClient();
             try
             {
-                // try connect the server
+                // Try connect the server.
                 tcpclnt.Connect(ip, port);
                 stm = tcpclnt.GetStream();
             }
             catch (Exception e)
             {
-                // can't connect
+                // Can't connect.
                 if (e.Message.Contains("No connection"))
                 {
                     Exception e1 = new Exception("not connected");
@@ -60,6 +60,10 @@ namespace FlightSimulatorApp.Model
         public void SetTimeOutRead(int time)
         {
             this.tcpclnt.ReceiveTimeout = time;
+        }
+        public bool IsConnect()
+        {
+            return this.tcpclnt.Connected;
         }
     }
 }

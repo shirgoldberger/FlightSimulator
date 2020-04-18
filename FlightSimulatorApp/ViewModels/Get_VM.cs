@@ -24,7 +24,7 @@ namespace FlightSimulatorApp.ViewModels
             }
         }
 
-        // 8 properties that get from the simulator
+        // 8 properties that get from the simulator.
         public string VM_IndicatedHeadingDeg
         {
             get { return String.Format("{0:0.000}", model.IndicatedHeadingDeg); }
@@ -58,7 +58,7 @@ namespace FlightSimulatorApp.ViewModels
             get { return String.Format("{0:0.000}", model.AltimeterIndicatedAltitudeFt); }
         }
 
-        // the location of the plane on the map
+        // The location of the plane on the map.
         public Location VM_Location
         {
             get

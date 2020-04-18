@@ -24,7 +24,7 @@ namespace FlightSimulatorApp.ViewModels
             }
         }
 
-        // 4 properties that set to the simulator
+        // 4 properties that set to the simulator.
         public double VM_Rudder
         {
             get

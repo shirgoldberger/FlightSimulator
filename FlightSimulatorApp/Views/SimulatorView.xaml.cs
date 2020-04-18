@@ -30,10 +30,10 @@ namespace FlightSimulatorApp.Views
             myMessage.DataContext = this;
             connect.DataContext = vm3;
 
-            // When there is an error
+            // When there is an error.
             vm3.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                // error of connecting to the simulator (the server unexpectedly disconnected)
+                // Error of connecting to the simulator (the server unexpectedly disconnected).
                 if (e.PropertyName.Equals("VM_ServerError") && vm3.VM_ServerError)
                 {
                     Message = "We lost contact with the simulator\n" +
@@ -41,7 +41,7 @@ namespace FlightSimulatorApp.Views
                     this.vm3.Disconnect();
                 }
 
-                // error of reading data
+                // Error of reading data.
                 if (e.PropertyName.Equals("VM_ReadError") && vm3.VM_ReadError)
                 {
                     Message = "we didn't get response from the simulator for 10 sec...\n" +
@@ -50,7 +50,7 @@ namespace FlightSimulatorApp.Views
                     Message = "";
                 }
 
-                // invalid value from the simulator
+                // Invalid value from the simulator.
                 if (e.PropertyName.Equals("VM_InValidError") && vm3.VM_InValidError)
                 {
                     Message = "we get an invalid value from the simulator\n";
@@ -59,7 +59,7 @@ namespace FlightSimulatorApp.Views
                     Message = "";
                 }
 
-                // invalid value from the simulator
+                // Invalid value from the simulator.
                 if (e.PropertyName.Equals("VM_InValidError") && vm3.VM_InValidError)
                 {
                     Message = "we get an invalid value from the simulator\n";
@@ -68,13 +68,13 @@ namespace FlightSimulatorApp.Views
                     Message = "";
                 }
 
-                // error of connecting to the simulator (cannot connect)
+                // Error of connecting to the simulator (cannot connect).
                 if (e.PropertyName.Equals("VM_ConnectError") && vm3.VM_ConnectError)
                 {
                     V_ConnectError = true;
                 }
 
-                // error in plane location 
+                // Error in plane location. 
                 if (e.PropertyName.Equals("VM_LatError") && vm3.VM_LatError)
                 {
                     Message = "we have recieve an invalid latitude value therefor the latititude hasn't been update\n" +
@@ -91,7 +91,6 @@ namespace FlightSimulatorApp.Views
                     "you can click back to go back to the log in page and try again";
                     Thread.Sleep(10000);
                     this.vm3.VM_LongError = false;
-
                     Message = "";
                 }
 
@@ -134,18 +133,18 @@ namespace FlightSimulatorApp.Views
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            // disconnect and go back to the home page 
+            // Disconnect and go back to the home page. 
             this.vm3.Disconnect();
             this.NavigationService.GoBack();
-            message = "";
+            Message = "";
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
-            // disconnect and close the program
+            // Disconnect and close the program.
             this.vm3.Disconnect();
             System.Environment.Exit(0);
-            message = "";
+            Message = "";
         }
         public bool V_ConnectError
         {
@@ -157,7 +156,7 @@ namespace FlightSimulatorApp.Views
             }
         }
 
-        // text box that contains messages of errors
+        // Text box that contains messages of errors.
         public string Message
         {
             get { return this.message; }

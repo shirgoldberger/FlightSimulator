@@ -36,25 +36,25 @@ namespace FlightSimulatorApp.Model
         public MySimulatorModel() { }
         public void Run(string ip, int port)
         {
-            // set ip and port
+            // Set ip and port.
             this.telnetClient = new Telnet(ip, port);
-            // connect to the simulator
+            // Connect to the simulator.
             this.Connect();
-            // set time out to 10 seconds
+            // Set time out to 10 seconds.
             this.telnetClient.SetTimeOutRead(10000);
         }
         public void Connect()
         {
             try
             {
-                // try connect
+                // Try connect.
                 telnetClient.Connect();
                 Connecting = "connected";
                 Initialize();
                 this.start();
             } catch (Exception e)
             {
-                // We couldn't connect
+                // We couldn't connect.
                 if (e.Message == "not connected")
                 {
                     this.ConnectError = true;
@@ -64,7 +64,7 @@ namespace FlightSimulatorApp.Model
 
         private void Initialize()
         {
-            // initialize all the variables for new running 
+            // Initialize all the variables for new running .
             stop = false;
             serverError = false;
             readError = false;
@@ -90,9 +90,9 @@ namespace FlightSimulatorApp.Model
 
         public void Disconnect()
         {
-            // Stop the thread that receiving and sending data
+            // Stop the thread that receiving and sending data.
             stop = true;
-            // Stop the connection with the simulator
+            // Stop the connection with the simulator.
             telnetClient.Disconnect();
             Connecting = "disconnected";
         }
@@ -166,38 +166,37 @@ namespace FlightSimulatorApp.Model
                         {
                             AltimeterIndicatedAltitudeFt = Double.Parse(msg);
                         }
-                        // longitude
+                        // Longitude.
                         telnetClient.Write("get /position/longitude-deg\n");
                         msg = telnetClient.Read();
                         if (!msg.Contains("ERR"))
                         {
                             Longitude = Double.Parse(msg);
                         }
-                        // latitude
+                        // Latitude.
                         telnetClient.Write("get /position/latitude-deg\n");
                         msg = telnetClient.Read();
                         if (!msg.Contains("ERR"))
                         {
                             Latitude = Double.Parse(msg);
                         }
-                        // set the variables in the queue
+                        // Set the variables in the queue.
                         while (this.update.Count != 0)
                         {
                             string s = "set " + update.Dequeue() + "\n";
                             telnetClient.Write(s);
                             telnetClient.Read();
                         }
-                        // the same for the other sensors properties
+                        // The same for the other sensors properties.
                         Thread.Sleep(250);// read the data in 4Hz
                     }
                     catch (IOException e)
                     {
                         if (e.ToString().Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."))
                         {
-                            // problem with reading values
+                            // Problem with reading values.
                             ReadError = true;
                             timeout = true;
-                           // Console.WriteLine("read timeout");
                         }
                         else
                         {
@@ -205,21 +204,21 @@ namespace FlightSimulatorApp.Model
                             Connecting = "disconnected";
                             ServerError = true;
                             update.Clear();
-                            //Console.WriteLine("problem with IO");
-
                         }
                     }
                     catch (FormatException) {
+                        // Error with values.
                         InValidError = true;
-                        //Console.WriteLine("s does not represent a numeric value");
                     }
                     catch (Exception)
                     {
-                        // problem with connecting to the server
-                        //Console.WriteLine("problem with connecting to the server");
+                        // Problem with connecting to the server.
                         update.Clear();
                         stop = true;
-                        Connecting = "disconnected";
+                        if (!telnetClient.IsConnect())
+                        {
+                            Connecting = "disconnected";
+                        }
                         ServerError = true;
                     }
                 }
@@ -236,7 +235,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // 8 properties that get from the simulator
+        // 8 properties that get from the simulator.
         public double IndicatedHeadingDeg
         {
             get { return this.indicatedHeadingDeg; }
@@ -334,13 +333,13 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // 4 properties that set to the simulator
+        // 4 properties that set to the simulator.
         public double Rudder
         {
             get { return this.rudder; }
             set
             {
-                // check if in the range
+                // Check if in the range.
                 if (value > 1 && this.rudder != 1)
                 {
                     this.rudder = 1;
@@ -363,7 +362,7 @@ namespace FlightSimulatorApp.Model
             get { return this.elevator; }
             set
             {
-                // check if in the range
+                // Check if in the range.
                 if (value > 1 && this.elevator != 1)
                 {
                     this.elevator = 1;
@@ -386,7 +385,7 @@ namespace FlightSimulatorApp.Model
             get { return this.aileron; }
             set
             {
-                // check if in the range
+                // Check if in the range.
                 if (value > 1 && this.aileron != 1)
                 {
                     this.aileron = 1;
@@ -409,7 +408,7 @@ namespace FlightSimulatorApp.Model
             get { return this.throttle; }
             set
             {
-                // check if in the range
+                // Check if in the range.
                 if (value > 1 && this.throttle != 1)
                 {
                     this.throttle = 1;
@@ -431,7 +430,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // the location of the plane on the map
+        // The location of the plane on the map.
         public double Longitude
         {
             get { return this.longitude; }
@@ -444,7 +443,7 @@ namespace FlightSimulatorApp.Model
 
                         this.longitude = value;
                         this.NotifyPropertyChanged("Location");
-                        // for the text
+                        // For the text.
                         this.NotifyPropertyChanged("LongitudeT");
                     }
                     else
@@ -466,7 +465,7 @@ namespace FlightSimulatorApp.Model
                     {
                         this.latitude = value;
                         this.NotifyPropertyChanged("Location");
-                        // For the text
+                        // For the text.
                         this.NotifyPropertyChanged("LatitudeT");
                     }
                     else
@@ -485,7 +484,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // when the simulator is not connected
+        // When the simulator is not connected.
         public bool ServerError
         {
             get
@@ -502,7 +501,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // When we were unable to connect to the simulator
+        // When we were unable to connect to the simulator.
         public bool ConnectError
         {
             get
@@ -518,7 +517,7 @@ namespace FlightSimulatorApp.Model
                 }
             }
         }
-        // When we were unable to connect to the simulator
+        // When we were unable to connect to the simulator.
         public bool InValidError
         {
             get
@@ -566,7 +565,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // when the value of the variables is out of range 
+        // When the value of the variables is out of range.
         public bool LatError
         {
             get
@@ -612,7 +611,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        // connect / not connect
+        // Connect / not connect.
         public string Connecting
         {
             get { return this.connecting; }

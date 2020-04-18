@@ -24,7 +24,7 @@ namespace FlightSimulatorApp.ViewModels
             }
         }
 
-        // properties of errors
+        // Properties of errors.
         public bool VM_ServerError
         {
             get
@@ -81,7 +81,18 @@ namespace FlightSimulatorApp.ViewModels
                 this.model.LongError = value;
             }
         }
-        
+        public bool VM_InValidError
+        {
+            get
+            {
+                return this.model.InValidError;
+            }
+            set
+            {
+                this.model.InValidError = value;
+            }
+        }
+
         // Disconnect from the simulator
         public void Disconnect()
         {
@@ -98,20 +109,6 @@ namespace FlightSimulatorApp.ViewModels
             {
                 this.model.Connecting = value;
             }
-        }
-
-        public bool VM_InValidError
-        {
-            get
-            {
-                return this.model.InValidError;
-            }
-            set
-            {
-                this.model.InValidError = value;
-            }
-        }
-
-        
+        }        
     }
 }

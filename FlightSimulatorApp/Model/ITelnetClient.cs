@@ -8,5 +8,6 @@
         string Read(); 
         void Disconnect();
         void SetTimeOutRead(int time);
+        bool IsConnect();
     }
 }
