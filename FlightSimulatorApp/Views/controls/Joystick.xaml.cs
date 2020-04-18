@@ -13,7 +13,7 @@ namespace FlightSimulatorApp.Views.controls
     public partial class Joystick : UserControl, Notify
     {
         // For the movement of the handle.
-        double k = 30;
+        double k = 45;
         Rect rec;
         Point ofset;
         public int i;
