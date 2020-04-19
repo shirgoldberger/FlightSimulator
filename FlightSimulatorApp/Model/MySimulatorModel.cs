@@ -69,6 +69,7 @@ namespace FlightSimulatorApp.Model
             serverError = false;
             readError = false;
             timeout = false;
+            connectError = false;
             latError = false;
             longError = false;
             inValidError = false;

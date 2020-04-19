@@ -46,6 +46,7 @@ namespace FlightSimulatorApp.Views
                 {
                     Message = "we didn't get response from the simulator for 10 sec...\n" +
                     "you can wait, go back to the home page or exit";
+                    this.vm3.VM_ReadError = false;
                     Thread.Sleep(10000);
                     Message = "";
                 }
